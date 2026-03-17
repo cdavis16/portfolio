@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connect Wearables – Claire Davis</title>
+  <meta name="description" content="Integrating wearable health data into the Healf ecosystem to personalise product recommendations and deepen user engagement." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Scroll progress ── */
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 1px;
+      background: rgba(255, 255, 255, 0.5);
+      transform: scaleX(0);
+      transform-origin: left;
+      z-index: 200;
+      transition: transform 0.05s linear;
+    }
+
+    /* ── Full-bleed hero overrides ── */
+    .project-hero {
+      padding-top: 0;
+      display: block;
+      position: relative;
+      min-height: 60vh;
+    }
+    .project-hero__visual--p03 {
+      position: absolute !important;
+      inset: 0 !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      min-height: unset !important;
+      overflow: hidden;
+    }
+    .project-hero__visual--p03::after {
+      content: none;
+    }
+    .project-hero__info {
+      position: absolute !important;
+      z-index: 2;
+      bottom: clamp(24px, 4vw, 40px);
+      left: var(--gutter);
+      right: var(--gutter);
+      max-width: 680px;
+      display: block !important;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 16px;
+      padding: 24px 28px;
+    }
+    .project-hero__title { font-size: clamp(1.75rem, 4vw, 3rem) !important; }
+    .project-hero__meta-grid {
+      margin-top: 16px;
+    }
+    .project-hero__kicker .eyebrow,
+    .project-hero__title,
+    .project-meta-item__label,
+    .project-meta-item__value { color: var(--text-primary) !important; }
+
+    /* Keep nav as glass while scrolling over the hero image */
+    .nav.scrolled:not(.nav--past-hero) {
+      background: rgba(255, 255, 255, 0.18) !important;
+      border-color: rgba(255, 255, 255, 0.25) !important;
+    }
+
+    /* ── Image placeholder ── */
+    .img-placeholder {
+      background: var(--bg-raised);
+      border: 1px dashed rgba(0,0,0,0.15);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 0.625rem;
+      letter-spacing: 0.06em;
+    }
+
+    .img-placeholder svg {
+      opacity: 0.3;
+    }
+
+    /* ── Stat callout cards ── */
+    .stat-callout {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat-callout__number {
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 300;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+
+    .stat-callout__label {
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .stat-callout__context {
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-top: 6px;
+    }
+
+    /* Goals grid */
+    .goals-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .goal-card {
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      padding: 28px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 140px;
+    }
+
+    .goal-card__text {
+      font-size: 0.9375rem;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .goals-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .goals-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Audit findings list ── */
+    .findings-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .findings-list__item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      gap: 20px;
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .findings-list__item:last-child { border-bottom: 1px solid var(--border); }
+
+    .findings-list__text {
+      font-size: 0.875rem;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .findings-list__source {
+      font-size: 0.6rem;
+      letter-spacing: 0.02em;
+      color: var(--text-muted);
+      white-space: nowrap;
+      padding: 3px 8px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      margin-top: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    /* HMW cards */
+    .hmw-cards-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .hmw-card {
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      transition: background 0.4s ease, border-color 0.4s ease;
+      flex: 1;
+    }
+
+    .hmw-card:hover { background: var(--surface-hover); border-color: var(--border-hover); }
+
+    /* HMW Horizontal Carousel */
+    .process-block__content { min-width: 0; overflow: hidden; }
+    .quotes-carousel::-webkit-scrollbar { display: none; }
+    .hmw-carousel { margin-top: 32px; position: relative; overflow: hidden; }
+    .hmw-carousel__tabs {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;
+    }
+    .hmw-carousel__tab {
+      padding: 7px 16px; border: 1px solid var(--border); border-radius: 100px;
+      background: none; cursor: pointer; font-size: 0.8125rem; font-weight: 400;
+      color: var(--text-secondary); transition: all 0.2s ease; font-family: inherit;
+    }
+    .hmw-carousel__tab:hover { border-color: var(--border-hover); color: var(--text-primary); }
+    .hmw-carousel__tab.active {
+      background: var(--text-primary); color: var(--bg); border-color: var(--text-primary);
+    }
+    .hmw-carousel__track {
+      display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 8px;
+      scroll-behavior: smooth;
+    }
+    .hmw-carousel__track::-webkit-scrollbar { display: none; }
+    .hmw-carousel__item {
+      flex: 0 0 calc(33.333% - 6px); min-width: 280px; scroll-snap-align: start;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+
+    .hmw-card__prefix {
+      font-size: 0.625rem;
+      letter-spacing: 0.01em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .hmw-card__text {
+      font-size: 0.8125rem;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    /* Insight pill tags */
+    .insight-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.6875rem;
+      font-weight: 300;
+      color: var(--text-secondary);
+      padding: 6px 12px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      background: var(--surface);
+    }
+
+    /* Phase cards */
+    .phase-card {
+      padding: 28px;
+      border-radius: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .phase-card__num {
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .phase-card__title {
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .phase-card__market {
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .phase-card__body {
+      font-size: 0.8125rem;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── Section navigator ─────────────────────── */
+    .section-nav {
+      position: fixed;
+      top: 56px;
+      left: 0;
+      right: 0;
+      z-index: 98;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      border-radius: 0;
+      padding: 10px 24px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .section-nav__item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .section-nav__item:hover {
+      background: var(--surface-hover);
+    }
+
+    .section-nav__num {
+      font-size: 0.5625rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      min-width: 16px;
+      transition: color 0.2s ease;
+    }
+
+    .section-nav__label {
+      font-size: 0.6875rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      transition: color 0.2s ease;
+    }
+
+    .section-nav__item.active .section-nav__num,
+    .section-nav__item.active .section-nav__label {
+      color: var(--text-primary);
+      font-weight: 400;
+    }
+
+    /* ── Inline grid responsive fixes ─────────────────────── */
+    @media (max-width: 768px) {
+      .p03-solutions { padding-left: 24px !important; padding-right: 24px !important; }
+      .p03-solution-grid { grid-template-columns: 1fr !important; }
+      .p03-grid-3 { grid-template-columns: 1fr 1fr !important; }
+      .p03-grid-4 { grid-template-columns: 1fr 1fr !important; }
+      .p03-phases-grid { grid-template-columns: 1fr !important; }
+      .p03-proto-grid { grid-template-columns: 1fr !important; }
+      .p03-hmw-row { grid-template-columns: 1fr !important; }
+      .p03-changes-grid { grid-template-columns: 1fr !important; }
+      .p03-stat-grid { grid-template-columns: 1fr 1fr !important; }
+      .p03-findings-grid { grid-template-columns: 1fr 1fr !important; }
+      .p03-merging-grid { grid-template-columns: 1fr 1fr !important; }
+      .hmw-carousel__tabs { gap: 6px; }
+      .hmw-carousel__tab { font-size: 0.75rem; padding: 6px 12px; }
+      .hmw-carousel__item { flex: 0 0 calc(50% - 4px); min-width: 240px; }
+    }
+
+    @media (max-width: 480px) {
+      .p03-grid-3 { grid-template-columns: 1fr !important; }
+      .p03-grid-4 { grid-template-columns: 1fr !important; }
+      .p03-stat-grid { grid-template-columns: 1fr !important; }
+      .hmw-cards-row { grid-template-columns: 1fr !important; }
+      .p03-findings-grid { grid-template-columns: 1fr !important; }
+      .p03-merging-grid { grid-template-columns: 1fr !important; }
+      .p03-impact-grid { grid-template-columns: 1fr !important; }
+      .p03-explorations { grid-template-columns: repeat(4, 1fr) !important; }
+      .hmw-carousel__item { flex: 0 0 calc(85%); min-width: 0; }
+    }
+
+    @media (max-width: 640px) {
+      .section-nav {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 0;
+        border-bottom: none;
+        border-left: none;
+        border-right: none;
+        gap: 0;
+        padding: 8px 12px;
+        padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+      }
+      .section-nav__label { display: none; }
+      .section-nav__item { padding: 6px 10px; }
+      .section-nav__num { min-width: auto; font-size: 0.625rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress"></div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a class="nav__logo" href="index.html">Claire Davis</a>
+    <ul class="nav__links">
+      <li><a href="index.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- Project Hero -->
+  <header class="project-hero">
+
+    <!-- Visual / hero image area -->
+    <div class="project-hero__visual project-hero__visual--p03" style="background: #1a1a1a;">
+      <img src="aura-ring.jpg" alt="Connect Wearables hero" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+
+    <!-- Project title + meta -->
+    <div class="project-hero__info">
+      <div>
+        <h1 class="project-hero__title">Connect Wearables</h1>
+      </div>
+      <div class="project-hero__meta-grid">
+        <div>
+          <p class="project-meta-item__label">Client</p>
+          <p class="project-meta-item__value">Healf</p>
+        </div>
+        <div>
+          <p class="project-meta-item__label">Role</p>
+          <p class="project-meta-item__value">Senior Product Designer</p>
+        </div>
+        <div>
+          <p class="project-meta-item__label">Year</p>
+          <p class="project-meta-item__value">2026</p>
+        </div>
+        <div>
+          <p class="project-meta-item__label">Platform</p>
+          <p class="project-meta-item__value">Mobile &amp; Desktop</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Overview -->
+  <section class="section">
+    <div class="container">
+      <div class="project-overview">
+        <div class="reveal">
+          <p class="eyebrow" style="margin-bottom: 20px;">Overview</p>
+          <p class="project-overview__challenge">
+            Richer product recommendations strengthened customer satisfaction, which led to an uplift in conversion of recommended items, leading to a <strong>4% lift in AOV</strong>.
+          </p>
+        </div>
+
+        <div class="project-overview__details reveal reveal-delay-2">
+          <div class="overview-detail">
+            <p class="overview-detail__label">My Role</p>
+            <p class="overview-detail__value">Senior Product Designer · Product Manager · Engineering team</p>
+          </div>
+          <div class="overview-detail">
+            <p class="overview-detail__label">Tools</p>
+            <p class="overview-detail__value">Figma · Linear · Claude Code · UX Pilot · PostHog</p>
+          </div>
+          <div class="overview-detail">
+            <p class="overview-detail__label">Key Goal</p>
+            <p class="overview-detail__value">Data acquisition and +% AOV</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero screens – full-bleed grey -->
+  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) var(--gutter);">
+    <div style="max-width: 960px; margin: 0 auto;">
+      <!-- Subcopy -->
+      <div style="margin-bottom: clamp(24px, 3vw, 40px);">
+        <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin: 0;">The journey consisted of 4 key sections:</p>
+      </div>
+      <!-- Screens grid -->
+      <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px;">
+        <div>
+          <img src="Activation2.png" alt="Activation screen" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+        </div>
+        <div>
+          <img src="Onboarding1.png" alt="Onboarding step 1" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+        </div>
+        <div>
+          <img src="Onboarding2.png" alt="Onboarding step 2" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+        </div>
+        <div>
+          <img src="Onboarding3.png" alt="Onboarding step 3" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+        </div>
+        <div>
+          <img src="Results.png" alt="Results screen" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+        </div>
+        <div>
+          <img src="Account.png" alt="Account screen" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+        </div>
+      </div>
+      <!-- Labels below images -->
+      <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-top: 20px;">
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
+          <span style="font-size: clamp(0.65rem, 1vw, 0.8rem); font-weight: 400; font-style: italic; color: var(--text-muted); letter-spacing: 0.02em; white-space: nowrap;">Activation</span>
+          <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
+        </div>
+        <div style="grid-column: 2 / 5; display: flex; align-items: center; gap: 6px;">
+          <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
+          <span style="font-size: clamp(0.65rem, 1vw, 0.8rem); font-weight: 400; font-style: italic; color: var(--text-muted); letter-spacing: 0.02em; white-space: nowrap;">Onboarding</span>
+          <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
+          <span style="font-size: clamp(0.65rem, 1vw, 0.8rem); font-weight: 400; font-style: italic; color: var(--text-muted); letter-spacing: 0.02em; white-space: nowrap;">Results</span>
+          <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
+          <span style="font-size: clamp(0.65rem, 1vw, 0.8rem); font-weight: 400; font-style: italic; color: var(--text-muted); letter-spacing: 0.02em; white-space: nowrap;">Account</span>
+          <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS SECTIONS -->
+
+  <!-- 01 – Define -->
+  <section class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container">
+      <div id="section-define" class="process-block reveal" style="border-top: none;">
+        <span class="process-block__num">01</span>
+        <div class="process-block__content">
+          <p class="process-block__label">Define</p>
+          <h2 class="process-block__title">Understanding the opportunity</h2>
+          <div class="process-block__body">
+            <p>
+              Healf's existing recommendation engine relied on <strong style="color: var(--text-primary);">self-reported survey data</strong>. Wearable data offered a <strong style="color: var(--text-primary);">richer, more accurate and continuous data stream</strong>. However, integrating this meaningfully required understanding users' expectations around <strong style="color: var(--text-primary);">sharing personal health data</strong> and the <strong style="color: var(--text-primary);">value they expected in return</strong>.
+            </p>
+          </div>
+
+          <!-- Methodology cards -->
+          <div class="p03-grid-3" data-stagger style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 32px;">
+            <div class="insight-card reveal">
+              <p class="insight-card__label">Methodology 01</p>
+              <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-primary); line-height: 1.8; margin: 0;">Data audit</p>
+              <p class="insight-card__desc">Mapping all existing data inputs (onboarding quiz, purchase history, browsing) against the data wearables could provide, to identify the highest-value gaps.</p>
+            </div>
+            <div class="insight-card reveal">
+              <p class="insight-card__label">Methodology 02</p>
+              <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-primary); line-height: 1.8; margin: 0;">User interviews</p>
+              <p class="insight-card__desc">12 interviews with wearable owners to understand sharing attitudes, privacy concerns, and expectations around health data personalisation.</p>
+            </div>
+            <div class="insight-card reveal">
+              <p class="insight-card__label">Methodology 03</p>
+              <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-primary); line-height: 1.8; margin: 0;">Competitive analysis</p>
+              <p class="insight-card__desc">Review of how wellness platforms (Whoop, Oura, Lingo) surface wearable data to inform product recommendations and daily guidance.</p>
+            </div>
+          </div>
+
+
+          <!-- User interview quotes – horizontal carousel -->
+          <div class="reveal" style="margin-top: 40px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border);">
+              <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin: 0;">What users told us</p>
+              <div class="quotes-arrows" style="display: flex; gap: 8px;">
+                <button class="quotes-arrow quotes-arrow--prev" style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.2s ease; font-family: inherit;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <button class="quotes-arrow quotes-arrow--next" style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.2s ease; font-family: inherit;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="quotes-carousel" style="display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 8px; scroll-behavior: smooth;">
+              <div class="glass" style="flex: 0 0 calc(43% - 4px); min-width: 280px; scroll-snap-align: start; padding: clamp(20px, 2.5vw, 32px); border-radius: 12px;">
+                <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-style: italic; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0 0 16px;">"I already track everything on my Apple Watch, it'd be amazing if Healf could actually use that."</p>
+                <span class="findings-list__source">Participant 3 · Daily tracker</span>
+              </div>
+              <div class="glass" style="flex: 0 0 calc(43% - 4px); min-width: 280px; scroll-snap-align: start; padding: clamp(20px, 2.5vw, 32px); border-radius: 12px;">
+                <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-style: italic; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0 0 16px;">"I filled out the quiz but my needs change. My sleep's been terrible lately and the site doesn't know that."</p>
+                <span class="findings-list__source">Participant 7 · Supplement buyer</span>
+              </div>
+              <div class="glass" style="flex: 0 0 calc(43% - 4px); min-width: 280px; scroll-snap-align: start; padding: clamp(20px, 2.5vw, 32px); border-radius: 12px;">
+                <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-style: italic; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0 0 16px;">"If I'm sharing my health data, I want to see something useful back immediately, not just a generic product list."</p>
+                <span class="findings-list__source">Participant 1 · Whoop user</span>
+              </div>
+              <div class="glass" style="flex: 0 0 calc(43% - 4px); min-width: 280px; scroll-snap-align: start; padding: clamp(20px, 2.5vw, 32px); border-radius: 12px;">
+                <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-style: italic; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0 0 16px;">"I'd share my data if it meant better recommendations. But I'd want to control exactly what I share."</p>
+                <span class="findings-list__source">Participant 9 · Privacy-conscious</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Key insight -->
+          <div class="reveal" style="margin-top: 40px;">
+            <div class="glass" style="padding: clamp(24px, 3vw, 36px); border-radius: 16px;">
+              <p style="font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px;">Key insight</p>
+              <p style="font-size: clamp(1rem, 1.8vw, 1.125rem); font-weight: 300; color: var(--text-secondary); line-height: 1.5; margin: 0; max-width: 50ch;">Users were willing to share wearable data, but only if the <strong style="font-weight: 500; color: var(--text-primary);">value exchange was immediate</strong>, <strong style="font-weight: 500; color: var(--text-primary);">visible</strong>, and <strong style="font-weight: 500; color: var(--text-primary);">under their control</strong>.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container">
+
+      <!-- 02 – Ideation -->
+      <div id="section-ideation" class="process-block reveal">
+        <span class="process-block__num">02</span>
+        <div class="process-block__content">
+          <p class="process-block__label">Ideation</p>
+          <h2 class="process-block__title">Design Principles Derived From Research</h2>
+          <div class="process-block__body">
+            <p>
+              HMW questions targeting four core design challenges around wearable data integration.
+            </p>
+          </div>
+
+          <!-- HMW horizontal carousel -->
+          <div class="hmw-carousel">
+            <div class="hmw-carousel__tabs">
+              <button class="hmw-carousel__tab active" data-slide="0">Onboarding</button>
+              <button class="hmw-carousel__tab" data-slide="1">Data visibility</button>
+              <button class="hmw-carousel__tab" data-slide="2">Personalisation</button>
+              <button class="hmw-carousel__tab" data-slide="3">Trust &amp; control</button>
+            </div>
+            <div class="hmw-carousel__track">
+              <div class="hmw-carousel__item" data-slide="0">
+                <div class="hmw-card"><p class="hmw-card__prefix">Problem</p><p class="hmw-card__text">Users don't understand what connecting a wearable will do for them.</p></div>
+                <div class="hmw-card" style="background: var(--surface-hover);"><p class="hmw-card__prefix">HMW</p><p class="hmw-card__text">How might we make the value of wearable connection immediately clear during onboarding?</p></div>
+              </div>
+              <div class="hmw-carousel__item" data-slide="1">
+                <div class="hmw-card"><p class="hmw-card__prefix">Problem</p><p class="hmw-card__text">Users share data but never see it reflected anywhere on the site.</p></div>
+                <div class="hmw-card" style="background: var(--surface-hover);"><p class="hmw-card__prefix">HMW</p><p class="hmw-card__text">How might we surface wearable insights across key touchpoints so users feel their data is working for them?</p></div>
+              </div>
+              <div class="hmw-carousel__item" data-slide="2">
+                <div class="hmw-card"><p class="hmw-card__prefix">Problem</p><p class="hmw-card__text">Recommendations feel generic regardless of individual health patterns.</p></div>
+                <div class="hmw-card" style="background: var(--surface-hover);"><p class="hmw-card__prefix">HMW</p><p class="hmw-card__text">How might we use real-time health signals to dynamically personalise product recommendations?</p></div>
+              </div>
+              <div class="hmw-carousel__item" data-slide="3">
+                <div class="hmw-card"><p class="hmw-card__prefix">Problem</p><p class="hmw-card__text">Users fear sharing health data will be used against them or shared.</p></div>
+                <div class="hmw-card" style="background: var(--surface-hover);"><p class="hmw-card__prefix">HMW</p><p class="hmw-card__text">How might we give users granular control over their data while maintaining a seamless experience?</p></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- User flow – full-bleed grey -->
+  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) var(--gutter);">
+    <!-- User flow wireframe -->
+    <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 8px;">User flow – wearable connection and data surfaces</p>
+    <div style="overflow-x: auto; padding-bottom: 0;">
+      <div style="display: flex; align-items: flex-start; gap: 0; min-width: 900px;">
+        <!-- Entry Points -->
+        <div style="flex: 0 0 auto; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 4px; background: #fff; padding: 20px 14px;">
+          <p style="font-size: 0.65rem; font-weight: 500; color: var(--text-primary); margin: 0 0 10px;">Entry points:</p>
+          <p style="font-size: 0.6rem; color: var(--text-secondary); margin: 0 0 6px;">Collection page</p>
+          <p style="font-size: 0.6rem; color: var(--text-secondary); margin: 0 0 6px;">Account</p>
+          <p style="font-size: 0.6rem; color: var(--text-secondary); margin: 0 0 6px;">For you page</p>
+          <p style="font-size: 0.6rem; color: var(--text-secondary); margin: 0;">PDP</p>
+        </div>
+        <!-- Connector -->
+        <div style="flex: 0 0 20px; height: 1.5px; background: rgba(0,0,0,0.15); align-self: center;"></div>
+        <!-- Step 1 -->
+        <div style="flex: 1; min-width: 100px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 4px; background: #fff; padding: 16px 10px; text-align: center; align-self: center;">
+          <p style="font-size: 0.6rem; color: var(--text-primary); line-height: 1.4; margin: 0;">On boarding pop up; select a wearable to connect</p>
+        </div>
+        <div style="flex: 0 0 20px; height: 1.5px; background: rgba(0,0,0,0.15); align-self: center;"></div>
+        <!-- Step 2 -->
+        <div style="flex: 1; min-width: 100px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 4px; background: #fff; padding: 16px 10px; text-align: center; align-self: center;">
+          <p style="font-size: 0.6rem; color: var(--text-primary); line-height: 1.4; margin: 0 0 4px;">Login to healf</p>
+          <p style="font-size: 0.55rem; color: var(--text-muted); line-height: 1.3; margin: 0;">(If already logged in, straight to wearable login)</p>
+        </div>
+        <div style="flex: 0 0 20px; height: 1.5px; background: rgba(0,0,0,0.15); align-self: center;"></div>
+        <!-- Step 3 -->
+        <div style="flex: 1; min-width: 100px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 4px; background: #fff; padding: 16px 10px; text-align: center; align-self: center;">
+          <p style="font-size: 0.6rem; color: var(--text-primary); line-height: 1.4; margin: 0;">Login to wearable via wearable third party (Terra)</p>
+        </div>
+        <div style="flex: 0 0 20px; height: 1.5px; background: rgba(0,0,0,0.15); align-self: center;"></div>
+        <!-- Step 4 -->
+        <div style="flex: 1; min-width: 100px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 4px; background: #fff; padding: 16px 10px; text-align: center; align-self: center;">
+          <p style="font-size: 0.6rem; color: var(--text-primary); line-height: 1.4; margin: 0;">Confirmation page</p>
+        </div>
+        <div style="flex: 0 0 20px; height: 1.5px; background: rgba(0,0,0,0.15); align-self: center;"></div>
+        <!-- Step 5: For you page -->
+        <div style="flex: 1; min-width: 100px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 4px; background: #fff; padding: 16px 10px; text-align: center; align-self: center;">
+          <p style="font-size: 0.6rem; color: var(--text-primary); line-height: 1.4; margin: 0 0 4px;">For you page</p>
+          <p style="font-size: 0.55rem; color: var(--text-muted); line-height: 1.3; margin: 0;">(Banner and product carousel)</p>
+        </div>
+      </div>
+    </div>
+    <!-- Branch outcomes – horizontal row below diagram -->
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px;">
+      <div style="border: 1.5px solid rgba(0,0,0,0.12); border-radius: 4px; background: #fff; padding: 16px 14px; text-align: center;">
+        <p style="font-size: 0.6rem; font-weight: 500; color: var(--text-primary); line-height: 1.4; margin: 0 0 4px;">Account</p>
+        <p style="font-size: 0.55rem; color: var(--text-muted); line-height: 1.3; margin: 0;">Management of devices and link to recommendations</p>
+      </div>
+      <div style="border: 1.5px solid rgba(0,0,0,0.12); border-radius: 4px; background: #fff; padding: 16px 14px; text-align: center;">
+        <p style="font-size: 0.6rem; font-weight: 500; color: var(--text-primary); line-height: 1.4; margin: 0 0 4px;">Collection pages</p>
+        <p style="font-size: 0.55rem; color: var(--text-muted); line-height: 1.3; margin: 0;">Surface recommendations as browsing</p>
+      </div>
+      <div style="border: 1.5px solid rgba(0,0,0,0.12); border-radius: 4px; background: #fff; padding: 16px 14px; text-align: center;">
+        <p style="font-size: 0.6rem; font-weight: 500; color: var(--text-primary); line-height: 1.4; margin: 0 0 4px;">PDP</p>
+        <p style="font-size: 0.55rem; color: var(--text-muted); line-height: 1.3; margin: 0;">(With match score/suggested better match)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Activation banners + Exploration screens – full-bleed grey -->
+  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px); margin-top: clamp(40px, 5vw, 64px);">
+
+    <!-- Activation banners row -->
+    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 24px; align-items: center; margin-bottom: clamp(60px, 8vw, 100px);">
+      <div class="glass" style="padding: clamp(20px, 2.5vw, 32px); border-radius: 12px; display: flex; flex-direction: column; justify-content: center; height: 100%;">
+        <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 8px;">Explorations – Activation banners</p>
+        <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0;">These concepts explored the most effective way to <strong style="font-weight: 500; color: var(--text-primary);">communicate the value of connecting a wearable</strong>.</p>
+      </div>
+      <img src="Activation-banners.png" alt="Activation banner explorations" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+    </div>
+
+    <!-- Connection flow explorations -->
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr) minmax(200px, 1fr); gap: 16px; align-items: center; margin-bottom: clamp(60px, 8vw, 100px);">
+      <img src="Connect1.png" alt="Connect flow exploration 1" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="Connect2.png" alt="Connect flow exploration 2" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="Connect3.png" alt="Connect flow exploration 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="Connect4.png" alt="Connect flow exploration 4" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px; display: flex; flex-direction: column; justify-content: center; height: 100%;">
+        <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 8px;">Explorations – Connection flow</p>
+        <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0;">These explorations focused on making the device connection process as <strong style="font-weight: 500; color: var(--text-primary);">quick and frictionless</strong> as possible, while still surfacing the right information around <strong style="font-weight: 500; color: var(--text-primary);">trust and privacy</strong>.</p>
+      </div>
+    </div>
+
+    <!-- For You page explorations grid -->
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+      <img src="Foryou1.png?v=2" alt="For You screen 1" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="Foryou2.png?v=2" alt="For You screen 2" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="Foryou3.png?v=2" alt="For You screen 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <div class="glass" style="padding: clamp(20px, 2.5vw, 32px); border-radius: 12px; display: flex; flex-direction: column; justify-content: center;">
+        <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 8px;">Explorations – 'For You' page recommendations</p>
+        <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0;">Research indicated that users needed to see <strong style="font-weight: 500; color: var(--text-primary);">immediate value</strong> after connecting their device. We directed them to the 'For You' page, where a new product carousel surfaced personalised recommendations.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container">
+
+      <!-- 03 – Soft Launch & Validation -->
+      <div id="section-validate" class="process-block reveal" style="border-top: none;">
+        <span class="process-block__num">03</span>
+        <div class="process-block__content">
+          <p class="process-block__label">Validate</p>
+          <h2 class="process-block__title">Soft launch and early signals</h2>
+          <div class="process-block__body">
+            <p>
+              While technical constraints meant the wearable match score was not yet available, we prioritised early release to start validating the flow and identify areas for improvement.
+            </p>
+            <p>
+              User feedback surfaced three clear problems with the results experience.
+            </p>
+          </div>
+
+          <!-- Feedback themes -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 32px;" class="p03-merging-grid">
+            <div class="glass" style="padding: 24px; border-radius: 12px; display: flex; flex-direction: column;">
+              <p style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 8px;">Finding 01</p>
+              <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); margin: 0 0 10px;">Value was not immediately visible</p>
+              <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 12px; flex: 1;">Users couldn't see why a product was recommended or how their personal data was being used.</p>
+              <div style="padding: 12px; background: var(--surface-hover); border-radius: 8px;">
+                <p style="font-size: 0.75rem; font-style: italic; color: var(--text-secondary); line-height: 1.5; margin: 0;">"At a high level the recommendations seem relevant... but I would want far more detail."</p>
+              </div>
+            </div>
+            <div class="glass" style="padding: 24px; border-radius: 12px; display: flex; flex-direction: column;">
+              <p style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 8px;">Finding 02</p>
+              <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); margin: 0 0 10px;">Explanations lacked specificity</p>
+              <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 12px; flex: 1;">Users wanted their actual data referenced. Generic claims reduced perceived intelligence.</p>
+              <div style="padding: 12px; background: var(--surface-hover); border-radius: 8px;">
+                <p style="font-size: 0.75rem; font-style: italic; color: var(--text-secondary); line-height: 1.5; margin: 0;">"It would be so cool to see things like 'you average ABC active calories...'"</p>
+              </div>
+            </div>
+            <div class="glass" style="padding: 24px; border-radius: 12px; display: flex; flex-direction: column;">
+              <p style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 8px;">Finding 03</p>
+              <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); margin: 0 0 10px;">Recommendation noise</p>
+              <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 12px; flex: 1;">No prioritisation and supplements already taken created friction and reduced perceived signal quality.</p>
+              <div style="padding: 12px; background: var(--surface-hover); border-radius: 8px;">
+                <p style="font-size: 0.75rem; font-style: italic; color: var(--text-secondary); line-height: 1.5; margin: 0;">"I was recommended something I had tried and didn't like."</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Soft-launch screens -->
+          <div style="margin-top: 48px; background: var(--bg-raised); border-radius: 12px; padding: clamp(20px, 2.5vw, 32px); display: grid; grid-template-columns: 1fr 2fr; gap: 24px; align-items: center;">
+            <div class="glass" style="padding: clamp(20px, 2.5vw, 32px); border-radius: 12px; display: flex; flex-direction: column; justify-content: flex-start; height: 100%;">
+              <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 8px;">Soft launch screens</p>
+              <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0;">Result screens as part of the soft launch had <strong style="font-weight: 500; color: var(--text-primary);">no match score</strong> due to technical constraints.</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+              <div>
+                <img src="You-soft.png?v=2" alt="For You screen" style="width: 100%; height: auto; border-radius: 12px; display: block;">
+              </div>
+              <div>
+                <img src="PDP-soft.png?v=2" alt="Product detail page" style="width: 100%; height: auto; border-radius: 12px; display: block;">
+              </div>
+              <div>
+                <img src="results-soft.png?v=2" alt="Results screen" style="width: 100%; height: auto; border-radius: 12px; display: block;">
+              </div>
+            </div>
+          </div>
+
+          <!-- Reframe callout -->
+          <div class="glass reveal" style="padding: clamp(24px, 3vw, 36px); border-radius: 16px; margin-top: 32px;">
+            <p style="font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px;">Key insight</p>
+            <p style="font-size: clamp(1rem, 1.8vw, 1.125rem); font-weight: 300; color: var(--text-secondary); line-height: 1.5; margin: 0; max-width: 50ch;">The goal became clear: while interest was strong, the results needed to be redesigned to make the reasoning behind suggestions <strong style="font-weight: 500; color: var(--text-primary);">clearer</strong>, <strong style="font-weight: 500; color: var(--text-primary);">more personalised</strong>, and <strong style="font-weight: 500; color: var(--text-primary);">easier to trust</strong>.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container">
+
+      <!-- 04 – Design -->
+      <div id="section-design" class="process-block reveal">
+        <span class="process-block__num">04</span>
+        <div class="process-block__content">
+          <p class="process-block__label">Design</p>
+          <h2 class="process-block__title">Redesigning results delivery</h2>
+          <div class="process-block__body">
+            <p>
+              With the soft-launch learnings in hand, we narrowed our focus to the most critical part of the flow: how recommendations were presented back to the user. Three design interventions addressed the feedback directly.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Design solution – Combined cards + screens -->
+  <section class="p03-solutions" style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px);">
+    <div style="max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px;">
+
+      <!-- A. Match Score -->
+      <div class="p03-solution-grid" style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 20px; align-items: center;">
+        <div class="glass" style="padding: 24px; border-radius: 12px; height: 100%; display: flex; flex-direction: column; justify-content: flex-start;">
+          <p style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 6px;">Finding</p>
+          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); margin: 0 0 16px;">Value not immediately visible</p>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin-bottom: 16px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          <p style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 6px;">Solution</p>
+          <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 16px;">Specific, data-referenced recommendations via a match score</p>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin-bottom: 16px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          <p style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 6px;">Impact</p>
+          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); margin: 0;">Match score gives every recommendation a visible reason to exist</p>
+        </div>
+        <img src="percent1.png" alt="Match score on product card" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+        <img src="percent2.png" alt="Match score detail view" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+      </div>
+
+      <!-- B. Ask Helix -->
+      <div class="p03-solution-grid" style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 20px; align-items: center;">
+        <div class="glass" style="padding: 24px; border-radius: 12px; height: 100%; display: flex; flex-direction: column; justify-content: flex-start;">
+          <p style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 6px;">Finding</p>
+          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); margin: 0 0 16px;">Explanations lacked specificity</p>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin-bottom: 16px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          <p style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 6px;">Solution</p>
+          <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 16px;">Ask Helix, deeper context on demand via an AI assistant pre-loaded with product and user data</p>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin-bottom: 16px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          <p style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 6px;">Impact</p>
+          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); margin: 0;">Intelligence becomes legible and conversational</p>
+        </div>
+        <img src="Helix1.png" alt="Helix find out more CTA" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+        <img src="Helix2.png" alt="Helix chat with prompts" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+      </div>
+
+      <!-- C. Rate & Feedback -->
+      <div class="p03-solution-grid" style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 20px; align-items: center;">
+        <div class="glass" style="padding: 24px; border-radius: 12px; height: 100%; display: flex; flex-direction: column; justify-content: flex-start;">
+          <p style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 6px;">Finding</p>
+          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); margin: 0 0 16px;">Recommendation noise</p>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin-bottom: 16px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          <p style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 6px;">Solution</p>
+          <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 16px;">Aware of existing stack — users flag products they already take and provide feedback to close the loop</p>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin-bottom: 16px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          <p style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 6px;">Impact</p>
+          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); margin: 0;">Improves recommendation quality, customer trust, and long-term retention</p>
+        </div>
+        <img src="Rate 1.png" alt="Thumbs up and down rating" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+        <img src="Rate2.png" alt="Feedback options on thumbs down" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container">
+
+      <!-- 05 – Outcomes -->
+      <div id="section-outcomes" class="process-block reveal" style="border-top: none;">
+        <span class="process-block__num">05</span>
+        <div class="process-block__content">
+          <p class="process-block__label">Outcomes</p>
+          <h2 class="process-block__title">Outcomes and business impact</h2>
+
+          <!-- Metrics -->
+          <div class="p03-grid-3" data-stagger style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 32px;">
+            <div class="insight-card reveal">
+              <p style="font-size: clamp(1.25rem, 2.5vw, 2rem); font-weight: 300; color: var(--text-primary); line-height: 1; margin-bottom: 4px;">+32%</p>
+              <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-primary); line-height: 1.8; margin: 0;">Wearable connection rate</p>
+              <p class="insight-card__desc">Of users with compatible devices connected within the first month of launch, exceeding the 20% target.</p>
+            </div>
+            <div class="insight-card reveal">
+              <p style="font-size: clamp(1.25rem, 2.5vw, 2rem); font-weight: 300; color: var(--text-primary); line-height: 1; margin-bottom: 4px;">+18%</p>
+              <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-primary); line-height: 1.8; margin: 0;">Recommendation CTR</p>
+              <p class="insight-card__desc">Uplift in click-through rate on personalised product recommendations powered by wearable data.</p>
+            </div>
+            <div class="insight-card reveal">
+              <p style="font-size: clamp(1.25rem, 2.5vw, 2rem); font-weight: 300; color: var(--text-primary); line-height: 1; margin-bottom: 4px;">+4%</p>
+              <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-primary); line-height: 1.8; margin: 0;">AOV</p>
+              <p class="insight-card__desc">Increase in 90-day purchases among users with connected wearables compared to non-connected users.</p>
+            </div>
+          </div>
+
+          <!-- Business impact -->
+          <div style="margin-top: 32px;">
+            <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border);">Business impact</p>
+            <div class="p03-impact-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+              <div class="glass" style="padding: 24px; border-radius: 12px;">
+                <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin-bottom: 8px;">Data-driven personalisation at scale</p>
+                <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Established Healf as one of the first wellness e-commerce platforms to meaningfully integrate wearable data into the shopping experience.</p>
+              </div>
+              <div class="glass" style="padding: 24px; border-radius: 12px;">
+                <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin-bottom: 8px;">Ongoing engagement loop</p>
+                <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Created a persistent reason for users to return between purchases, with health insights updating daily and recommendations adapting in real time.</p>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Onboarding explorations – full-bleed grey -->
+  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px); margin-top: clamp(40px, 5vw, 64px);">
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+      <img src="1Onboard.png" alt="Onboarding exploration 1" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="2Onboard.png" alt="Onboarding exploration 2" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="3Onboard.png" alt="Onboarding exploration 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="Onboard4.png" alt="Onboarding exploration 4" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container">
+
+      <!-- 06 – Reflection -->
+      <div id="section-reflection" class="process-block reveal">
+        <span class="process-block__num">06</span>
+        <div class="process-block__content">
+          <p class="process-block__label">Reflection</p>
+          <h2 class="process-block__title">Key learnings</h2>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px; margin-top: clamp(24px, 3vw, 40px);">
+            <div class="glass" style="padding: 24px; border-radius: 12px;">
+              <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin-bottom: 8px;">Transparency builds trust in personalisation</p>
+              <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Generic recommendations reduced perceived intelligence. Referencing specific user data points made recommendations feel more credible and valuable.</p>
+            </div>
+            <div class="glass" style="padding: 24px; border-radius: 12px;">
+              <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin-bottom: 8px;">Early release accelerates learning</p>
+              <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Launching a simplified version of the feature allowed us to gather real behavioural feedback sooner and iterate faster than waiting for the full experience to be complete.</p>
+            </div>
+            <div class="glass" style="padding: 24px; border-radius: 12px;">
+              <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin-bottom: 8px;">Context matters as much as recommendation</p>
+              <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Users wanted to understand why a product was relevant to their goals, not just that it was recommended.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- Section Navigator -->
+  <nav class="section-nav" aria-label="Page sections">
+    <a class="section-nav__item" data-target="section-define"><span class="section-nav__num">01</span><span class="section-nav__label">Define</span></a>
+    <a class="section-nav__item" data-target="section-ideation"><span class="section-nav__num">02</span><span class="section-nav__label">Ideation</span></a>
+    <a class="section-nav__item" data-target="section-validate"><span class="section-nav__num">03</span><span class="section-nav__label">Validate</span></a>
+    <a class="section-nav__item" data-target="section-design"><span class="section-nav__num">04</span><span class="section-nav__label">Design</span></a>
+    <a class="section-nav__item" data-target="section-outcomes"><span class="section-nav__num">05</span><span class="section-nav__label">Outcomes</span></a>
+    <a class="section-nav__item" data-target="section-reflection"><span class="section-nav__num">06</span><span class="section-nav__label">Reflection</span></a>
+  </nav>
+
+  <!-- Project Navigation -->
+  <div class="project-nav container reveal">
+    <a href="project-02.html" class="project-nav__link prev">
+      <span class="project-nav__dir">&larr; Previous</span>
+      <span class="project-nav__name">Customisation tool</span>
+    </a>
+    <a href="index.html" class="project-nav__link">
+      <span class="project-nav__dir">All Work &rarr;</span>
+      <span class="project-nav__name">Home</span>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer container">
+    <p class="footer__copy">&copy; 2024 Claire Davis. All rights reserved.</p>
+    <div class="footer__links">
+      <a href="mailto:hello@clairedavis.com">Email</a>
+      <a href="https://www.linkedin.com/in/claire-davis-design" target="_blank">LinkedIn</a>
+      <a href="#" target="_blank">Read.cv</a>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // ── Quotes Carousel – arrow navigation ──
+    (function() {
+      var carousel = document.querySelector('.quotes-carousel');
+      var prevBtn = document.querySelector('.quotes-arrow--prev');
+      var nextBtn = document.querySelector('.quotes-arrow--next');
+      if (carousel && prevBtn && nextBtn) {
+        var cardWidth = carousel.querySelector('.glass').offsetWidth + 8;
+        prevBtn.addEventListener('click', function() {
+          carousel.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+        });
+        nextBtn.addEventListener('click', function() {
+          carousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
+        });
+      }
+    })();
+
+    // ── HMW Carousel – tabs scroll the track ──
+    (function() {
+      var tabs = document.querySelectorAll('.hmw-carousel__tab');
+      var track = document.querySelector('.hmw-carousel__track');
+      tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          var idx = tab.dataset.slide;
+          tabs.forEach(function(t) { t.classList.remove('active'); });
+          tab.classList.add('active');
+          var target = track.querySelector('.hmw-carousel__item[data-slide="' + idx + '"]');
+          if (target) {
+            track.scrollTo({ left: target.offsetLeft - track.offsetLeft, behavior: 'smooth' });
+          }
+        });
+      });
+      // Update active tab on scroll
+      var items = track.querySelectorAll('.hmw-carousel__item');
+      track.addEventListener('scroll', function() {
+        var scrollLeft = track.scrollLeft;
+        var closest = 0;
+        var closestDist = Infinity;
+        items.forEach(function(item, i) {
+          var dist = Math.abs(item.offsetLeft - track.offsetLeft - scrollLeft);
+          if (dist < closestDist) { closestDist = dist; closest = i; }
+        });
+        tabs.forEach(function(t) { t.classList.remove('active'); });
+        tabs[closest].classList.add('active');
+      });
+    })();
+  </script>
+  <script>
+    // ── Tab switcher ──
+    function switchTab(group, tab, btn) {
+      document.querySelectorAll('[data-tab^="' + group + '-"]').forEach(function(el) {
+        el.style.display = 'none';
+      });
+      document.querySelector('[data-tab="' + group + '-' + tab + '"]').style.display = 'block';
+      document.querySelectorAll('[data-tab-group="' + group + '"] .tab-btn').forEach(function(b) {
+        b.style.background = 'none';
+        b.style.color = 'var(--text-muted)';
+        b.style.borderColor = 'var(--border)';
+        b.classList.remove('tab-btn--active');
+      });
+      btn.style.background = '#111';
+      btn.style.color = '#fff';
+      btn.style.borderColor = '#111';
+      btn.classList.add('tab-btn--active');
+    }
+
+    // ── Nav past-hero state ──
+    (function () {
+      var hero = document.querySelector('.project-hero');
+      var nav  = document.querySelector('.nav');
+      if (!hero || !nav) return;
+      var obs = new IntersectionObserver(function (entries) {
+        nav.classList.toggle('nav--past-hero', !entries[0].isIntersecting);
+      }, { threshold: 0 });
+      obs.observe(hero);
+    })();
+
+    // ── Section Navigator ──
+    (function () {
+      var sectionNav = document.querySelector('.section-nav');
+      var items = document.querySelectorAll('.section-nav__item');
+      if (!sectionNav || !items.length) return;
+
+      // Track active section
+      var sections = [];
+      items.forEach(function (item) {
+        var target = document.getElementById(item.dataset.target);
+        if (target) sections.push({ el: target, item: item });
+      });
+
+      var activeObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            items.forEach(function (i) { i.classList.remove('active'); });
+            sections.forEach(function (s) {
+              if (s.el === entry.target) s.item.classList.add('active');
+            });
+          }
+        });
+      }, { rootMargin: '-30% 0px -60% 0px' });
+
+      sections.forEach(function (s) { activeObs.observe(s.el); });
+
+      // Click to scroll
+      items.forEach(function (item) {
+        item.addEventListener('click', function (e) {
+          e.preventDefault();
+          var target = document.getElementById(item.dataset.target);
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

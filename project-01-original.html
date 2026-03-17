@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDP Optimisation — Claire Davis</title>
+  <meta name="description" content="Redesigning the Jo Malone London product detail page to drive Add to Bag conversion." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Scroll progress ── */
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 1px;
+      background: rgba(255, 255, 255, 0.5);
+      transform: scaleX(0);
+      transform-origin: left;
+      z-index: 200;
+      transition: transform 0.05s linear;
+    }
+
+    /* ── Full-bleed hero overrides ── */
+    .project-hero {
+      padding-top: 0;
+      display: block;
+      position: relative;
+      min-height: 60vh;
+    }
+    .project-hero__visual--pdp {
+      position: absolute !important;
+      inset: 0 !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      min-height: unset !important;
+      overflow: hidden;
+    }
+    .project-hero__visual--pdp::after {
+      content: none;
+    }
+    .project-hero__info {
+      position: absolute !important;
+      z-index: 2;
+      bottom: clamp(24px, 4vw, 40px);
+      left: var(--gutter);
+      right: var(--gutter);
+      max-width: 680px;
+      display: block !important;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 16px;
+      padding: 24px 28px;
+    }
+    .project-hero__title { font-size: clamp(1.75rem, 4vw, 3rem) !important; }
+    .project-hero__meta-grid {
+      margin-top: 16px;
+    }
+    .project-hero__kicker .eyebrow,
+    .project-hero__title,
+    .project-meta-item__label,
+    .project-meta-item__value { color: var(--text-primary) !important; }
+
+    /* Keep nav as glass while scrolling over the hero image */
+    .nav.scrolled:not(.nav--past-hero) {
+      background: rgba(255, 255, 255, 0.18) !important;
+      border-color: rgba(255, 255, 255, 0.25) !important;
+    }
+
+    .pdp-hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      z-index: 1;
+    }
+
+    /* ── Annotated phone evidence ── */
+    .evidence-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 48px 40px 40px;
+      margin-top: 48px;
+    }
+
+    .evidence-label {
+      font-size: 0.625rem;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+      display: block;
+    }
+
+    .evidence-phones {
+      display: grid;
+      grid-template-columns: 1fr auto auto 1fr;
+      align-items: center;
+      gap: 0;
+    }
+
+    .evidence-annotations--left {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      align-items: flex-end;
+      padding-right: 28px;
+    }
+
+    .evidence-annotations--right {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      align-items: flex-start;
+      padding-left: 28px;
+    }
+
+    .evidence-annotation-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .evidence-annotation-item--left {
+      flex-direction: row;
+      text-align: left;
+    }
+
+    .evidence-annotation-item--left .evidence-annotation__line {
+      width: 20px;
+      height: 1px;
+      background: rgba(0,0,0,0.25);
+      flex-shrink: 0;
+      margin-left: 10px;
+    }
+
+    .evidence-annotation-item--right .evidence-annotation__line {
+      width: 20px;
+      height: 1px;
+      background: rgba(0,0,0,0.25);
+      flex-shrink: 0;
+      margin-right: 10px;
+    }
+
+    .evidence-annotation__text {
+      font-size: 0.6875rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      max-width: 160px;
+    }
+
+    /* Phone frame — thin border only, no notch */
+    .phone-frame {
+      width: 220px;
+      background: #111111;
+      border-radius: 32px;
+      padding: 6px;
+      box-shadow: 0 20px 48px rgba(0,0,0,0.14);
+      margin: 0 12px;
+    }
+
+    .phone-screen {
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 9/19.5;
+      background: #f5f0ea;
+    }
+
+    .phone-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .evidence-phones { grid-template-columns: 1fr 1fr; }
+      .evidence-annotations--left,
+      .evidence-annotations--right { display: none; }
+      .phone-frame { width: 100%; margin: 0; }
+    }
+
+    /* Goals grid */
+    .goals-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .goal-card {
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      padding: 28px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 140px;
+    }
+
+    .goal-card__text {
+      font-size: 0.9375rem;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .goals-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .goals-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Process image placeholder rows */
+    .process-images {
+      display: grid;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .process-images--2col { grid-template-columns: 1fr 1fr; }
+    .process-images--3col { grid-template-columns: repeat(3, 1fr); }
+    .process-images--4col { grid-template-columns: repeat(4, 1fr); }
+
+    .process-img {
+      aspect-ratio: 4/3;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-raised);
+      display: flex;
+      align-items: flex-end;
+      padding: 12px 14px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.4s ease;
+    }
+
+    .process-img:hover { border-color: var(--border-hover); }
+
+    .process-img--tall { aspect-ratio: 3/4; }
+    .process-img--wide { aspect-ratio: 16/7; }
+
+
+    /* Competitor analysis row */
+    .competitor-row {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: none;
+    }
+    .competitor-row::-webkit-scrollbar { display: none; }
+
+    .competitor-item {
+      flex: 0 0 120px;
+      aspect-ratio: 2/3;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-raised);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.4s ease;
+    }
+
+    .competitor-item:hover { border-color: var(--border-hover); }
+
+    /* HMW cards */
+    .hmw-grid {
+      display: grid;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .hmw-category {
+      margin-bottom: 24px;
+    }
+
+    .hmw-category-title {
+      font-size: 0.6875rem;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hmw-cards-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .hmw-card {
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      transition: background 0.4s ease, border-color 0.4s ease;
+    }
+
+    .hmw-card:hover { background: var(--surface-hover); border-color: var(--border-hover); }
+
+    .hmw-card__prefix {
+      font-size: 0.625rem;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .hmw-card__text {
+      font-size: 0.8125rem;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    /* Test card */
+    .test-card {
+      padding: clamp(24px, 3vw, 36px);
+      margin-bottom: 16px;
+      background: var(--bg-raised);
+      border-radius: 12px;
+    }
+
+    .test-card:hover {}
+
+    .test-card__header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .test-badge {
+      font-size: 0.625rem;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      color: var(--text-secondary);
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+    }
+
+    .test-card__name {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--text-primary);
+    }
+
+    .test-meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .test-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .test-meta-item__label {
+      font-size: 0.5625rem;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      color: var(--text-primary);
+    }
+
+    .test-meta-item__value {
+      font-size: 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .test-card__bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .test-card__bullets li {
+      font-size: 0.8125rem;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .test-card__bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--text-muted);
+    }
+
+    .test-result {
+      padding: 14px 18px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .test-result__label {
+      font-size: 0.5625rem;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .test-result__text {
+      font-size: 0.8125rem;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .test-result__text strong {
+      font-weight: 400;
+      color: var(--text-primary);
+    }
+
+    /* Key problems list */
+    .problems-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .problems-list__item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      gap: 20px;
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+      transition: background 0.3s ease;
+    }
+
+    .problems-list__item:last-child { border-bottom: 1px solid var(--border); }
+
+    .problems-list__text {
+      font-size: 0.875rem;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .problems-list__source {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: none;
+      color: var(--text-muted);
+      white-space: nowrap;
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      margin-top: 2px;
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 600px) {
+      .hmw-cards-row { grid-template-columns: 1fr; }
+      .process-images--2col { grid-template-columns: 1fr; }
+      .process-images--3col { grid-template-columns: 1fr 1fr; }
+      .process-images--4col { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ── Inline grid responsive fixes ─────────────────────── */
+
+    /* 3-col research grid → 2-col tablet, 1-col mobile */
+    @media (max-width: 768px) {
+      .p01-grid-3 { grid-template-columns: 1fr 1fr !important; }
+      .p01-grid-4 { grid-template-columns: 1fr 1fr !important; }
+      .p01-ideation-grid { grid-template-columns: 1fr !important; }
+      .p01-carousel-grid { grid-template-columns: 1fr 1fr !important; }
+      .p01-phases-cards { grid-template-columns: 1fr !important; }
+      .evidence-box { padding: 28px 20px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .p01-grid-3 { grid-template-columns: 1fr !important; }
+      .p01-grid-4 { grid-template-columns: 1fr !important; }
+      .p01-carousel-grid { grid-template-columns: 1fr !important; }
+      .p01-define-grid { grid-template-columns: 1fr !important; }
+      .p01-callout-card { grid-template-columns: 1fr !important; }
+      .p01-impact-grid { grid-template-columns: 1fr !important; }
+      .p01-beforeafter { grid-template-columns: 1fr !important; }
+      .p01-phases-desktop { grid-template-columns: 1fr !important; }
+      .p01-changes-grid { grid-template-columns: 1fr !important; }
+      #changes-video-col { position: relative !important; top: auto !important; }
+      #changes-cards { height: auto !important; overflow-y: visible !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress"></div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a class="nav__logo" href="index.html">Claire Davis</a>
+    <ul class="nav__links">
+      <li><a href="index.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="mailto:hello@clairedavis.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Project Hero -->
+  <header class="project-hero">
+
+    <!-- Visual / hero image area -->
+    <div class="project-hero__visual project-hero__visual--pdp">
+      <img src="Header_banner_pdp.jpg" alt="PDP hero banner" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+    </div>
+
+    <!-- Project title + meta -->
+    <div class="project-hero__info">
+      <div>
+        <h1 class="project-hero__title">PDP Optimisation</h1>
+      </div>
+      <div class="project-hero__meta-grid">
+        <div>
+          <p class="project-meta-item__label">Client</p>
+          <p class="project-meta-item__value">Jo Malone London</p>
+        </div>
+        <div>
+          <p class="project-meta-item__label">Role</p>
+          <p class="project-meta-item__value">Senior Product Designer</p>
+        </div>
+        <div>
+          <p class="project-meta-item__label">Year</p>
+          <p class="project-meta-item__value">2025</p>
+        </div>
+        <div>
+          <p class="project-meta-item__label">Platform</p>
+          <p class="project-meta-item__value">Desktop &amp; Mobile</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Overview -->
+  <section class="section" style="padding-bottom: 0;">
+    <div class="container">
+      <div class="project-overview">
+        <div class="reveal">
+          <p class="eyebrow" style="margin-bottom: 20px;">Overview</p>
+          <p class="project-overview__challenge">
+            Analytics showed <strong>38% of users dropped off before engaging with the product options</strong>, suggesting the page wasn't helping users understand the product quickly enough.
+          </p>
+        </div>
+
+        <div class="project-overview__details reveal reveal-delay-2">
+          <div class="overview-detail">
+            <p class="overview-detail__label">My Role</p>
+            <p class="overview-detail__value">Senior Product Designer · PM · 2 Engineers</p>
+          </div>
+          <div class="overview-detail">
+            <p class="overview-detail__label">Tools</p>
+            <p class="overview-detail__value">Figma · Wrike · Jira · Posthog · Thoughtspot</p>
+          </div>
+          <div class="overview-detail">
+            <p class="overview-detail__label">Key Result</p>
+            <p class="overview-detail__value">Increase ATB rate from 12% → ELC benchmark of 18%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS SECTIONS -->
+
+  <!-- 01 — Discover -->
+  <section class="section" style="padding-bottom: 0;">
+    <div class="container">
+      <div class="process-block reveal">
+        <span class="process-block__num">01</span>
+        <div class="process-block__content">
+          <p class="process-block__label">Discover</p>
+          <h2 class="process-block__title">Understanding where and why users were dropping off</h2>
+          <div class="process-block__body">
+            <p>
+              The discovery phase combined three research methodologies to build a
+              complete picture of the PDP experience, from industry benchmarks
+              to real user behaviour on the live site.
+            </p>
+          </div>
+
+          <!-- Research methods -->
+          <div class="p01-grid-3" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 32px;">
+            <div class="insight-card">
+              <p class="insight-card__label">Method 01</p>
+              <p class="insight-card__num" style="font-size: 1.25rem;">UX Audit</p>
+              <p class="insight-card__desc">Baymard Institute best practice audit across 87 heuristic criteria for luxury e-commerce PDPs.</p>
+            </div>
+            <div class="insight-card">
+              <p class="insight-card__label">Method 02</p>
+              <p class="insight-card__num" style="font-size: 1.25rem;">Usability Testing</p>
+              <p class="insight-card__desc">Partnered with the LUX research team for moderated sessions across JML.</p>
+            </div>
+            <div class="insight-card">
+              <p class="insight-card__label">Method 03</p>
+              <p class="insight-card__num" style="font-size: 1.25rem;">Analytics</p>
+              <p class="insight-card__desc">Identified key drop-off points, including ATB engagement, review interaction rates, image click-throughs.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Full-bleed image break -->
+  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) var(--gutter) 0; overflow: hidden;">
+    <div style="display: flex; justify-content: center; align-items: flex-start; gap: 12px;">
+      <div style="width: clamp(260px, 40vw, 480px); overflow: hidden; border-radius: 8px; border: 1px solid var(--border); flex-shrink: 0;">
+        <img src="desktop_old.jpg" alt="Jo Malone London PDP — desktop view" style="width: 100%; display: block; object-fit: contain; object-position: center;" />
+      </div>
+      <div style="width: clamp(100px, 14vw, 180px); overflow: hidden; border-radius: 8px; border: 1px solid var(--border); flex-shrink: 0;">
+        <img src="Longer_mob.jpg" alt="Jo Malone London PDP — product page" style="width: 100%; display: block; margin-top: -8%; margin-bottom: -8%;" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-bottom: 0;">
+    <div class="container">
+
+      <!-- 02 — Define -->
+      <div class="process-block reveal">
+        <span class="process-block__num">02</span>
+        <div class="process-block__content">
+          <p class="process-block__label">Define</p>
+          <h2 class="process-block__title">Defining the problem</h2>
+
+          <div class="callout">
+            <p class="callout__text" style="font-style: normal; font-size: 1.25rem;">
+              "Users struggle to evaluate products due to unclear hierarchy, lack of understanding of the scent, and low visibility of key decision drivers such as reviews, price and the ATB CTA. This reduces confidence and delays decision-making."
+            </p>
+          </div>
+
+          <!-- Key callouts -->
+          <div class="p01-define-grid reveal" style="margin-top: 32px;">
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div class="insight-card p01-callout-card" style="display: grid; grid-template-columns: 1fr 2fr; gap: 24px; align-items: start;">
+              <p class="insight-card__label" style="font-size: 1rem; color: var(--text-primary); letter-spacing: 0; line-height: 1.4; font-weight: 400;">Add to Bag CTA too low on the page</p>
+              <div>
+                <p class="insight-card__desc" style="margin-bottom: 8px;"><strong style="font-weight: 500; color: var(--text-primary);">Insight</strong><br><strong style="font-weight: 500; color: var(--text-primary);">42% of mobile users</strong> never reached 'Add to Bag', with the majority of taps above the fold · <strong style="font-weight: 500; color: var(--text-primary);">Heatmaps</strong></p>
+                <p class="insight-card__desc"><strong style="font-weight: 500; color: var(--text-primary);">Implication</strong><br>Users were ready to purchase earlier but the CTA required additional scrolling.</p>
+              </div>
+            </div>
+            <div class="insight-card p01-callout-card" style="display: grid; grid-template-columns: 1fr 2fr; gap: 24px; align-items: start;">
+              <p class="insight-card__label" style="font-size: 1rem; color: var(--text-primary); letter-spacing: 0; line-height: 1.4; font-weight: 400;">Price lost within the hierarchy, discovered too late in the journey</p>
+              <div>
+                <p class="insight-card__desc" style="margin-bottom: 8px;"><strong style="font-weight: 500; color: var(--text-primary);">Insight</strong><br><strong style="font-weight: 500; color: var(--text-primary);">37% of users</strong> interacted with size selectors before noticing the price · <strong style="font-weight: 500; color: var(--text-primary);">Analytics</strong></p>
+                <p class="insight-card__desc"><strong style="font-weight: 500; color: var(--text-primary);">Implication</strong><br>Price transparency was delayed, increasing friction during decision-making.</p>
+              </div>
+            </div>
+            <div class="insight-card p01-callout-card" style="display: grid; grid-template-columns: 1fr 2fr; gap: 24px; align-items: start;">
+              <p class="insight-card__label" style="font-size: 1rem; color: var(--text-primary); letter-spacing: 0; line-height: 1.4; font-weight: 400;">Lack of lifestyle context and storytelling left users uncertain of scent</p>
+              <div>
+                <p class="insight-card__desc" style="margin-bottom: 8px;"><strong style="font-weight: 500; color: var(--text-primary);">Insight</strong><br><strong style="font-weight: 500; color: var(--text-primary);">68% of users</strong> opened fragrance notes within 10 seconds, searching for scent context · <strong style="font-weight: 500; color: var(--text-primary);">Session recordings</strong></p>
+                <p class="insight-card__desc"><strong style="font-weight: 500; color: var(--text-primary);">Implication</strong><br>The PDP failed to communicate the experiential aspect of the fragrance.</p>
+              </div>
+            </div>
+            </div><!-- end cards col -->
+          </div><!-- end define grid -->
+
+          <!-- Annotated phone evidence -->
+        </div>
+      </div>
+
+      <!-- 03 — Research & Benchmarking -->
+      <div class="process-block reveal">
+        <span class="process-block__num">03</span>
+        <div class="process-block__content">
+          <p class="process-block__label">Research &amp; Benchmarking</p>
+          <h2 class="process-block__title">Competitor analysis and market benchmarking</h2>
+          <div class="process-block__body">
+            <p>
+              I benchmarked leading luxury and premium beauty brands to understand
+              best-in-class PDP patterns, identifying conventions that build
+              confidence and drive conversion without compromising brand equity.
+            </p>
+          </div>
+
+          <div class="p01-grid-4" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 32px;">
+            <div class="insight-card">
+              <p class="insight-card__label">Finding 01</p>
+              <p class="insight-card__num" style="font-size: 1.25rem;">Sticky CTAs</p>
+              <p class="insight-card__desc">Charlotte Tilbury, NARS and Space NK all use persistent sticky Add to Bag bars, keeping the primary action visible throughout scroll.</p>
+            </div>
+            <div class="insight-card">
+              <p class="insight-card__label">Finding 02</p>
+              <p class="insight-card__num" style="font-size: 1.25rem;">Price proximity</p>
+              <p class="insight-card__desc">Competitors surface price immediately below the product name, never buried below the fold or separated from the CTA.</p>
+            </div>
+            <div class="insight-card">
+              <p class="insight-card__label">Finding 03</p>
+              <p class="insight-card__num" style="font-size: 1.25rem;">Social proof</p>
+              <p class="insight-card__desc">Brands like Diptyque and Aesop embed star ratings near the product title, establishing trust before users reach the purchase decision.</p>
+            </div>
+            <div class="insight-card">
+              <p class="insight-card__label">Finding 04</p>
+              <p class="insight-card__num" style="font-size: 1.25rem;">Lifestyle imagery</p>
+              <p class="insight-card__desc">Top performers use rich editorial imagery and scent descriptors above the fold to evoke the product experience and reduce purchase uncertainty.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 — Ideation -->
+      <div class="process-block reveal">
+        <span class="process-block__num">04</span>
+        <div class="process-block__content">
+          <p class="process-block__label">Ideation</p>
+          <h2 class="process-block__title">Exploring design directions</h2>
+          <div class="process-block__body">
+            <p>
+              A key insight from research was that users felt uncertain about scent without
+              being able to smell it in person. Surfacing richer imagery and video content
+              earlier in the page, making it easier to browse, and became a primary design
+              focus. These mocks explore different carousel formats to bring storytelling
+              content forward and build confidence before the purchase decision.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wireframe explorations — full-bleed grey -->
+  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) var(--gutter);">
+    <div style="max-width: 70%; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 3vw, 32px);">
+      <div style="overflow: hidden; border-radius: 8px;">
+        <img src="Wireframe 1.jpg" alt="Wireframe exploration 1" style="width: 100%; display: block;" />
+      </div>
+      <div style="overflow: hidden; border-radius: 8px;">
+        <img src="Wireframe 2.jpg" alt="Wireframe exploration 2" style="width: 100%; display: block;" />
+      </div>
+      <div style="overflow: hidden; border-radius: 8px;">
+        <img src="Wireframe 3.jpg" alt="Wireframe exploration 3" style="width: 100%; display: block;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Carousel explorations — full-bleed grey -->
+  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) var(--gutter);">
+    <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 24px;">Image carousel layout explorations</p>
+    <div class="p01-carousel-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 3vw, 32px);">
+      <div>
+        <div style="overflow: hidden; border-radius: 8px;">
+          <img src="PDP_grid.jpg" alt="Grid carousel layout exploration" style="width: 100%; display: block;" />
+        </div>
+        <p style="font-size: 0.8125rem; font-weight: 400; color: var(--text-primary); margin-top: 16px; margin-bottom: 6px;">Grid format</p>
+        <p style="font-size: 0.75rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">A mosaic grid surfaces multiple lifestyle images simultaneously, giving users a richer, more immediate visual overview of the product before scrolling.</p>
+      </div>
+      <div>
+        <div style="overflow: hidden; border-radius: 8px;">
+          <img src="pdp_scroll.jpg" alt="Scroll carousel layout exploration" style="width: 100%; display: block;" />
+        </div>
+        <p style="font-size: 0.8125rem; font-weight: 400; color: var(--text-primary); margin-top: 16px; margin-bottom: 6px;">Static container with vertical scroll</p>
+        <p style="font-size: 0.75rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">A fixed-height container with internal scroll keeps imagery contained within the page structure while allowing deeper exploration without disrupting the layout.</p>
+      </div>
+      <div>
+        <div style="overflow: hidden; border-radius: 8px;">
+          <img src="PDP.thumbs.jpg" alt="Thumbnail carousel layout exploration" style="width: 100%; display: block;" />
+        </div>
+        <p style="font-size: 0.8125rem; font-weight: 400; color: var(--text-primary); margin-top: 16px; margin-bottom: 6px;">Visible thumbnails</p>
+        <p style="font-size: 0.75rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Thumbnail navigation alongside the primary image gives users direct control, making the full image set visible at a glance and reducing uncertainty about what's available.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container">
+
+      <!-- 05 — Test -->
+      <div class="process-block reveal">
+        <span class="process-block__num">05</span>
+        <div class="process-block__content">
+          <p class="process-block__label">Test</p>
+          <h2 class="process-block__title">Hypothesis-led A/B testing to validate decisions</h2>
+          <div class="process-block__body" style="margin-bottom: 32px;">
+            <p>
+              Rather than shipping assumptions, key design decisions were validated through
+              controlled A/B experiments. Each test had a clear hypothesis, defined variants,
+              primary and secondary metrics, and a pre-agreed minimum detectable effect.
+            </p>
+          </div>
+
+          <!-- Test 1 -->
+          <div class="test-card">
+            <div style="display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: start;">
+              <!-- Left: text content -->
+              <div>
+                <div class="test-card__header">
+                  <span class="test-badge">Test 01</span>
+                  <h3 class="test-card__name">Size Chips vs. No Image Size Chips</h3>
+                </div>
+                <div class="test-result" style="margin-bottom: 16px;">
+                  <p class="test-result__label">Context</p>
+                  <p class="insight-card__desc">Desktop size chips included thumbnail images absent on mobile. We removed them to unify the experience and reclaim vertical space — tested first to confirm no negative impact on conversion.</p>
+                </div>
+                <div class="test-meta">
+                  <div class="test-meta-item">
+                    <span class="test-meta-item__label">Duration</span>
+                    <span class="test-meta-item__value">4 weeks</span>
+                  </div>
+                  <div class="test-meta-item">
+                    <span class="test-meta-item__label">Market</span>
+                    <span class="test-meta-item__value">UK only</span>
+                  </div>
+                  <div class="test-meta-item">
+                    <span class="test-meta-item__label">Split</span>
+                    <span class="test-meta-item__value">50 / 50</span>
+                  </div>
+                  <div class="test-meta-item">
+                    <span class="test-meta-item__label">Platform</span>
+                    <span class="test-meta-item__value">Desktop</span>
+                  </div>
+                  <div class="test-meta-item">
+                    <span class="test-meta-item__label">Primary metric</span>
+                    <span class="test-meta-item__value">ATB rate</span>
+                  </div>
+                </div>
+                <ul class="test-card__bullets">
+                  <li>Hypothesis: Removing size chip images will not affect ATB conversion</li>
+                  <li>Secondary metric: Size selector clicks and conversion rate</li>
+                </ul>
+                <div class="test-result">
+                  <p class="test-result__label">Result</p>
+                  <p class="test-result__text">
+                    <strong>No significant impact</strong> to ATB conversions. Image size chips
+                    can safely be removed without harming conversion, simplifying the UI.
+                  </p>
+                </div>
+              </div>
+              <!-- Right: images stacked -->
+              <div style="display: flex; flex-direction: column; gap: 12px; width: 260px; flex-shrink: 0;">
+                <div>
+                  <div class="process-img" style="aspect-ratio: auto; padding: 0;">
+                    <img src="PDP_Desktop.jpg" alt="Control: image chips" style="width: 100%; display: block; border-radius: 8px;" />
+                  </div>
+                  <span style="display: block; margin-top: 6px; font-size: 0.6rem; color: var(--text-muted);">Control: image chips</span>
+                </div>
+                <div>
+                  <div class="process-img" style="aspect-ratio: auto; padding: 0;">
+                    <img src="PDP_Desktop_2.jpg" alt="Variant: text chips" style="width: 100%; display: block; border-radius: 8px;" />
+                  </div>
+                  <span style="display: block; margin-top: 6px; font-size: 0.6rem; color: var(--text-muted);">Variant: text chips</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Test 2 -->
+          <div class="test-card">
+            <div style="display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: start;">
+              <!-- Left: text content -->
+              <div>
+                <div class="test-card__header">
+                  <span class="test-badge">Test 02</span>
+                  <h3 class="test-card__name">Price Visibility in Sticky Add to Bag</h3>
+                </div>
+                <div class="test-result" style="margin-bottom: 16px;">
+                  <p class="test-result__label">Context</p>
+                  <p class="insight-card__desc">One of the key findings from research was that price was being discovered too late in the journey. This experiment explored how surfacing the price more prominently, specifically within the sticky Add to Bag bar, to reduce hesitation and improve purchase confidence earlier in the scroll.</p>
+                </div>
+                <div class="test-meta">
+                  <div class="test-meta-item">
+                    <span class="test-meta-item__label">Duration</span>
+                    <span class="test-meta-item__value">43 days</span>
+                  </div>
+                  <div class="test-meta-item">
+                    <span class="test-meta-item__label">Market</span>
+                    <span class="test-meta-item__value">UK only</span>
+                  </div>
+                  <div class="test-meta-item">
+                    <span class="test-meta-item__label">Split</span>
+                    <span class="test-meta-item__value">33 / 33 / 33</span>
+                  </div>
+                  <div class="test-meta-item">
+                    <span class="test-meta-item__label">Platform</span>
+                    <span class="test-meta-item__value">Desktop + Mobile</span>
+                  </div>
+                  <div class="test-meta-item">
+                    <span class="test-meta-item__label">Primary metric</span>
+                    <span class="test-meta-item__value">ATB rate</span>
+                  </div>
+                </div>
+                <ul class="test-card__bullets">
+                  <li>Hypothesis: Increasing price visibility in the sticky ATB will enhance UX and drive higher Add to Bag rate</li>
+                  <li>Variants: Current · Price-right · Price-left in sticky CTA</li>
+                  <li>Secondary metrics: Exit rate, CVR, revenue</li>
+                </ul>
+                <div class="test-result">
+                  <p class="test-result__label">Result</p>
+                  <p class="test-result__text">
+                    Including price in the sticky ATB <strong>does not have any beneficial impact</strong>
+                    and actually <strong>decreased interaction</strong>. The insight informed a
+                    refined hierarchy approach, surfacing price higher on the page rather than in the CTA.
+                  </p>
+                </div>
+              </div>
+              <!-- Right: images stacked -->
+              <div style="display: flex; flex-direction: column; gap: 12px; width: 260px; flex-shrink: 0;">
+                <div>
+                  <div class="process-img" style="aspect-ratio: auto; padding: 0;">
+                    <img src="sticky3.jpg" alt="Variant B: price left" style="width: 100%; display: block; border-radius: 8px;" />
+                  </div>
+                  <span style="display: block; margin-top: 6px; font-size: 0.6rem; color: var(--text-muted);">Variant B: price left</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Design Decisions -->
+  <section id="changes-section" class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container">
+      <div class="process-block reveal">
+        <span class="process-block__num">06</span>
+        <div class="process-block__content">
+          <p class="process-block__label">Design</p>
+          <h2 class="process-block__title">Changes made</h2>
+          <!-- 2-col: video left, cards right -->
+          <div class="p01-changes-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: clamp(24px, 3vw, 40px); align-items: start;">
+
+            <!-- Video column -->
+            <div id="changes-video-col" style="position: sticky; top: 80px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border);">
+              <video autoplay loop muted playsinline style="width: 100%; display: block;">
+                <source src="pdp_changes.mp4" type="video/mp4" />
+              </video>
+            </div>
+
+            <!-- Cards column -->
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+
+              <!-- Scrollable cards -->
+              <div id="changes-cards" style="overflow-y: auto; display: flex; flex-direction: column; gap: 8px; scrollbar-width: none; -ms-overflow-style: none;">
+                <div class="glass" style="padding: 24px; border-radius: 12px; flex-shrink: 0;">
+                  <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.1em; margin-bottom: 8px;">Alt image content surfaced</p>
+                  <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Thumbnails on desktop, arrows and progress bar on mobile → <strong style="font-weight: 500; color: var(--text-primary);">+12% desktop, +8% mobile</strong> image engagement.</p>
+                </div>
+                <div class="glass" style="padding: 24px; border-radius: 12px; flex-shrink: 0;">
+                  <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.1em; margin-bottom: 8px;">Reviews surfaced higher with stars</p>
+                  <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Increases social proof → <strong style="font-weight: 500; color: var(--text-primary);">+15% review interaction.</strong></p>
+                </div>
+                <div class="glass" style="padding: 24px; border-radius: 12px; flex-shrink: 0;">
+                  <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.1em; margin-bottom: 8px;">Size chip image thumbnails removed</p>
+                  <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Reduces height of the stack.</p>
+                </div>
+                <div class="glass" style="padding: 24px; border-radius: 12px; flex-shrink: 0;">
+                  <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.1em; margin-bottom: 8px;">Bookmark → heart icon, repositioned</p>
+                  <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Moved to right of product title → <strong style="font-weight: 500; color: var(--text-primary);">+3% uplift in clicks</strong> (requires login).</p>
+                </div>
+                <div class="glass" style="padding: 24px; border-radius: 12px; flex-shrink: 0;">
+                  <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.1em; margin-bottom: 8px;">Accordions introduced</p>
+                  <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Description, tasting notes and ingredients now in accordions → increases scanability.</p>
+                </div>
+                <div class="glass" style="padding: 24px; border-radius: 12px; flex-shrink: 0;">
+                  <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.1em; margin-bottom: 8px;">Bestseller badge moved into image</p>
+                  <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Reduces the height of the stack.</p>
+                </div>
+                <div class="glass" style="padding: 24px; border-radius: 12px; flex-shrink: 0;">
+                  <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.1em; margin-bottom: 8px;">Product title repositioned</p>
+                  <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Reduces confusion and improves hierarchy clarity.</p>
+                </div>
+                <div class="glass" style="padding: 24px; border-radius: 12px; flex-shrink: 0;">
+                  <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.1em; margin-bottom: 8px;">CTA order swapped and UI revised</p>
+                  <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">ATB more prominent and improved accessibility.</p>
+                </div>
+                <div class="glass" style="padding: 24px; border-radius: 12px; flex-shrink: 0;">
+                  <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.1em; margin-bottom: 8px;">Share functionality removed</p>
+                  <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Streamlines choices and reduces cognitive load.</p>
+                </div>
+                <div class="glass" style="padding: 24px; border-radius: 12px; flex-shrink: 0;">
+                  <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.1em; margin-bottom: 8px;">Product carousel moved to bottom</p>
+                  <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Signals end of page and reduces premature exit.</p>
+                </div>
+                <div class="glass" style="padding: 24px; border-radius: 12px; flex-shrink: 0;">
+                  <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.1em; margin-bottom: 8px;">Visual ingredients module introduced</p>
+                  <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Helps inform and provide purchase confidence.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <script>
+            (function () {
+              var section  = document.getElementById('changes-section');
+              var vidCol   = document.getElementById('changes-video-col');
+              var cards    = document.getElementById('changes-cards');
+
+              /* ── height sync ── */
+              function syncHeight() {
+                if (vidCol && cards) cards.style.height = vidCol.offsetHeight + 'px';
+              }
+              var vid = vidCol.querySelector('video');
+              vid.readyState >= 1 ? syncHeight() : vid.addEventListener('loadedmetadata', syncHeight);
+              window.addEventListener('resize', syncHeight);
+              setTimeout(syncHeight, 500);
+
+              /* ── scroll intercept ── */
+              window.addEventListener('wheel', function (e) {
+                var sRect = section.getBoundingClientRect();
+                // Only active while the section spans the viewport
+                if (sRect.top > 0 || sRect.bottom < window.innerHeight * 0.5) return;
+
+                var max    = cards.scrollHeight - cards.clientHeight;
+                var atTop  = cards.scrollTop <= 0;
+                var atBot  = cards.scrollTop >= max - 1;
+
+                // Release page scroll when already at an edge in that direction
+                if ((e.deltaY > 0 && atBot) || (e.deltaY < 0 && atTop)) return;
+
+                e.preventDefault();
+                cards.scrollTop += e.deltaY;
+              }, { passive: false });
+
+              /* hide webkit scrollbar */
+              var style = document.createElement('style');
+              style.textContent = '#changes-cards::-webkit-scrollbar { display: none; }';
+              document.head.appendChild(style);
+            })();
+          </script>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact -->
+  <section class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container">
+      <div class="process-block reveal">
+        <span class="process-block__num">07</span>
+        <div class="process-block__content">
+          <p class="process-block__label">Impact</p>
+          <h2 class="process-block__title">Results that moved the needle</h2>
+
+          <!-- Impact: stats cards full width -->
+          <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;">
+            <div class="insight-card">
+              <p class="insight-card__num">+12%</p>
+              <p class="insight-card__label">ATB rate</p>
+              <p class="insight-card__desc">Moving from 12% baseline to 24% and surpassing the 18% ELC benchmark.</p>
+            </div>
+            <div class="insight-card">
+              <p class="insight-card__num">−7%</p>
+              <p class="insight-card__label">PDP bounce rate</p>
+              <p class="insight-card__desc">Showing users finding what they need faster.</p>
+            </div>
+            <div class="insight-card">
+              <p class="insight-card__num">+15%</p>
+              <p class="insight-card__label">Review engagement</p>
+              <p class="insight-card__desc">Including clicks on reviews and scroll on review section.</p>
+            </div>
+            <div class="insight-card">
+              <p class="insight-card__num">+15%</p>
+              <p class="insight-card__label">Image interaction</p>
+              <p class="insight-card__desc"></p>
+            </div>
+            <div class="insight-card">
+              <p class="insight-card__num">+5%</p>
+              <p class="insight-card__label">Revenue per session on desktop</p>
+              <p class="insight-card__desc">Validated through A/B tests.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- After image — full-bleed grey -->
+  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) var(--gutter);">
+    <img src="after.jpg" alt="PDP — after" style="width: 100%; max-width: 70%; display: block; margin: 0 auto; border-radius: 8px;" />
+  </section>
+
+  <!-- Phased Rollout -->
+  <section class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container">
+      <div class="process-block reveal">
+        <span class="process-block__num">08</span>
+        <div class="process-block__content">
+          <p class="process-block__label">Phased rollout</p>
+          <h2 class="process-block__title">Shipped in cycles to reduce risk</h2>
+          <div class="process-block__body">
+            <p>Rather than launching all changes at once, improvements were released in two phased cycles, allowing time to measure impact, gather signal and iterate before the next wave of changes.</p>
+          </div>
+          <div class="test-card" style="margin-top: clamp(24px, 3vw, 40px);">
+            <div class="p01-phases-cards" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;">
+              <div class="glass" style="padding: 28px; border-radius: 12px;">
+                <p style="font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px;">Phase 01</p>
+                <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); margin-bottom: 12px;">Hierarchy &amp; visibility</p>
+                <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Focused on surfacing key decision drivers — reviews, price, and the ATB CTA — earlier and more prominently. CTA order revised, Afterpay condensed, share functionality removed.</p>
+              </div>
+              <div class="glass" style="padding: 28px; border-radius: 12px;">
+                <p style="font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px;">Phase 02</p>
+                <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); margin-bottom: 12px;">Storytelling &amp; content</p>
+                <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Introduced alt image thumbnails, coloured product background, visual ingredients module and accordion-based content — elevating the emotional and informational quality of the page.</p>
+              </div>
+            </div>
+            <!-- Desktop row -->
+            <div class="p01-phases-desktop" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+              <div>
+                <div style="overflow: hidden; border-radius: 8px; border: 1px solid var(--border); aspect-ratio: 1050/644;">
+                  <img src="phase1desktop.jpg" alt="Phase 01 — desktop" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                </div>
+                <span style="display: block; margin-top: 8px; font-size: 0.6rem; letter-spacing: 0.01em; color: var(--text-muted);">Phase 01 — Desktop</span>
+              </div>
+              <div>
+                <div style="overflow: hidden; border-radius: 8px; border: 1px solid var(--border); aspect-ratio: 1050/644;">
+                  <img src="phase2desktop.jpg" alt="Phase 02 — desktop" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                </div>
+                <span style="display: block; margin-top: 8px; font-size: 0.6rem; letter-spacing: 0.01em; color: var(--text-muted);">Phase 02 — Desktop</span>
+              </div>
+            </div>
+            <!-- Mobile row -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+              <div>
+                <img src="phase1mob.jpg" alt="Beginning — mobile" style="width: 100%; height: auto; object-fit: contain; border-radius: 8px; display: block; border: 1px solid var(--border);" />
+                <span style="display: block; margin-top: 8px; font-size: 0.6rem; letter-spacing: 0.01em; color: var(--text-muted);">Beginning</span>
+              </div>
+              <div>
+                <img src="phase2mob.jpg" alt="Phase 01 — mobile" style="width: 100%; height: auto; object-fit: contain; border-radius: 8px; display: block; border: 1px solid var(--border);" />
+                <span style="display: block; margin-top: 8px; font-size: 0.6rem; letter-spacing: 0.01em; color: var(--text-muted);">Phase 01</span>
+              </div>
+              <div>
+                <img src="phase3mob.jpg" alt="Phase 02 — mobile" style="width: 100%; height: auto; object-fit: contain; border-radius: 8px; display: block; border: 1px solid var(--border);" />
+                <span style="display: block; margin-top: 8px; font-size: 0.6rem; letter-spacing: 0.01em; color: var(--text-muted);">Phase 02</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Key Learnings -->
+  <section class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container">
+      <div class="process-block reveal">
+        <span class="process-block__num">09</span>
+        <div class="process-block__content">
+          <p class="process-block__label">Reflection</p>
+          <h2 class="process-block__title">Key learnings</h2>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px; margin-top: clamp(24px, 3vw, 40px);">
+            <div class="glass" style="padding: 24px; border-radius: 12px;">
+              <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.1em; margin-bottom: 8px;">Test before shipping</p>
+              <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Both A/B tests delivered null or negative results — validating the hypothesis-driven approach and preventing two potentially harmful launches.</p>
+            </div>
+            <div class="glass" style="padding: 24px; border-radius: 12px;">
+              <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.1em; margin-bottom: 8px;">Luxury context changes everything</p>
+              <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Standard e-commerce best practices don't always translate to luxury. Price prominence can undermine brand equity rather than improving conversion.</p>
+            </div>
+            <div class="glass" style="padding: 24px; border-radius: 12px;">
+              <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.1em; margin-bottom: 8px;">Research source diversity matters</p>
+              <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Combining Baymard, LUX usability testing and analytics produced a richer, more defensible problem set than any single source could alone.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Navigation -->
+  <div class="project-nav container reveal">
+    <a href="index.html" class="project-nav__link prev">
+      <span class="project-nav__dir">← Back</span>
+      <span class="project-nav__name">All Work</span>
+    </a>
+    <a href="#" class="project-nav__link">
+      <span class="project-nav__dir">Next Project →</span>
+      <span class="project-nav__name">Project Two</span>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer container">
+    <p class="footer__copy">© 2024 Claire Davis. All rights reserved.</p>
+    <div class="footer__links">
+      <a href="mailto:hello@clairedavis.com">Email</a>
+      <a href="#" target="_blank">LinkedIn</a>
+      <a href="#" target="_blank">Read.cv</a>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var hero = document.querySelector('.project-hero');
+      var nav  = document.querySelector('.nav');
+      if (!hero || !nav) return;
+      var obs = new IntersectionObserver(function (entries) {
+        nav.classList.toggle('nav--past-hero', !entries[0].isIntersecting);
+      }, { threshold: 0 });
+      obs.observe(hero);
+    })();
+  </script>
+</body>
+</html>

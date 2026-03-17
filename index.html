@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claire Davis — Senior Product Designer</title>
+  <meta name="description" content="Senior Product Designer with 10+ years crafting user-centred digital experiences." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Home-specific additions ── */
+    .hero__available {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.6875rem;
+      letter-spacing: 0.12em;
+      text-transform: none;
+      color: var(--text-muted);
+      padding: 7px 14px 7px 10px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease-expo) 0.1s forwards;
+    }
+
+    .hero__available-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #4caf50;
+      box-shadow: 0 0 6px rgba(76, 175, 80, 0.6);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* Floating tag cluster in hero */
+    .hero__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    /* Work counter */
+    .work__count {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a class="nav__logo" href="index.html">Claire Davis</a>
+    <ul class="nav__links">
+      <li><a href="index.html" class="active">Work</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__bg"></div>
+
+    <h1 class="hero__title">
+      Product design that<em> moves</em> people.
+    </h1>
+
+    <div class="hero__meta">
+      <p class="hero__desc">
+        Senior Product Designer with 10+ years shaping user-centred,
+        visually rich digital experiences - from e-commerce platforms
+        to AI-powered tools.
+      </p>
+      <div class="hero__scroll">
+        <span class="hero__scroll-line"></span>
+        Scroll
+      </div>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section class="work">
+    <div class="work__header reveal">
+      <h2 class="work__title">Selected work</h2>
+      <span class="work__count label">03 projects</span>
+    </div>
+
+    <!-- Project 01 -->
+    <a class="project-row reveal" href="project-03.html">
+      <div class="project-row__inner">
+        <span class="project-row__num">01</span>
+        <span class="project-row__name">Connect Wearables <span style="font-weight: 300; color: var(--text-muted); font-size: 0.35em; letter-spacing: 0.01em;">· Healf</span></span>
+        <div class="project-row__tags">
+          <span class="tag">Wearable integration</span>
+          <span class="tag">Onboarding</span>
+          <span class="tag">Data</span>
+        </div>
+        <span class="project-row__year">2026</span>
+      </div>
+    </a>
+
+    <!-- Project 02 -->
+    <a class="project-row reveal reveal-delay-1" href="project-02.html">
+      <div class="project-row__inner">
+        <span class="project-row__num">02</span>
+        <span class="project-row__name">Customisation tool <span style="font-weight: 300; color: var(--text-muted); font-size: 0.35em; letter-spacing: 0.01em;">· Jo Malone London</span></span>
+        <div class="project-row__tags">
+          <span class="tag">Feature</span>
+          <span class="tag">Prototype</span>
+          <span class="tag">User Testing</span>
+        </div>
+        <span class="project-row__year">2025</span>
+      </div>
+    </a>
+
+    <!-- Project 03 -->
+    <a class="project-row reveal reveal-delay-2" href="project-01.html">
+      <div class="project-row__inner">
+        <span class="project-row__num">03</span>
+        <span class="project-row__name">PDP Optimisation <span style="font-weight: 300; color: var(--text-muted); font-size: 0.35em; letter-spacing: 0.01em;">· Jo Malone London</span></span>
+        <div class="project-row__tags">
+          <span class="tag">E-commerce</span>
+          <span class="tag">UX Research</span>
+          <span class="tag">A/B Testing</span>
+        </div>
+        <span class="project-row__year">2025</span>
+      </div>
+    </a>
+  </section>
+
+
+  <!-- About teaser -->
+  <section class="section reveal" style="padding-top: 0;">
+    <div class="container">
+      <div class="about-teaser-grid">
+        <div>
+          <p class="eyebrow" style="margin-bottom: 20px;">About</p>
+          <p style="font-size: clamp(1.2rem, 2.5vw, 2rem); font-weight: 300; line-height: 1.4; color: var(--text-primary); letter-spacing: -0.01em; margin-bottom: 28px;">
+            Designing at the intersection of elegance and function for over a decade.
+          </p>
+          <p style="font-size: 0.9rem; font-weight: 300; line-height: 1.7; color: var(--text-secondary); margin-bottom: 32px; max-width: 48ch;">
+            I specialise in creating intuitive, visually rich experiences - whether that's leading UX for luxury e-commerce, exploring AI-powered tools, or contributing to innovation taskforces.
+          </p>
+          <a href="about.html" class="btn">
+            Learn more <span class="btn-arrow">→</span>
+          </a>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; align-content: flex-start;">
+          <span class="tag">UX Design</span>
+          <span class="tag">Product Strategy</span>
+          <span class="tag">User Research</span>
+          <span class="tag">Figma</span>
+          <span class="tag">Prototyping</span>
+          <span class="tag">Design Systems</span>
+          <span class="tag">A/B Testing</span>
+          <span class="tag">Wrike</span>
+          <span class="tag">PostHog</span>
+          <span class="tag">Linear</span>
+          <span class="tag">UXPilot</span>
+          <span class="tag">Claude</span>
+          <span class="tag">Loveable</span>
+          <span class="tag">10+ Years</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="marquee-section">
+    <div class="marquee-track" aria-hidden="true">
+      <span>UX Strategy</span>
+      <span class="accent">·</span>
+      <span>Product Design</span>
+      <span class="accent">·</span>
+      <span>Design Systems</span>
+      <span class="accent">·</span>
+      <span>Interaction Design</span>
+      <span class="accent">·</span>
+      <span>User Research</span>
+      <span class="accent">·</span>
+      <span>A/B Testing</span>
+      <span class="accent">·</span>
+      <span>Conversion Optimisation</span>
+      <span class="accent">·</span>
+      <span>E-commerce</span>
+      <span class="accent">·</span>
+      <span>UX Strategy</span>
+      <span class="accent">·</span>
+      <span>Product Design</span>
+      <span class="accent">·</span>
+      <span>Design Systems</span>
+      <span class="accent">·</span>
+      <span>Interaction Design</span>
+      <span class="accent">·</span>
+      <span>User Research</span>
+      <span class="accent">·</span>
+      <span>A/B Testing</span>
+      <span class="accent">·</span>
+      <span>Conversion Optimisation</span>
+      <span class="accent">·</span>
+      <span>E-commerce</span>
+      <span class="accent">·</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer container">
+    <p class="footer__copy">© 2024 Claire Davis. All rights reserved.</p>
+    <div class="footer__links">
+      <a href="mailto:hello@clairedavis.com">Email</a>
+      <a href="https://www.linkedin.com/in/claire-davis-design" target="_blank">LinkedIn</a>
+      <a href="#" target="_blank">Read.cv</a>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
