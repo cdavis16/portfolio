@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Claire Davis — Senior Product Designer</title>
   <meta name="description" content="Senior Product Designer with 10+ years crafting user-centred digital experiences." />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=2" />
   <style>
     /* ── Home-specific additions ── */
     .hero__available {
@@ -58,9 +58,16 @@
 
   <!-- Nav -->
   <nav class="nav">
-    <a class="nav__logo" href="index.html">Claire Davis</a>
+    <div class="nav__logo-wrap">
+      <a class="nav__logo" href="index.html">Claire Davis</a>
+      <ul class="nav__dropdown">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="project-03.html">Connect Wearables</a></li>
+        <li><a href="project-02.html">Customisation Tool</a></li>
+        <li><a href="project-01.html">PDP Optimisation</a></li>
+      </ul>
+    </div>
     <ul class="nav__links">
-      <li><a href="index.html" class="active">Work</a></li>
       <li><a href="about.html">About</a></li>
     </ul>
   </nav>
@@ -88,10 +95,6 @@
 
   <!-- Work -->
   <section class="work">
-    <div class="work__header reveal">
-      <h2 class="work__title">Selected work</h2>
-      <span class="work__count label">03 projects</span>
-    </div>
 
     <!-- Project 01 -->
     <a class="project-row reveal" href="project-03.html">

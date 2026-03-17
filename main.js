@@ -67,6 +67,21 @@
     onScroll();
   }
 
+  /* ── Nav Dropdown (mobile click) ─────────────────────────────── */
+  const logoWrap = document.querySelector('.nav__logo-wrap');
+  if (logoWrap) {
+    logoWrap.addEventListener('click', (e) => {
+      if (window.innerWidth > 640) return;
+      e.preventDefault();
+      logoWrap.classList.toggle('open');
+    });
+    document.addEventListener('click', (e) => {
+      if (!logoWrap.contains(e.target)) {
+        logoWrap.classList.remove('open');
+      }
+    });
+  }
+
   /* ── Scroll Reveal ────────────────────────────────────────────── */
   const revealEls = document.querySelectorAll('.reveal');
   if (revealEls.length) {

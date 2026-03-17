@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Personalisation Hub – Claire Davis</title>
   <meta name="description" content="Designing a centralised customisation hub for Jo Malone London to unify gifting and personalisation." />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=2" />
   <style>
     /* ── Scroll progress ── */
     .scroll-progress {
@@ -227,12 +227,12 @@
     .hmw-carousel__track {
       display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 8px;
-      scroll-behavior: smooth;
+      scroll-behavior: smooth; align-items: stretch;
     }
     .hmw-carousel__track::-webkit-scrollbar { display: none; }
     .hmw-carousel__item {
       flex: 0 0 calc(33.333% - 6px); min-width: 280px; scroll-snap-align: start;
-      display: flex; flex-direction: column; gap: 8px;
+      display: grid; grid-template-rows: 1fr 1fr; gap: 8px;
     }
 
     .hmw-card__prefix {
@@ -439,8 +439,9 @@
       .test-card__header { flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; }
       .p02-findings-grid { grid-template-columns: 1fr 1fr !important; }
       .p02-merging-grid { grid-template-columns: 1fr 1fr !important; }
-      .hmw-carousel__tabs { gap: 6px; }
-      .hmw-carousel__tab { font-size: 0.75rem; padding: 6px 12px; }
+      .hmw-carousel__tabs { gap: 6px; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+      .hmw-carousel__tabs::-webkit-scrollbar { display: none; }
+      .hmw-carousel__tab { font-size: 0.75rem; padding: 6px 12px; white-space: nowrap; flex-shrink: 0; }
       .hmw-carousel__item { flex: 0 0 calc(50% - 4px); min-width: 240px; }
     }
 
@@ -466,9 +467,9 @@
       bottom: 24px;
       left: 24px;
       z-index: 99;
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 14px 24px;
@@ -532,9 +533,16 @@
 
   <!-- Nav -->
   <nav class="nav">
-    <a class="nav__logo" href="index.html">Claire Davis</a>
+    <div class="nav__logo-wrap">
+      <a class="nav__logo" href="index.html">Claire Davis</a>
+      <ul class="nav__dropdown">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="project-03.html">Connect Wearables</a></li>
+        <li><a href="project-02.html">Customisation Tool</a></li>
+        <li><a href="project-01.html">PDP Optimisation</a></li>
+      </ul>
+    </div>
     <ul class="nav__links">
-      <li><a href="index.html">Work</a></li>
       <li><a href="about.html">About</a></li>
     </ul>
   </nav>
@@ -1297,7 +1305,7 @@
     <a class="section-nav__item" data-target="section-test"><span class="section-nav__num">04</span><span class="section-nav__label">Test</span></a>
     <a class="section-nav__item" data-target="section-phased"><span class="section-nav__num">05</span><span class="section-nav__label">Phased</span></a>
     <a class="section-nav__item" data-target="section-impact"><span class="section-nav__num">06</span><span class="section-nav__label">Impact</span></a>
-    <a class="section-nav__item" data-target="section-reflection"><span class="section-nav__num">08</span><span class="section-nav__label">Reflection</span></a>
+    <a class="section-nav__item" data-target="section-reflection"><span class="section-nav__num">07</span><span class="section-nav__label">Reflection</span></a>
   </nav>
 
   <!-- Project Navigation -->

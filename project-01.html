@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PDP Optimisation — Claire Davis</title>
   <meta name="description" content="Redesigning the Jo Malone London product detail page to drive Add to Bag conversion." />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=2" />
   <style>
     /* ── Scroll progress ── */
     .scroll-progress {
@@ -521,9 +521,9 @@
       bottom: 24px;
       left: 24px;
       z-index: 99;
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 14px 24px;
@@ -587,9 +587,16 @@
 
   <!-- Nav -->
   <nav class="nav">
-    <a class="nav__logo" href="index.html">Claire Davis</a>
+    <div class="nav__logo-wrap">
+      <a class="nav__logo" href="index.html">Claire Davis</a>
+      <ul class="nav__dropdown">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="project-03.html">Connect Wearables</a></li>
+        <li><a href="project-02.html">Customisation Tool</a></li>
+        <li><a href="project-01.html">PDP Optimisation</a></li>
+      </ul>
+    </div>
     <ul class="nav__links">
-      <li><a href="index.html">Work</a></li>
       <li><a href="about.html">About</a></li>
     </ul>
   </nav>
@@ -708,7 +715,7 @@
   <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) var(--gutter) 0; overflow: hidden;">
     <div class="p01-discover-flex" style="display: flex; justify-content: center; align-items: flex-start; gap: 12px;">
       <div style="width: clamp(260px, 40vw, 480px); overflow: hidden; border-radius: 8px; border: 1px solid var(--border); flex-shrink: 0;">
-        <img src="desktop_old.jpg" alt="Jo Malone London PDP — desktop view" style="width: 100%; display: block; object-fit: contain; object-position: center;" />
+        <img src="Desktop_old.jpg" alt="Jo Malone London PDP — desktop view" style="width: 100%; display: block; object-fit: contain; object-position: center;" />
       </div>
       <div style="width: clamp(100px, 14vw, 180px); overflow: hidden; border-radius: 8px; border: 1px solid var(--border); flex-shrink: 0;">
         <img src="Longer_mob.jpg" alt="Jo Malone London PDP — product page" style="width: 100%; display: block; margin-top: -8%; margin-bottom: -8%;" />
@@ -1218,7 +1225,7 @@
 
   <!-- After image — full-bleed grey -->
   <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) var(--gutter);">
-    <img src="after.jpg" alt="PDP — after" style="width: 100%; max-width: 70%; display: block; margin: 0 auto; border-radius: 8px; mix-blend-mode: multiply;" />
+    <img src="After.jpg" alt="PDP — after" style="width: 100%; max-width: 70%; display: block; margin: 0 auto; border-radius: 8px; mix-blend-mode: multiply;" />
   </section>
 
   <!-- Phased Rollout -->
@@ -1249,7 +1256,7 @@
             <div class="p01-phases-desktop" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
               <div>
                 <div style="overflow: hidden; border-radius: 8px; border: 1px solid var(--border); aspect-ratio: 1050/644;">
-                  <img src="phase1desktop.jpg" alt="Phase 01 — desktop" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                  <img src="Phase1desktop.jpg" alt="Phase 01 — desktop" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
                 </div>
                 <span style="display: block; margin-top: 8px; font-size: 0.6rem; letter-spacing: 0.01em; color: var(--text-muted);">Phase 01 — Desktop</span>
               </div>
@@ -1263,7 +1270,7 @@
             <!-- Mobile row -->
             <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
               <div style="display: flex; flex-direction: column; align-items: center;">
-                <img src="phase1mob.jpg" alt="Beginning — mobile" style="width: 60%; height: auto; object-fit: contain; border-radius: 8px; display: block; border: 1px solid var(--border);" />
+                <img src="Phase1mob.jpg" alt="Beginning — mobile" style="width: 60%; height: auto; object-fit: contain; border-radius: 8px; display: block; border: 1px solid var(--border);" />
                 <span style="display: block; margin-top: 8px; font-size: 0.6rem; letter-spacing: 0.01em; color: var(--text-muted);">Beginning</span>
               </div>
               <div style="display: flex; flex-direction: column; align-items: center;">
