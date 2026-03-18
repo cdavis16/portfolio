@@ -532,6 +532,15 @@ body.cursor-hover .cursor__ring { width: 56px; height: 56px; opacity: 0.6; }
 
 .project-row:hover .project-row__name { transform: translateX(8px); }
 
+.project-row__brand {
+  font-weight: 300;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
+  display: block;
+  margin-top: 4px;
+}
+
 .project-row__tags {
   display: flex;
   gap: 8px;
@@ -1176,6 +1185,7 @@ body.cursor-hover .cursor__ring { width: 56px; height: 56px; opacity: 0.6; }
   .project-row__inner { grid-template-columns: 48px 1fr; gap: 16px; }
   .project-row__tags { display: none; }
   .project-row__year { display: none; }
+  .project-row__brand { display: block; margin-top: 4px; }
 }
 
 /* Project nav */

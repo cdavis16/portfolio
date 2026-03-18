@@ -376,6 +376,9 @@
       .p03-onboard-section { padding: 16px !important; }
       .p03-onboard-grid { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
       .p03-explorations-section { padding-left: 16px !important; padding-right: 16px !important; }
+      .p03-activation-grid { margin-bottom: 24px !important; }
+      .p03-match-grid { margin-bottom: 24px !important; }
+      .p03-foryou-grid { gap: 12px !important; }
     }
 
     @media (max-width: 480px) {
@@ -418,6 +421,8 @@
       .p03-activation-grid { grid-template-columns: 1fr !important; }
       .p03-connect-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
       .p03-connect-grid > .glass { order: -1; grid-column: 1 / -1; }
+      .p03-match-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+      .p03-match-grid > .glass { order: -1; grid-column: 1 / -1; }
       .p03-foryou-grid { grid-template-columns: 1fr !important; }
       .p03-foryou-grid > .glass { order: -1; }
       .p03-softlaunch-grid { grid-template-columns: 1fr !important; }
@@ -490,7 +495,7 @@
         <div class="reveal">
           <p class="eyebrow" style="margin-bottom: 20px;">Overview</p>
           <p class="project-overview__challenge">
-            Richer product recommendations strengthened customer satisfaction, which led to an uplift in conversion of recommended items, leading to a <strong>4% lift in AOV</strong>.
+            Healf's users struggled to understand which products were right for them, while the business aimed to better leverage data and increase AOV. By introducing a "Connect Wearables" experience, we enabled more personalised recommendations, improving confidence and driving higher conversion on recommended products, resulting in a <strong>4% uplift in AOV</strong>.
           </p>
         </div>
 
@@ -770,15 +775,23 @@
     </div>
 
     <!-- Connection flow explorations -->
-    <div class="p03-connect-grid" style="display: grid; grid-template-columns: repeat(4, 1fr) minmax(200px, 1fr); gap: 16px; align-items: center; margin-bottom: clamp(60px, 8vw, 100px);">
+    <div class="p03-connect-grid" style="display: grid; grid-template-columns: repeat(2, 1fr) minmax(200px, 1fr); gap: 16px; align-items: center; margin-bottom: 24px;">
       <img src="Connect1.png" alt="Connect flow exploration 1" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <img src="Connect2.png" alt="Connect flow exploration 2" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
       <img src="Connect3.png" alt="Connect flow exploration 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <img src="Connect4.png" alt="Connect flow exploration 4" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
       <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px; display: flex; flex-direction: column; justify-content: center; height: 100%;">
         <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 8px;">Connection flow</p>
-        <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0;">These explorations focused on making the device connection process as <strong style="font-weight: 500; color: var(--text-primary);">quick and frictionless</strong> as possible, while still surfacing the right information around <strong style="font-weight: 500; color: var(--text-primary);">trust and privacy</strong>.</p>
+        <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0;">Explorations into what resonated with users the most and was most identifiable to ensure a <strong style="font-weight: 500; color: var(--text-primary);">quick and frictionless</strong> flow.</p>
       </div>
+    </div>
+
+    <!-- Match score result explorations -->
+    <div class="p03-match-grid" style="display: grid; grid-template-columns: minmax(200px, 1fr) repeat(2, 1fr); gap: 16px; align-items: center; margin-bottom: clamp(60px, 8vw, 100px);">
+      <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px; display: flex; flex-direction: column; justify-content: center; height: 100%;">
+        <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 8px;">Results display</p>
+        <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0;">Trials for showing the result with a <strong style="font-weight: 500; color: var(--text-primary);">match score</strong>, giving users a clear reason why each product was recommended for them.</p>
+      </div>
+      <img src="Match-2.jpg" alt="Match score exploration 2" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="Match-3.jpg" alt="Match score exploration 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
     </div>
 
     <!-- For You page explorations grid -->
@@ -958,12 +971,12 @@
           <!-- Metrics -->
           <div class="p03-grid-3" data-stagger style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 32px;">
             <div class="insight-card reveal">
-              <p style="font-size: clamp(1.25rem, 2.5vw, 2rem); font-weight: 300; color: var(--text-primary); line-height: 1; margin-bottom: 4px;">+32%</p>
+              <p style="font-size: clamp(1.25rem, 2.5vw, 2rem); font-weight: 300; color: var(--text-primary); line-height: 1; margin-bottom: 4px;">+23%</p>
               <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-primary); line-height: 1.8; margin: 0;">Wearable connection rate</p>
-              <p class="insight-card__desc">Of users with compatible devices connected within the first month of launch, exceeding the 20% target.</p>
+              <p class="insight-card__desc">Of users with known compatible devices connected within the first month of launch, exceeding the 20% target.</p>
             </div>
             <div class="insight-card reveal">
-              <p style="font-size: clamp(1.25rem, 2.5vw, 2rem); font-weight: 300; color: var(--text-primary); line-height: 1; margin-bottom: 4px;">+18%</p>
+              <p style="font-size: clamp(1.25rem, 2.5vw, 2rem); font-weight: 300; color: var(--text-primary); line-height: 1; margin-bottom: 4px;">+8%</p>
               <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-primary); line-height: 1.8; margin: 0;">Recommendation CTR</p>
               <p class="insight-card__desc">Uplift in click-through rate on personalised product recommendations powered by wearable data.</p>
             </div>
@@ -1062,7 +1075,7 @@
   <footer class="footer container">
     <p class="footer__copy">&copy; 2024 Claire Davis. All rights reserved.</p>
     <div class="footer__links">
-      <a href="mailto:hello@clairedavis.com">Email</a>
+      <a href="mailto:c_e_davis162@hotmail.co.uk">Email</a>
       <a href="https://www.linkedin.com/in/claire-davis-design" target="_blank">LinkedIn</a>
       <a href="#" target="_blank">Read.cv</a>
     </div>

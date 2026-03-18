@@ -459,9 +459,11 @@
       .p02-merging-grid { grid-template-columns: 1fr !important; }
       .p02-impact-grid { grid-template-columns: 1fr !important; }
       .p02-audit-row { flex-direction: column !important; align-items: center !important; }
-      .p02-audit-row > div:nth-child(1) { width: 100% !important; }
-      .p02-audit-row > div:nth-child(2) { transform: rotate(90deg); padding-bottom: 0 !important; }
+      .p02-audit-row > div:nth-child(1) { width: 55% !important; flex: none !important; text-align: center !important; }
+      .p02-audit-row > div:nth-child(2) { transform: rotate(90deg); padding-bottom: 0 !important; margin: 8px 0 !important; }
+      .p02-audit-row > div:nth-child(2) svg { width: 48px !important; height: 14px !important; }
       .p02-audit-row img { height: auto !important; }
+      .p02-popup-row { align-items: center !important; width: 100% !important; }
       .p02-popup-row { flex-direction: column !important; }
       .p02-explorations { grid-template-columns: repeat(4, 1fr) !important; }
       .hmw-carousel__item { flex: 0 0 calc(85%); min-width: 0; }
@@ -706,19 +708,19 @@
       <div class="reveal" style="margin-top: 64px;">
         <div class="p02-grid-3" data-stagger style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
           <div class="reveal">
-            <img src="Tiffany.png" alt="Tiffany & Co. personalisation" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;" />
+            <img src="Tiffany.jpg" alt="Tiffany & Co. personalisation" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;" />
             <p style="font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;">Tiffany &amp; Co.</p>
             <p style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); line-height: 1.6; margin: 0 0 8px;">Multi-step PDP personalisation</p>
             <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0;">Guided, step-by-step engraving flow with real-time preview directly on the PDP – personalisation central to the purchase decision, not an afterthought.</p>
           </div>
           <div class="reveal">
-            <img src="CD.png" alt="Dior personalisation" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;" />
+            <img src="CD.jpg" alt="Dior personalisation" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;" />
             <p style="font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;">Dior</p>
             <p style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); line-height: 1.6; margin: 0 0 8px;">Dedicated customisation hub</p>
             <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0;">Standalone personalisation destination accessible from the main nav – consolidates all options and positions customisation as a core brand pillar.</p>
           </div>
           <div class="reveal">
-            <img src="Burberry.png" alt="Burberry personalisation" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;" />
+            <img src="Burberry.jpg" alt="Burberry personalisation" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;" />
             <p style="font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;">Burberry</p>
             <p style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); line-height: 1.6; margin: 0 0 8px;">Live product preview</p>
             <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0;">Real-time rendering as users select monogramming, colours, and styles – removes uncertainty and drives emotional engagement with the product.</p>
@@ -746,21 +748,21 @@
           <!-- Findings row – horizontal -->
           <div class="p02-findings-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 32px;">
               <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px; display: flex; flex-direction: column;">
-                <h3 style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin: 0 0 12px;">01 Fragmented</h3>
+                <h3 style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin: 0 0 12px;">Fragmented</h3>
                 <div class="findings-list__text" style="margin: 0; display: flex; flex-direction: column; gap: 6px; flex: 1;">
                   <p style="margin: 0;"><strong>Engraving</strong> on the PDP only</p>
                   <p style="margin: 0;"><strong>Gift wrap</strong> only accessible in checkout</p>
                 </div>
               </div>
               <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px; display: flex; flex-direction: column;">
-                <h3 style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin: 0 0 12px;">02 Limited</h3>
+                <h3 style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin: 0 0 12px;">Limited</h3>
                 <div class="findings-list__text" style="margin: 0; display: flex; flex-direction: column; gap: 6px; flex: 1;">
                   <p style="margin: 0;">In-store: engraving, charms, fabric patches, caps, embossing</p>
                   <p style="margin: 0;">Online: <strong>text engraving only</strong></p>
                 </div>
               </div>
               <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px; display: flex; flex-direction: column;">
-                <h3 style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin: 0 0 12px;">03 Underperforming</h3>
+                <h3 style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin: 0 0 12px;">Underperforming</h3>
                 <p class="findings-list__text"><strong>High drop-off</strong> within the existing engraving overlay. 0.32% of users saved an engraving item to cart in 90-days.</p>
               </div>
           </div>
@@ -1330,7 +1332,7 @@
   <footer class="footer container">
     <p class="footer__copy">© 2024 Claire Davis. All rights reserved.</p>
     <div class="footer__links">
-      <a href="mailto:hello@clairedavis.com">Email</a>
+      <a href="mailto:c_e_davis162@hotmail.co.uk">Email</a>
       <a href="https://www.linkedin.com/in/claire-davis-design" target="_blank">LinkedIn</a>
       <a href="#" target="_blank">Read.cv</a>
     </div>
