@@ -252,6 +252,7 @@
     /* Test card */
     .test-card {
       padding: clamp(24px, 3vw, 36px);
+      padding-bottom: clamp(16px, 2vw, 24px);
       margin-bottom: 16px;
       background: var(--bg-raised);
       border-radius: 16px;
@@ -435,7 +436,11 @@
       .p02-hmw-row { grid-template-columns: 1fr !important; }
       .p02-changes-grid { grid-template-columns: 1fr !important; }
       .p02-stat-grid { grid-template-columns: 1fr 1fr !important; }
-      .test-card-grid { grid-template-columns: 1fr !important; }
+      .test-card { display: flex !important; flex-direction: column !important; }
+      .test-card-grid { display: contents !important; }
+      .test-card-grid > div:first-child { order: 1 !important; }
+      .test-card-grid > div:last-child { order: 3 !important; width: 100% !important; margin-top: 16px !important; }
+      .test-card > div:last-child { order: 2 !important; }
       .test-card__header { flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; }
       .p02-findings-grid { grid-template-columns: 1fr 1fr !important; }
       .p02-merging-grid { grid-template-columns: 1fr 1fr !important; }
@@ -453,9 +458,10 @@
       .p02-findings-grid { grid-template-columns: 1fr !important; }
       .p02-merging-grid { grid-template-columns: 1fr !important; }
       .p02-impact-grid { grid-template-columns: 1fr !important; }
-      .p02-audit-row { flex-direction: column !important; }
+      .p02-audit-row { flex-direction: column !important; align-items: center !important; }
       .p02-audit-row > div:nth-child(1) { width: 100% !important; }
-      .p02-audit-row > div:nth-child(2) { display: none !important; }
+      .p02-audit-row > div:nth-child(2) { transform: rotate(90deg); padding-bottom: 0 !important; }
+      .p02-audit-row img { height: auto !important; }
       .p02-popup-row { flex-direction: column !important; }
       .p02-explorations { grid-template-columns: repeat(4, 1fr) !important; }
       .hmw-carousel__item { flex: 0 0 calc(85%); min-width: 0; }
@@ -740,21 +746,21 @@
           <!-- Findings row – horizontal -->
           <div class="p02-findings-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 32px;">
               <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px; display: flex; flex-direction: column;">
-                <h3 style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin: 0 0 12px;">01 · Fragmented</h3>
-                <ul class="findings-list__text" style="list-style: disc; padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 6px; flex: 1;">
-                  <li><strong>Engraving</strong> on the PDP only</li>
-                  <li><strong>Gift wrap</strong> only accessible in checkout</li>
-                </ul>
+                <h3 style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin: 0 0 12px;">01 Fragmented</h3>
+                <div class="findings-list__text" style="margin: 0; display: flex; flex-direction: column; gap: 6px; flex: 1;">
+                  <p style="margin: 0;"><strong>Engraving</strong> on the PDP only</p>
+                  <p style="margin: 0;"><strong>Gift wrap</strong> only accessible in checkout</p>
+                </div>
               </div>
               <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px; display: flex; flex-direction: column;">
-                <h3 style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin: 0 0 12px;">02 · Limited</h3>
-                <ul class="findings-list__text" style="list-style: disc; padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 6px; flex: 1;">
-                  <li>In-store: engraving, charms, fabric patches, caps, embossing</li>
-                  <li>Online: <strong>text engraving only</strong></li>
-                </ul>
+                <h3 style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin: 0 0 12px;">02 Limited</h3>
+                <div class="findings-list__text" style="margin: 0; display: flex; flex-direction: column; gap: 6px; flex: 1;">
+                  <p style="margin: 0;">In-store: engraving, charms, fabric patches, caps, embossing</p>
+                  <p style="margin: 0;">Online: <strong>text engraving only</strong></p>
+                </div>
               </div>
               <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px; display: flex; flex-direction: column;">
-                <h3 style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin: 0 0 12px;">03 · Underperforming</h3>
+                <h3 style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin: 0 0 12px;">03 Underperforming</h3>
                 <p class="findings-list__text"><strong>High drop-off</strong> within the existing engraving overlay. 0.32% of users saved an engraving item to cart in 90-days.</p>
               </div>
           </div>
@@ -1023,7 +1029,7 @@
                     <span class="test-meta-item__value">5 existing · 5 new</span>
                   </div>
                 </div>
-                <div class="test-result" style="margin-bottom: 16px; border: none; background: none; padding-left: 0;">
+                <div class="test-result" style="margin-bottom: 0; border: none; background: none; padding-left: 0;">
                   <p class="test-result__label">Approach</p>
                   <p class="insight-card__desc">A menu-driven experience presenting all customisation options upfront. Users choose their own path – adding personalisations in any order, skipping what they don't want.</p>
                 </div>
@@ -1039,7 +1045,7 @@
               </div>
             </div>
             <!-- Images below: horizontal row -->
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 24px;">
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 16px;">
               <img src="ProtoA-1@2x.jpg" alt="Prototype A screen 1" style="width: 100%; height: auto; border-radius: 6px; display: block;">
               <img src="ProtoA-2@2x.jpg" alt="Prototype A screen 2" style="width: 100%; height: auto; border-radius: 6px; display: block;">
               <img src="ProtoA-3@2x.jpg" alt="Prototype A screen 3" style="width: 100%; height: auto; border-radius: 6px; display: block;">
@@ -1056,7 +1062,7 @@
                   <span class="test-badge">Prototype B</span>
                   <h3 class="test-card__name">Linear, guided 8-step journey</h3>
                 </div>
-                <div class="test-result" style="margin-bottom: 16px; border: none; background: none; padding-left: 0;">
+                <div class="test-result" style="margin-bottom: 0; border: none; background: none; padding-left: 0;">
                   <p class="test-result__label">Approach</p>
                   <p class="insight-card__desc">A step-by-step guided journey walking users through each customisation option in sequence, one per screen. Clear progress indicator (Step X of 8) throughout.</p>
                 </div>
@@ -1072,7 +1078,7 @@
               </div>
             </div>
             <!-- Images below: horizontal row -->
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 24px;">
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 16px;">
               <img src="ProtoB-1@2x.jpg" alt="Prototype B screen 1" style="width: 100%; height: auto; border-radius: 6px; display: block;">
               <img src="ProtoB-2@2x.jpg" alt="Prototype B screen 2" style="width: 100%; height: auto; border-radius: 6px; display: block;">
               <img src="ProtoB-3@2x.jpg" alt="Prototype B screen 3" style="width: 100%; height: auto; border-radius: 6px; display: block;">
@@ -1094,24 +1100,24 @@
       <h2 style="font-size: clamp(1.25rem, 2.5vw, 1.75rem); font-weight: 400; color: var(--text-primary); margin-bottom: clamp(24px, 3vw, 40px);">Merging the best of both prototypes</h2>
       <div class="p02-merging-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
         <div class="glass" style="padding: 24px; border-radius: 12px;">
-          <p style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 8px;">Insight</p>
+          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px;">Insight</p>
           <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 12px;">Clearer visual distinction between product and gift box personalisation needed</p>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin-bottom: 12px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-          <p style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 8px;">Solution</p>
+          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px;">Solution</p>
           <p style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin: 0;">Merged product and box options into one menu</p>
         </div>
         <div class="glass" style="padding: 24px; border-radius: 12px;">
-          <p style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 8px;">Insight</p>
+          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px;">Insight</p>
           <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 12px;">Desire for real-time previews as selections are made</p>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin-bottom: 12px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-          <p style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 8px;">Solution</p>
+          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px;">Solution</p>
           <p style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin: 0;">'Your Selections' persistent accordion</p>
         </div>
         <div class="glass" style="padding: 24px; border-radius: 12px;">
-          <p style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 8px;">Insight</p>
+          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px;">Insight</p>
           <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 12px;">Review screens felt redundant and lengthened the process unnecessarily</p>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin-bottom: 12px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-          <p style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 8px;">Solution</p>
+          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px;">Solution</p>
           <p style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin: 0;">Removed the separate review step</p>
         </div>
       </div>
