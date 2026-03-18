@@ -612,11 +612,10 @@ body.cursor-hover .cursor__ring { width: 56px; height: 56px; opacity: 0.6; }
    ============================================================ */
 
 .about-hero {
-  min-height: 70svh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 120px var(--gutter) clamp(60px, 8vw, 100px);
+  justify-content: flex-start;
+  padding: 0 var(--gutter) clamp(60px, 8vw, 100px);
 }
 
 .about-hero__label {
