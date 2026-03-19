@@ -67,18 +67,26 @@
     onScroll();
   }
 
-  /* ── Nav Dropdown (mobile click) ─────────────────────────────── */
-  const logoWrap = document.querySelector('.nav__logo-wrap');
-  if (logoWrap) {
-    logoWrap.addEventListener('click', (e) => {
-      if (window.innerWidth > 640) return;
-      e.preventDefault();
-      logoWrap.classList.toggle('open');
+  /* ── Nav Dropdown Toggle ────────────────────────────────────── */
+  const navToggle = document.querySelector('.nav__toggle');
+  if (nav && navToggle) {
+    navToggle.addEventListener('click', () => {
+      nav.classList.toggle('dropdown-open');
     });
+
+    // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
-      if (!logoWrap.contains(e.target)) {
-        logoWrap.classList.remove('open');
+      if (!nav.contains(e.target)) {
+        nav.classList.remove('dropdown-open');
       }
+    });
+
+    // Close dropdown when a link is clicked
+    const dropdownLinks = nav.querySelectorAll('.nav__dropdown a');
+    dropdownLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('dropdown-open');
+      });
     });
   }
 
