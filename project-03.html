@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Connect Wearables – Claire Davis</title>
   <meta name="description" content="Integrating wearable health data into the Healf ecosystem to personalise product recommendations and deepen user engagement." />
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="stylesheet" href="style.css?v=5" />
   <style>
     /* ── Scroll progress ── */
     .scroll-progress {
@@ -319,8 +319,18 @@
       -webkit-backdrop-filter: blur(10px);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 14px 24px;
-      min-width: 220px;
+      padding: 14px 40px 14px 24px;
+      min-width: 240px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .section-nav__toggle {
+      display: none;
+    }
+
+    .section-nav__items {
       display: flex;
       flex-direction: column;
       gap: 2px;
@@ -406,16 +416,72 @@
         bottom: 0; left: 0; right: 0;
         border-radius: 0;
         border-left: none; border-right: none; border-bottom: none;
+        gap: 0;
+        padding: 0;
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        min-width: 0;
+        flex-direction: column;
+        align-items: stretch;
+        transition: background 0.3s ease;
+      }
+
+      .section-nav__toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        background: none;
+        border: none;
+        border-bottom: 1px solid transparent;
+        color: var(--text-muted);
+        cursor: pointer;
+        font-family: var(--font);
+        transition: border-color 0.3s ease;
+      }
+
+      .section-nav__toggle svg {
+        transition: transform 0.3s var(--ease-expo);
+      }
+
+      /* Collapsed: show numbers in a row */
+      .section-nav__items {
         flex-direction: row;
         justify-content: center;
         gap: 0;
         padding: 8px 12px;
-        padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
-        min-width: 0;
       }
+
       .section-nav__label { display: none; }
       .section-nav__item { padding: 6px 10px; }
       .section-nav__num { min-width: auto; font-size: 0.625rem; }
+
+      /* Expanded state */
+      .section-nav.expanded .section-nav__toggle {
+        border-color: var(--border);
+      }
+
+      .section-nav.expanded .section-nav__toggle svg {
+        transform: rotate(180deg);
+      }
+
+      .section-nav.expanded .section-nav__items {
+        flex-direction: column;
+        gap: 2px;
+        padding: 12px 20px;
+      }
+
+      .section-nav.expanded .section-nav__label {
+        display: inline;
+      }
+
+      .section-nav.expanded .section-nav__item {
+        padding: 8px 10px;
+      }
+
+      .section-nav.expanded .section-nav__num {
+        min-width: 20px;
+        font-size: 0.5625rem;
+      }
     }
 
     @media (max-width: 768px) {
@@ -988,7 +1054,7 @@
             <div class="insight-card reveal">
               <p style="font-size: clamp(1.25rem, 2.5vw, 2rem); font-weight: 300; color: var(--text-primary); line-height: 1; margin-bottom: 4px;">+11%</p>
               <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-primary); line-height: 1.8; margin: 0;">Wearable connection rate</p>
-              <p class="insight-card__desc">Of users with known compatible devices connected within the first month of launch, exceeding the 20% target.</p>
+              <p class="insight-card__desc">Of users with known compatible devices connected within the first month of launch.</p>
             </div>
             <div class="insight-card reveal">
               <p style="font-size: clamp(1.25rem, 2.5vw, 2rem); font-weight: 300; color: var(--text-primary); line-height: 1; margin-bottom: 4px;">+4%</p>
@@ -1066,25 +1132,61 @@
 
   <!-- Section Navigator -->
   <nav class="section-nav" aria-label="Page sections">
-    <a class="section-nav__item" data-target="section-define"><span class="section-nav__num">01</span><span class="section-nav__label">Define</span></a>
-    <a class="section-nav__item" data-target="section-ideation"><span class="section-nav__num">02</span><span class="section-nav__label">Ideation</span></a>
-    <a class="section-nav__item" data-target="section-validate"><span class="section-nav__num">03</span><span class="section-nav__label">Validate</span></a>
-    <a class="section-nav__item" data-target="section-design"><span class="section-nav__num">04</span><span class="section-nav__label">Design</span></a>
-    <a class="section-nav__item" data-target="section-outcomes"><span class="section-nav__num">05</span><span class="section-nav__label">Outcomes</span></a>
-    <a class="section-nav__item" data-target="section-reflection"><span class="section-nav__num">06</span><span class="section-nav__label">Reflection</span></a>
+    <button class="section-nav__toggle" aria-label="Expand navigation">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 8L6 4L10 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="section-nav__items">
+      <a class="section-nav__item" data-target="section-define"><span class="section-nav__num">01</span><span class="section-nav__label">Define</span></a>
+      <a class="section-nav__item" data-target="section-ideation"><span class="section-nav__num">02</span><span class="section-nav__label">Ideation</span></a>
+      <a class="section-nav__item" data-target="section-validate"><span class="section-nav__num">03</span><span class="section-nav__label">Validate</span></a>
+      <a class="section-nav__item" data-target="section-design"><span class="section-nav__num">04</span><span class="section-nav__label">Design</span></a>
+      <a class="section-nav__item" data-target="section-outcomes"><span class="section-nav__num">05</span><span class="section-nav__label">Outcomes</span></a>
+      <a class="section-nav__item" data-target="section-reflection"><span class="section-nav__num">06</span><span class="section-nav__label">Reflection</span></a>
+    </div>
   </nav>
 
-  <!-- Project Navigation -->
-  <div class="project-nav container reveal">
-    <a href="project-02.html" class="project-nav__link prev">
-      <span class="project-nav__dir">&larr; Previous</span>
-      <span class="project-nav__name">Customisation tool</span>
+  <!-- More Work -->
+  <section class="work reveal" style="padding-top: clamp(40px, 6vw, 80px);">
+    <div class="work__header">
+      <h2 class="work__title">More work</h2>
+    </div>
+    <a class="project-row" href="project-03.html">
+      <div class="project-row__inner">
+        <span class="project-row__num">01</span>
+        <span class="project-row__name">Connect Wearables <span class="project-row__brand">Healf</span></span>
+        <div class="project-row__tags">
+          <span class="tag">Wearable integration</span>
+          <span class="tag">Onboarding</span>
+          <span class="tag">Data</span>
+        </div>
+        <span class="project-row__year">2026</span>
+      </div>
     </a>
-    <a href="index.html" class="project-nav__link">
-      <span class="project-nav__dir">All Work &rarr;</span>
-      <span class="project-nav__name">Home</span>
+    <a class="project-row" href="project-02.html">
+      <div class="project-row__inner">
+        <span class="project-row__num">02</span>
+        <span class="project-row__name">Customisation tool <span class="project-row__brand">Jo Malone London</span></span>
+        <div class="project-row__tags">
+          <span class="tag">Feature</span>
+          <span class="tag">Prototype</span>
+          <span class="tag">User Testing</span>
+        </div>
+        <span class="project-row__year">2025</span>
+      </div>
     </a>
-  </div>
+    <a class="project-row" href="project-01.html">
+      <div class="project-row__inner">
+        <span class="project-row__num">03</span>
+        <span class="project-row__name">PDP Optimisation <span class="project-row__brand">Jo Malone London</span></span>
+        <div class="project-row__tags">
+          <span class="tag">E-commerce</span>
+          <span class="tag">UX Research</span>
+          <span class="tag">A/B Testing</span>
+        </div>
+        <span class="project-row__year">2025</span>
+      </div>
+    </a>
+  </section>
 
   <!-- Footer -->
   <footer class="footer container">
@@ -1206,8 +1308,20 @@
           e.preventDefault();
           var target = document.getElementById(item.dataset.target);
           if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Collapse on mobile after clicking a section
+          if (window.innerWidth <= 640) {
+            sectionNav.classList.remove('expanded');
+          }
         });
       });
+
+      // Mobile expand/collapse toggle
+      var toggleBtn = sectionNav.querySelector('.section-nav__toggle');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', function () {
+          sectionNav.classList.toggle('expanded');
+        });
+      }
     })();
   </script>
 

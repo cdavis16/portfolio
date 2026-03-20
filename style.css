@@ -180,27 +180,14 @@ body.cursor-hover .cursor__ring { width: 56px; height: 56px; opacity: 0.6; }
 .nav__dropdown a {
   font-size: 0.75rem;
   font-weight: 300;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   transition: color 0.3s ease;
   position: relative;
   white-space: nowrap;
 }
 
-.nav__dropdown a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px; left: 0;
-  width: 0; height: 1px;
-  background: var(--text-primary);
-  transition: width 0.4s var(--ease-expo);
-}
-
 .nav__dropdown a:hover {
-  color: var(--text-primary);
-}
-
-.nav__dropdown a:hover::after {
-  width: 100%;
+  color: var(--text-secondary);
 }
 
 /* ── Hamburger toggle ── */
@@ -254,24 +241,12 @@ body.cursor-hover .cursor__ring { width: 56px; height: 56px; opacity: 0.6; }
   font-weight: 400;
   letter-spacing: 0.01em;
   text-transform: none;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   transition: color 0.3s ease;
-  position: relative;
 }
 
-.nav__links a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px; left: 0;
-  width: 0; height: 1px;
-  background: var(--text-primary);
-  transition: width 0.4s var(--ease-expo);
-}
-
-.nav__links a:hover { color: var(--text-primary); }
-.nav__links a:hover::after { width: 100%; }
+.nav__links a:hover { color: var(--text-secondary); }
 .nav__links a.active { color: var(--text-primary); }
-.nav__links a.active::after { width: 100%; }
 
 /* ── Layout Helpers ──────────────────────────────────────────── */
 .container {
