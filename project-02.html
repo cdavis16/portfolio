@@ -437,6 +437,8 @@
 
     /* ── Inline grid responsive fixes ─────────────────────── */
     @media (max-width: 768px) {
+      .p02-grey { padding-left: 24px !important; padding-right: 24px !important; }
+      .p02-solution-tab { white-space: nowrap; }
       .p02-grid-3 { grid-template-columns: 1fr 1fr !important; }
       .p02-grid-4 { grid-template-columns: 1fr 1fr !important; }
       .p02-phases-grid { grid-template-columns: 1fr !important; }
@@ -719,7 +721,7 @@
   </section>
 
   <!-- Hero video – full-bleed grey -->
-  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px); display:flex; justify-content:center;">
+  <section class="p02-grey" style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px); display:flex; justify-content:center;">
     <video src="Custo-vid-2.mp4" autoplay muted loop playsinline style="width:30%;max-width:360px;height:auto;border-radius:16px;display:block;"></video>
   </section>
 
@@ -764,7 +766,7 @@
   </section>
 
   <!-- Audit images – full bleed -->
-  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px);">
+  <section class="p02-grey" style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px);">
     <div class="container" style="padding-left: 0; padding-right: 0;">
       <h3 style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin: 0 0 8px;">Current engraving overlay</h3>
       <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px; max-width: 480px;">The engraving overlay was the only personalisation experience on the website. It was triggered by a mostly missed CTA. It performed poorly and had a poor UX on mobile.</p>
@@ -960,7 +962,7 @@
 
 
   <!-- Exploration screens – full-bleed grey -->
-  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px);">
+  <section class="p02-grey" style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px);">
     <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 24px;">Early explorations – navigation and flow structure</p>
     <div style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px; margin-bottom: clamp(40px, 5vw, 56px);" class="p02-explorations">
       <img src="Exp_1.jpg" alt="Exploration 01" style="width:100%;height:auto;border-radius:8px;display:block;">
@@ -1106,7 +1108,7 @@
     </div>
   </section>
 
-  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px) clamp(24px, 3vw, 40px);">
+  <section class="p02-grey" style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px);">
           <!-- Test 1: Prototype A -->
           <div class="test-card" style="margin-bottom: 0; border-radius: 16px 16px 0 0;">
             <div>
@@ -1163,16 +1165,16 @@
   </section>
 
   <!-- Design solution – tabbed panels -->
-  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px);">
+  <section class="p02-grey" style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px);">
     <h2 style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin-bottom: clamp(24px, 3vw, 32px);">Merging the best of both prototypes</h2>
 
     <div class="p02-solution-panels">
 
-      <!-- Panel 0: Box Vs Image -->
+      <!-- Panel 0: Box & Image -->
       <div class="p02-solution-panel active" data-panel="0" style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 20px; align-items: start;">
         <div>
           <div class="p02-solution-tabs" style="display: flex; gap: 8px; margin-bottom: 16px;">
-            <button class="p02-solution-tab active" data-tab="0" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: var(--text-primary); color: var(--bg); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Box Vs Image</button>
+            <button class="p02-solution-tab active" data-tab="0" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: var(--text-primary); color: var(--bg); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Box & Image</button>
             <button class="p02-solution-tab" data-tab="1" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Real Time</button>
             <button class="p02-solution-tab" data-tab="2" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Review</button>
           </div>
@@ -1193,7 +1195,7 @@
       <div class="p02-solution-panel" data-panel="1" style="display: none; grid-template-columns: 1.4fr 1fr 1fr; gap: 20px; align-items: start;">
         <div>
           <div class="p02-solution-tabs" style="display: flex; gap: 8px; margin-bottom: 16px;">
-            <button class="p02-solution-tab" data-tab="0" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Box Vs Image</button>
+            <button class="p02-solution-tab" data-tab="0" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Box & Image</button>
             <button class="p02-solution-tab active" data-tab="1" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: var(--text-primary); color: var(--bg); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Real Time</button>
             <button class="p02-solution-tab" data-tab="2" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Review</button>
           </div>
@@ -1214,7 +1216,7 @@
       <div class="p02-solution-panel" data-panel="2" style="display: none; grid-template-columns: 1.4fr 1fr 1fr; gap: 20px; align-items: start;">
         <div>
           <div class="p02-solution-tabs" style="display: flex; gap: 8px; margin-bottom: 16px;">
-            <button class="p02-solution-tab" data-tab="0" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Box Vs Image</button>
+            <button class="p02-solution-tab" data-tab="0" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Box & Image</button>
             <button class="p02-solution-tab" data-tab="1" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Real Time</button>
             <button class="p02-solution-tab active" data-tab="2" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: var(--text-primary); color: var(--bg); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Review</button>
           </div>
@@ -1280,7 +1282,7 @@
     </div>
   </section>
 
-  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px); display:flex; justify-content:center;">
+  <section class="p02-grey" style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px); display:flex; justify-content:center;">
     <video src="Custo-vid-1.mp4" autoplay muted loop playsinline style="width:30%;max-width:360px;height:auto;border-radius:16px;display:block;"></video>
   </section>
 
@@ -1546,7 +1548,7 @@
       }
     })();
 
-    // ── Solution Tabs – Box Vs Image / Real Time / Review ──
+    // ── Solution Tabs – Box & Image / Real Time / Review ──
     (function() {
       var tabs = document.querySelectorAll('.p02-solution-tab');
       var panels = document.querySelectorAll('.p02-solution-panel');
