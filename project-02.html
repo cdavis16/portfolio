@@ -453,6 +453,7 @@
       .p02-findings-grid { grid-template-columns: 1fr 1fr !important; }
       .p02-merging-grid { grid-template-columns: 1fr 1fr !important; }
       .p02-solution-panel { grid-template-columns: 1fr 1fr !important; }
+      .p02-userflow { display: none !important; }
       .p02-solution-panel > div:first-child { grid-column: 1 / -1; }
       .hmw-carousel__tabs { gap: 6px; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
       .hmw-carousel__tabs::-webkit-scrollbar { display: none; }
@@ -773,7 +774,7 @@
 
         <!-- Left: PDP screenshot with annotation -->
         <div style="flex: 0 0 auto; width: clamp(140px, 16vw, 210px);">
-          <img src="old_custo_cta.jpg" alt="Jo Malone PDP – Add Customizations CTA" style="width: 100%; height: clamp(200px, 26vw, 340px); object-fit: cover; object-position: top; border-radius: 8px; display: block;">
+          <img src="old_custo_cta.jpg" alt="Jo Malone PDP – Add Customizations CTA" style="width: 100%; height: auto; border-radius: 8px; display: block;">
           <!-- Annotation note -->
           <div style="margin-top: 12px;">
             <p style="font-size: 0.6875rem; font-weight: 300; color: var(--text-secondary); line-height: 1.5; margin: 0;">'Add customisation' was lost within the hierarchy</p>
@@ -790,11 +791,11 @@
         <!-- Right: Mobile popup + desktop popup side by side -->
         <div class="p02-popup-row" style="flex: 1; display: flex; gap: 16px; align-items: flex-start; min-width: 0;">
           <div style="flex: 1; min-width: 0;">
-            <img src="Old_popup_mob.jpg" alt="PDP engraving overlay – input tab" style="width: 100%; height: clamp(200px, 26vw, 340px); object-fit: cover; object-position: top; border-radius: 8px; display: block;">
+            <img src="Old_popup_mob.jpg" alt="PDP engraving overlay – input tab" style="width: 100%; height: auto; border-radius: 8px; display: block;">
             <p style="font-size: 0.6875rem; font-weight: 300; color: var(--text-secondary); line-height: 1.5; margin-top: 10px;">On mobile user had to tab between preview image and text field input, a UX that was frustrating and inefficient</p>
           </div>
           <div style="flex: 1.5; min-width: 0;">
-            <img src="old_popup_desktop.jpg?v=2" alt="PDP engraving overlay – desktop" style="width: 100%; height: clamp(200px, 26vw, 340px); object-fit: cover; object-position: top; border-radius: 8px; display: block;">
+            <img src="old_popup_desktop.jpg?v=2" alt="PDP engraving overlay – desktop" style="width: 100%; height: auto; border-radius: 8px; display: block;">
           </div>
         </div>
 
@@ -972,7 +973,7 @@
       <img src="Exp_8.jpg" alt="Exploration 08" style="width:100%;height:auto;border-radius:8px;display:block;">
     </div>
     <!-- User flow wireframe -->
-    <div>
+    <div class="p02-userflow">
       <svg viewBox="0 0 1070 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:960px;height:auto;display:block;margin:0 auto;">
         <defs>
           <marker id="wf-arr" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
