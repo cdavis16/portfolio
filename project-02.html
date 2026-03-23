@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Personalisation Hub – Claire Davis</title>
   <meta name="description" content="Designing a centralised customisation hub for Jo Malone London to unify gifting and personalisation." />
-  <link rel="stylesheet" href="style.css?v=6" />
+  <link rel="stylesheet" href="style.css?v=7" />
   <style>
     /* ── Scroll progress ── */
     .scroll-progress {
@@ -261,10 +261,10 @@
     .test-card {
       padding: clamp(24px, 3vw, 36px);
       padding-bottom: clamp(16px, 2vw, 24px);
-      margin-bottom: 16px;
-      background: var(--bg-raised);
-      border-radius: 16px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+      margin-bottom: 0;
+      background: none;
+      border-radius: 0;
+      box-shadow: none;
     }
 
     .test-card__header {
@@ -452,6 +452,8 @@
       .test-card__header { flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; }
       .p02-findings-grid { grid-template-columns: 1fr 1fr !important; }
       .p02-merging-grid { grid-template-columns: 1fr 1fr !important; }
+      .p02-solution-panel { grid-template-columns: 1fr 1fr !important; }
+      .p02-solution-panel > div:first-child { grid-column: 1 / -1; }
       .hmw-carousel__tabs { gap: 6px; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
       .hmw-carousel__tabs::-webkit-scrollbar { display: none; }
       .hmw-carousel__tab { font-size: 0.75rem; padding: 6px 12px; white-space: nowrap; flex-shrink: 0; }
@@ -464,6 +466,7 @@
       .p02-stat-grid { grid-template-columns: 1fr !important; }
       .hmw-cards-row { grid-template-columns: 1fr !important; }
       .p02-findings-grid { grid-template-columns: 1fr !important; }
+      .p02-quotes-insight { grid-template-columns: 1fr !important; }
       .p02-merging-grid { grid-template-columns: 1fr !important; }
       .p02-impact-grid { grid-template-columns: 1fr !important; }
       .p02-audit-row { flex-direction: column !important; align-items: center !important; }
@@ -715,7 +718,7 @@
   </section>
 
   <!-- Hero video – full-bleed grey -->
-  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) var(--gutter); display:flex; justify-content:center;">
+  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px); display:flex; justify-content:center;">
     <video src="Custo-vid-2.mp4" autoplay muted loop playsinline style="width:30%;max-width:360px;height:auto;border-radius:16px;display:block;"></video>
   </section>
 
@@ -760,7 +763,7 @@
   </section>
 
   <!-- Audit images – full bleed -->
-  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) var(--gutter);">
+  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px);">
     <div class="container" style="padding-left: 0; padding-right: 0;">
       <h3 style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin: 0 0 8px;">Current engraving overlay</h3>
       <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px; max-width: 480px;">The engraving overlay was the only personalisation experience on the website. It was triggered by a mostly missed CTA. It performed poorly and had a poor UX on mobile.</p>
@@ -773,7 +776,7 @@
           <img src="old_custo_cta.jpg" alt="Jo Malone PDP – Add Customizations CTA" style="width: 100%; height: clamp(200px, 26vw, 340px); object-fit: cover; object-position: top; border-radius: 8px; display: block;">
           <!-- Annotation note -->
           <div style="margin-top: 12px;">
-            <p style="font-size: 0.6875rem; font-weight: 300; font-style: italic; color: var(--text-secondary); line-height: 1.5; margin: 0;">'Add customisation' was lost within the hierarchy</p>
+            <p style="font-size: 0.6875rem; font-weight: 300; color: var(--text-secondary); line-height: 1.5; margin: 0;">'Add customisation' was lost within the hierarchy</p>
           </div>
         </div>
 
@@ -788,7 +791,7 @@
         <div class="p02-popup-row" style="flex: 1; display: flex; gap: 16px; align-items: flex-start; min-width: 0;">
           <div style="flex: 1; min-width: 0;">
             <img src="Old_popup_mob.jpg" alt="PDP engraving overlay – input tab" style="width: 100%; height: clamp(200px, 26vw, 340px); object-fit: cover; object-position: top; border-radius: 8px; display: block;">
-            <p style="font-size: 0.6875rem; font-weight: 300; font-style: italic; color: var(--text-secondary); line-height: 1.5; margin-top: 10px;">On mobile user had to tab between preview image and text field input, a UX that was frustrating and inefficient</p>
+            <p style="font-size: 0.6875rem; font-weight: 300; color: var(--text-secondary); line-height: 1.5; margin-top: 10px;">On mobile user had to tab between preview image and text field input, a UX that was frustrating and inefficient</p>
           </div>
           <div style="flex: 1.5; min-width: 0;">
             <img src="old_popup_desktop.jpg?v=2" alt="PDP engraving overlay – desktop" style="width: 100%; height: clamp(200px, 26vw, 340px); object-fit: cover; object-position: top; border-radius: 8px; display: block;">
@@ -802,19 +805,16 @@
         <div class="p02-grid-3" data-stagger style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
           <div class="reveal">
             <img src="Tiffany.jpg" alt="Tiffany & Co. personalisation" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;" />
-            <p style="font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;">Tiffany &amp; Co.</p>
             <p style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); line-height: 1.6; margin: 0 0 8px;">Multi-step PDP personalisation</p>
             <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0;">Guided, step-by-step engraving flow with real-time preview directly on the PDP – personalisation central to the purchase decision, not an afterthought.</p>
           </div>
           <div class="reveal">
             <img src="CD.jpg" alt="Dior personalisation" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;" />
-            <p style="font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;">Dior</p>
             <p style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); line-height: 1.6; margin: 0 0 8px;">Dedicated customisation hub</p>
             <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0;">Standalone personalisation destination accessible from the main nav – consolidates all options and positions customisation as a core brand pillar.</p>
           </div>
           <div class="reveal">
             <img src="Burberry.jpg" alt="Burberry personalisation" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;" />
-            <p style="font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;">Burberry</p>
             <p style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); line-height: 1.6; margin: 0 0 8px;">Live product preview</p>
             <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0;">Real-time rendering as users select monogramming, colours, and styles – removes uncertainty and drives emotional engagement with the product.</p>
           </div>
@@ -860,44 +860,45 @@
               </div>
           </div>
 
-          <!-- User interview quotes – horizontal carousel -->
-          <div class="reveal" style="margin-top: 40px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border);">
-              <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin: 0;">What users told us</p>
-              <div class="quotes-arrows" style="display: flex; gap: 8px;">
-                <button class="quotes-arrow quotes-arrow--prev" style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.2s ease; font-family: inherit;">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-                </button>
-                <button class="quotes-arrow quotes-arrow--next" style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.2s ease; font-family: inherit;">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="quotes-carousel" style="display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 8px; scroll-behavior: smooth;">
-              <div class="glass" style="flex: 0 0 calc(43% - 4px); min-width: 280px; scroll-snap-align: start; padding: clamp(20px, 2.5vw, 32px); border-radius: 12px;">
-                <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-style: italic; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0 0 16px;">"I knew engraving was possible but I couldn't find it, I ended up just buying the box as-is."</p>
-                <span class="findings-list__source">Participant 2 · Regular gifter</span>
-              </div>
-              <div class="glass" style="flex: 0 0 calc(43% - 4px); min-width: 280px; scroll-snap-align: start; padding: clamp(20px, 2.5vw, 32px); border-radius: 12px;">
-                <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-style: italic; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0 0 16px;">"I didn't realise you could personalise the box, I thought you could only add text to the bottle"</p>
-                <span class="findings-list__source">Participant 5 · Occasional buyer</span>
-              </div>
-              <div class="glass" style="flex: 0 0 calc(43% - 4px); min-width: 280px; scroll-snap-align: start; padding: clamp(20px, 2.5vw, 32px); border-radius: 12px;">
-                <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-style: italic; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0 0 16px;">"Being able to see what the finished gift looks like before I commit would make me so much more confident spending the money."</p>
-                <span class="findings-list__source">Participant 3 · First-time gifter</span>
-              </div>
-              <div class="glass" style="flex: 0 0 calc(43% - 4px); min-width: 280px; scroll-snap-align: start; padding: clamp(20px, 2.5vw, 32px); border-radius: 12px;">
-                <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-style: italic; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0 0 16px;">"I'd want everything in one place – pick the scent, personalise the bottle, sort the box – without jumping around the site."</p>
-                <span class="findings-list__source">Participant 7 · Loyalty customer</span>
-              </div>
-            </div>
-          </div>
+          <!-- User quotes + Key insight – side by side -->
+          <div class="reveal" style="margin-top: 8px;">
+            <div class="p02-quotes-insight" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; align-items: stretch;">
 
-          <!-- Missed opportunity -->
-          <div class="reveal" style="margin-top: 40px;">
-            <div class="glass" style="padding: clamp(24px, 3vw, 36px); border-radius: 16px;">
-              <p style="font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px;">Missed opportunity</p>
-              <p style="font-size: clamp(1rem, 1.8vw, 1.125rem); font-weight: 400; color: var(--text-primary); line-height: 1.5; margin: 0; max-width: 50ch;">There was a clear opportunity to create a hub offering all personalisation options in one place – accessible not just from the PDP, but from anywhere on the site.</p>
+              <!-- Quotes carousel -->
+              <div class="quotes-carousel" style="display: flex; gap: 8px; overflow: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; min-width: 0;">
+                <div class="glass p02-glass--lg" style="flex: 0 0 100%; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; padding: clamp(24px, 3vw, 36px) 16px; border-radius: 16px;">
+                  <p class="p02-label" style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 8px;">User insights</p>
+                  <p class="p02-body" style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-primary); line-height: 1.8;">"I knew engraving was possible but I couldn't find it, I ended up just buying the box as-is."</p>
+                </div>
+                <div class="glass p02-glass--lg" style="flex: 0 0 100%; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; padding: clamp(24px, 3vw, 36px) 16px; border-radius: 16px;">
+                  <p class="p02-label" style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 8px;">User insights</p>
+                  <p class="p02-body" style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-primary); line-height: 1.8;">"I didn't realise you could personalise the box, I thought you could only add text to the bottle"</p>
+                </div>
+                <div class="glass p02-glass--lg" style="flex: 0 0 100%; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; padding: clamp(24px, 3vw, 36px) 16px; border-radius: 16px;">
+                  <p class="p02-label" style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 8px;">User insights</p>
+                  <p class="p02-body" style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-primary); line-height: 1.8;">"Being able to see what the finished gift looks like before I commit would make me so much more confident spending the money."</p>
+                </div>
+                <div class="glass p02-glass--lg" style="flex: 0 0 100%; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; padding: clamp(24px, 3vw, 36px) 16px; border-radius: 16px;">
+                  <p class="p02-label" style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 8px;">User insights</p>
+                  <p class="p02-body" style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-primary); line-height: 1.8;">"I'd want everything in one place – pick the scent, personalise the bottle, sort the box – without jumping around the site."</p>
+                </div>
+              </div>
+
+              <!-- Key insight -->
+              <div class="glass" style="display: flex; flex-direction: column; justify-content: flex-start; padding: clamp(24px, 3vw, 36px) 16px; border-radius: 16px;">
+                <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 8px;">Key insight</p>
+                <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-primary); line-height: 1.8; margin: 0;">There was a clear opportunity to create a hub offering all personalisation options in one place – accessible not just from the PDP, but from anywhere on the site.</p>
+              </div>
+
+            </div>
+            <!-- Arrows below grid -->
+            <div class="quotes-arrows" style="display: flex; gap: 8px; margin-top: 12px;">
+              <button class="quotes-arrow quotes-arrow--prev" style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.2s ease; font-family: inherit;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button class="quotes-arrow quotes-arrow--next" style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.2s ease; font-family: inherit;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
             </div>
           </div>
 
@@ -958,10 +959,20 @@
 
 
   <!-- Exploration screens – full-bleed grey -->
-  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) var(--gutter);">
+  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px);">
+    <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 24px;">Early explorations – navigation and flow structure</p>
+    <div style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px; margin-bottom: clamp(40px, 5vw, 56px);" class="p02-explorations">
+      <img src="Exp_1.jpg" alt="Exploration 01" style="width:100%;height:auto;border-radius:8px;display:block;">
+      <img src="Exp_2.jpg" alt="Exploration 02" style="width:100%;height:auto;border-radius:8px;display:block;">
+      <img src="Exp_3.jpg" alt="Exploration 03" style="width:100%;height:auto;border-radius:8px;display:block;">
+      <img src="Exp_4.jpg" alt="Exploration 04" style="width:100%;height:auto;border-radius:8px;display:block;">
+      <img src="Exp_5.jpg" alt="Exploration 05" style="width:100%;height:auto;border-radius:8px;display:block;">
+      <img src="Exp_6.jpg" alt="Exploration 06" style="width:100%;height:auto;border-radius:8px;display:block;">
+      <img src="Exp_7.jpg" alt="Exploration 07" style="width:100%;height:auto;border-radius:8px;display:block;">
+      <img src="Exp_8.jpg" alt="Exploration 08" style="width:100%;height:auto;border-radius:8px;display:block;">
+    </div>
     <!-- User flow wireframe -->
-    <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 16px;">User flow – Personalisation Hub</p>
-    <div style="margin-bottom: clamp(40px, 5vw, 56px);">
+    <div>
       <svg viewBox="0 0 1070 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:960px;height:auto;display:block;margin:0 auto;">
         <defs>
           <marker id="wf-arr" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
@@ -1073,17 +1084,6 @@
         <text x="670" y="420" fill="#1a1a1a" font-size="8.5" text-anchor="middle" dominant-baseline="middle" font-family="inherit">Confirm</text>
       </svg>
     </div>
-    <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 24px;">Early explorations – navigation and flow structure</p>
-    <div style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px;" class="p02-explorations">
-      <img src="Exp_1.jpg" alt="Exploration 01" style="width:100%;height:auto;border-radius:8px;display:block;">
-      <img src="Exp_2.jpg" alt="Exploration 02" style="width:100%;height:auto;border-radius:8px;display:block;">
-      <img src="Exp_3.jpg" alt="Exploration 03" style="width:100%;height:auto;border-radius:8px;display:block;">
-      <img src="Exp_4.jpg" alt="Exploration 04" style="width:100%;height:auto;border-radius:8px;display:block;">
-      <img src="Exp_5.jpg" alt="Exploration 05" style="width:100%;height:auto;border-radius:8px;display:block;">
-      <img src="Exp_6.jpg" alt="Exploration 06" style="width:100%;height:auto;border-radius:8px;display:block;">
-      <img src="Exp_7.jpg" alt="Exploration 07" style="width:100%;height:auto;border-radius:8px;display:block;">
-      <img src="Exp_8.jpg" alt="Exploration 08" style="width:100%;height:auto;border-radius:8px;display:block;">
-    </div>
   </section>
 
   <section class="section" style="padding-top: 0; padding-bottom: 0;">
@@ -1095,48 +1095,40 @@
         <div class="process-block__content">
           <p class="process-block__label">Test</p>
           <h2 class="process-block__title">Prototype A vs. B – testing two navigation models</h2>
-          <div class="process-block__body" style="margin-bottom: 32px;">
+          <div class="process-block__body">
             <p>
               Two competing approaches were tested with 10 participants (5 existing, 5 new) to understand which navigational flow best served the personalisation journey – capturing emotional reactions, friction points, and brand perception throughout.
             </p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px) clamp(24px, 3vw, 40px);">
           <!-- Test 1: Prototype A -->
           <div class="test-card" style="margin-bottom: 0; border-radius: 16px 16px 0 0;">
-            <div class="test-card-grid" style="display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: start;">
-              <!-- Left: text content -->
-              <div>
-                <div class="test-card__header">
-                  <span class="test-badge">Prototype A</span>
-                  <h3 class="test-card__name">Non-linear, user-led navigation</h3>
+            <div>
+              <div class="test-card__header">
+                <h3 class="test-card__name">Test 01 – Non-linear, user-led navigation</h3>
+              </div>
+              <div class="test-meta">
+                <div class="test-meta-item">
+                  <span class="test-meta-item__label">Participants</span>
+                  <span class="test-meta-item__value">10</span>
                 </div>
-                <div class="test-meta">
-                  <div class="test-meta-item">
-                    <span class="test-meta-item__label">Participants</span>
-                    <span class="test-meta-item__value">10</span>
-                  </div>
-                  <div class="test-meta-item">
-                    <span class="test-meta-item__label">Format</span>
-                    <span class="test-meta-item__value">Moderated remote</span>
-                  </div>
-                  <div class="test-meta-item">
-                    <span class="test-meta-item__label">Split</span>
-                    <span class="test-meta-item__value">5 existing · 5 new</span>
-                  </div>
+                <div class="test-meta-item">
+                  <span class="test-meta-item__label">Format</span>
+                  <span class="test-meta-item__value">Moderated remote</span>
                 </div>
-                <div class="test-result" style="margin-bottom: 0; border: none; background: none; padding-left: 0;">
-                  <p class="test-result__label">Approach</p>
-                  <p class="insight-card__desc">A menu-driven experience presenting all customisation options upfront. Users choose their own path – adding personalisations in any order, skipping what they don't want.</p>
+                <div class="test-meta-item">
+                  <span class="test-meta-item__label">Split</span>
+                  <span class="test-meta-item__value">5 existing · 5 new</span>
                 </div>
               </div>
-              <!-- Right: key finding -->
-              <div style="width: 300px; flex-shrink: 0;">
-                <div class="test-result">
-                  <p class="test-result__label">Key finding</p>
-                  <p class="test-result__text">
-                    <strong>Preferred by the majority.</strong> Felt premium, elegant, and aligned with Jo Malone's brand. Users appreciated the flexibility and felt in control of the experience without being overwhelmed.
-                  </p>
-                </div>
+              <div class="test-result" style="margin-bottom: 0; border: none; background: none; padding-left: 0;">
+                <p class="process-block__label" style="margin-bottom: 8px;">Key finding</p>
+                <p class="insight-card__desc" style="max-width: 56ch;"><strong>Preferred by the majority.</strong> Felt premium, elegant, and aligned with Jo Malone's brand. Users appreciated the flexibility and felt in control of the experience without being overwhelmed.</p>
               </div>
             </div>
             <!-- Images below: horizontal row -->
@@ -1150,26 +1142,13 @@
 
           <!-- Test 2: Prototype B -->
           <div class="test-card" style="border-radius: 0 0 16px 16px;">
-            <div class="test-card-grid" style="display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: start;">
-              <!-- Left: text content -->
-              <div>
-                <div class="test-card__header">
-                  <span class="test-badge">Prototype B</span>
-                  <h3 class="test-card__name">Linear, guided 8-step journey</h3>
-                </div>
-                <div class="test-result" style="margin-bottom: 0; border: none; background: none; padding-left: 0;">
-                  <p class="test-result__label">Approach</p>
-                  <p class="insight-card__desc">A step-by-step guided journey walking users through each customisation option in sequence, one per screen. Clear progress indicator (Step X of 8) throughout.</p>
-                </div>
+            <div>
+              <div class="test-card__header">
+                <h3 class="test-card__name">Test 02 – Linear, guided 8-step journey</h3>
               </div>
-              <!-- Right: key finding -->
-              <div style="width: 300px; flex-shrink: 0;">
-                <div class="test-result">
-                  <p class="test-result__label">Key finding</p>
-                  <p class="test-result__text">
-                    <strong>Found overly restrictive by most participants.</strong> Redundant screens caused friction – users felt slowed down by steps they had no interest in. The length undermined the premium feel.
-                  </p>
-                </div>
+              <div class="test-result" style="margin-bottom: 0; border: none; background: none; padding-left: 0;">
+                <p class="process-block__label" style="margin-bottom: 8px;">Key finding</p>
+                <p class="insight-card__desc" style="max-width: 56ch;"><strong>Found overly restrictive by most participants.</strong> Redundant screens caused friction – users felt slowed down by steps they had no interest in. The length undermined the premium feel.</p>
               </div>
             </div>
             <!-- Images below: horizontal row -->
@@ -1180,74 +1159,77 @@
               <img src="ProtoB-4@2x.jpg" alt="Prototype B screen 4" style="width: 100%; height: auto; border-radius: 6px; display: block;">
             </div>
           </div>
-
-
-        </div>
-      </div>
-
-    </div>
   </section>
 
-  <!-- Design solution – full-bleed grey: Prototype A vs B review screens + Merged -->
-  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) var(--gutter);">
-    <!-- Cards first -->
-    <div style="margin-bottom: clamp(40px, 5vw, 64px);">
-      <h2 style="font-size: clamp(1.25rem, 2.5vw, 1.75rem); font-weight: 400; color: var(--text-primary); margin-bottom: clamp(24px, 3vw, 40px);">Merging the best of both prototypes</h2>
-      <div class="p02-merging-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
-        <div class="glass" style="padding: 24px; border-radius: 12px;">
-          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px;">Insight</p>
-          <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 12px;">Clearer visual distinction between product and gift box personalisation needed</p>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin-bottom: 12px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px;">Solution</p>
-          <p style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin: 0;">Merged product and box options into one menu</p>
+  <!-- Design solution – tabbed panels -->
+  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px);">
+    <h2 style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin-bottom: clamp(24px, 3vw, 32px);">Merging the best of both prototypes</h2>
+
+    <div class="p02-solution-panels">
+
+      <!-- Panel 0: Box Vs Image -->
+      <div class="p02-solution-panel active" data-panel="0" style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 20px; align-items: start;">
+        <div>
+          <div class="p02-solution-tabs" style="display: flex; gap: 8px; margin-bottom: 16px;">
+            <button class="p02-solution-tab active" data-tab="0" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: var(--text-primary); color: var(--bg); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Box Vs Image</button>
+            <button class="p02-solution-tab" data-tab="1" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Real Time</button>
+            <button class="p02-solution-tab" data-tab="2" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Review</button>
+          </div>
+          <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px; display: flex; flex-direction: column; justify-content: flex-start;">
+            <p class="p03-card-title" style="font-size: 0.8125rem; font-weight: 500; color: var(--text-primary); margin: 0 0 4px;">Finding</p>
+            <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 16px;">Clearer visual distinction between product and gift box personalisation needed</p>
+            <p class="p03-card-title" style="font-size: 0.8125rem; font-weight: 500; color: var(--text-primary); margin: 0 0 4px;">Solution</p>
+            <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 16px;">Merged product and box options into one menu</p>
+            <p class="p03-card-title" style="font-size: 0.8125rem; font-weight: 500; color: var(--text-primary); margin: 0 0 4px;">Impact</p>
+            <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0;">Separate review step showing all selections before confirming felt like an extra step</p>
+          </div>
         </div>
-        <div class="glass" style="padding: 24px; border-radius: 12px;">
-          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px;">Insight</p>
-          <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 12px;">Desire for real-time previews as selections are made</p>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin-bottom: 12px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px;">Solution</p>
-          <p style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin: 0;">'Your Selections' persistent accordion</p>
-        </div>
-        <div class="glass" style="padding: 24px; border-radius: 12px;">
-          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px;">Insight</p>
-          <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 12px;">Review screens felt redundant and lengthened the process unnecessarily</p>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin-bottom: 12px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px;">Solution</p>
-          <p style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); margin: 0;">Removed the separate review step</p>
-        </div>
+        <img src="ReviewA-1@2x.jpg" alt="Prototype A review screen" style="width: 100%; height: auto; border-radius: 12px; display: block;">
+        <img src="ReviewA-2@2x.jpg" alt="Prototype A review detail" style="width: 100%; height: auto; border-radius: 12px; display: block;">
       </div>
-    </div>
-    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px;" class="p02-proto-grid">
-      <!-- PLACEHOLDER: Prototype A review screens -->
-      <div>
-        <p style="font-size: 0.75rem; font-weight: 400; color: var(--text-primary); margin-bottom: 12px;">Prototype A</p>
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 16px;">
-          <img src="ReviewA-1@2x.jpg" alt="Prototype A review screen 1" style="width: 100%; border-radius: 6px; display: block;">
-          <img src="ReviewA-2@2x.jpg" alt="Prototype A review screen 2" style="width: 100%; border-radius: 6px; display: block;">
-          <img src="ReviewA-3@2x.jpg" alt="Prototype A review screen 3" style="width: 100%; border-radius: 6px; display: block;">
+
+      <!-- Panel 1: Real Time -->
+      <div class="p02-solution-panel" data-panel="1" style="display: none; grid-template-columns: 1.4fr 1fr 1fr; gap: 20px; align-items: start;">
+        <div>
+          <div class="p02-solution-tabs" style="display: flex; gap: 8px; margin-bottom: 16px;">
+            <button class="p02-solution-tab" data-tab="0" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Box Vs Image</button>
+            <button class="p02-solution-tab active" data-tab="1" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: var(--text-primary); color: var(--bg); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Real Time</button>
+            <button class="p02-solution-tab" data-tab="2" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Review</button>
+          </div>
+          <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px; display: flex; flex-direction: column; justify-content: flex-start;">
+            <p class="p03-card-title" style="font-size: 0.8125rem; font-weight: 500; color: var(--text-primary); margin: 0 0 4px;">Finding</p>
+            <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 16px;">Desire for real-time previews as selections are made</p>
+            <p class="p03-card-title" style="font-size: 0.8125rem; font-weight: 500; color: var(--text-primary); margin: 0 0 4px;">Solution</p>
+            <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 16px;">'Your Selections' persistent accordion</p>
+            <p class="p03-card-title" style="font-size: 0.8125rem; font-weight: 500; color: var(--text-primary); margin: 0 0 4px;">Impact</p>
+            <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0;">Persistent 'Your Selections' accordion removes the need for a separate review step – overview always accessible</p>
+          </div>
         </div>
-        <p style="font-size: 0.75rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Separate review step showing all selections before confirming. Felt like an extra step.</p>
+        <img src="ReviewB-1@2x.jpg" alt="Real-time preview screen" style="width: 100%; height: auto; border-radius: 12px; display: block;">
+        <img src="ReviewB-2@2x.jpg" alt="Real-time preview detail" style="width: 100%; height: auto; border-radius: 12px; display: block;">
       </div>
-      <!-- PLACEHOLDER: Prototype B review screens -->
-      <div>
-        <p style="font-size: 0.75rem; font-weight: 400; color: var(--text-primary); margin-bottom: 12px;">Prototype B</p>
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 16px;">
-          <img src="ReviewB-1@2x.jpg" alt="Prototype B review screen 1" style="width: 100%; border-radius: 6px; display: block;">
-          <img src="ReviewB-2@2x.jpg" alt="Prototype B review screen 2" style="width: 100%; border-radius: 6px; display: block;">
-          <img src="ReviewB-3@2x.jpg" alt="Prototype B review screen 3" style="width: 100%; border-radius: 6px; display: block;">
+
+      <!-- Panel 2: Review -->
+      <div class="p02-solution-panel" data-panel="2" style="display: none; grid-template-columns: 1.4fr 1fr 1fr; gap: 20px; align-items: start;">
+        <div>
+          <div class="p02-solution-tabs" style="display: flex; gap: 8px; margin-bottom: 16px;">
+            <button class="p02-solution-tab" data-tab="0" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Box Vs Image</button>
+            <button class="p02-solution-tab" data-tab="1" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Real Time</button>
+            <button class="p02-solution-tab active" data-tab="2" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: var(--text-primary); color: var(--bg); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Review</button>
+          </div>
+          <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px; display: flex; flex-direction: column; justify-content: flex-start;">
+            <p class="p03-card-title" style="font-size: 0.8125rem; font-weight: 500; color: var(--text-primary); margin: 0 0 4px;">Finding</p>
+            <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 16px;">Review screens felt redundant and lengthened the process unnecessarily</p>
+            <p class="p03-card-title" style="font-size: 0.8125rem; font-weight: 500; color: var(--text-primary); margin: 0 0 4px;">Solution</p>
+            <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 16px;">Removed the separate review step</p>
+            <p class="p03-card-title" style="font-size: 0.8125rem; font-weight: 500; color: var(--text-primary); margin: 0 0 4px;">Impact</p>
+            <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0;">Longer review flow after 8 steps lengthened the journey and frustrated users who'd already made decisions</p>
+          </div>
         </div>
-        <p style="font-size: 0.75rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Longer review flow after 8 steps – lengthened the journey and frustrated users who'd already made decisions.</p>
+        <img src="ReviewM-1@2x.jpg" alt="Merged solution screen" style="width: 100%; height: auto; border-radius: 12px; display: block;">
+        <img src="ReviewM-2@2x.jpg" alt="Merged solution detail" style="width: 100%; height: auto; border-radius: 12px; display: block;">
       </div>
-      <!-- PLACEHOLDER: Merged solution screens -->
-      <div>
-        <p style="font-size: 0.75rem; font-weight: 400; color: var(--text-primary); margin-bottom: 12px;">Merged – final solution</p>
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 16px;">
-          <img src="ReviewM-1@2x.jpg" alt="Merged solution screen 1" style="width: 100%; border-radius: 6px; display: block;">
-          <img src="ReviewM-2@2x.jpg" alt="Merged solution screen 2" style="width: 100%; border-radius: 6px; display: block;">
-          <img src="ReviewM-3@2x.jpg" alt="Merged solution screen 3" style="width: 100%; border-radius: 6px; display: block;">
-        </div>
-        <p style="font-size: 0.75rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Persistent 'Your Selections' accordion removes the need for a separate review step – overview always accessible.</p>
-      </div>
+
     </div>
   </section>
 
@@ -1261,55 +1243,32 @@
           <p class="process-block__label">Phased approach</p>
           <h2 class="process-block__title">Delivered in phases to de-risk and build momentum</h2>
           <div class="process-block__body">
-            <p>Given the technical complexity and the need to build back-end infrastructure alongside the front-end experience, delivery was structured across three phases – each with a defined market scope, KPIs, and release target.</p>
+            <p>Given the need to build back-end infrastructure alongside the front-end experience, delivery was structured across three phases.</p>
           </div>
 
           <div class="p02-phases-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 32px;">
             <div class="phase-card">
-              <p class="phase-card__num">Phase 01</p>
-              <p class="phase-card__title">Engraving UI</p>
+              <p class="phase-card__title">01 – Engraving UI</p>
               <p class="phase-card__market">Market: Global · Target: March 25</p>
-              <ul class="phase-card__body" style="list-style: disc; padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 4px;">
-                <li>Text input and image preview made visible at the same time on mobile</li>
-                <li>UI aligned to design system</li>
-              </ul>
-              <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border);">
-                <p style="font-size: 0.6rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 6px;">KPIs</p>
-                <ul style="list-style: disc; padding-left: 18px; margin: 0; font-size: 0.75rem; font-weight: 300; color: var(--text-secondary); line-height: 1.5; display: flex; flex-direction: column; gap: 4px;">
-                  <li>No reduction in revenue</li>
-                </ul>
+              <div class="phase-card__body" style="margin: 0; display: flex; flex-direction: column; gap: 4px;">
+                <p style="margin: 0;">Text input and image preview made visible at the same time on mobile</p>
+                <p style="margin: 0;">UI aligned to design system</p>
               </div>
             </div>
             <div class="phase-card">
-              <p class="phase-card__num">Phase 02</p>
-              <p class="phase-card__title">Launch 'Light' Customisation tool</p>
+              <p class="phase-card__title">02 – Launch 'Light' Customisation tool</p>
               <p class="phase-card__market">Market: UK only · Target: Aug 25</p>
-              <ul class="phase-card__body" style="list-style: disc; padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 4px;">
-                <li>Launch with engraving and charm options only</li>
-                <li>Implement back-end infrastructure for warehouse capabilities</li>
-              </ul>
-              <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border);">
-                <p style="font-size: 0.6rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 6px;">KPIs</p>
-                <ul style="list-style: disc; padding-left: 18px; margin: 0; font-size: 0.75rem; font-weight: 300; color: var(--text-secondary); line-height: 1.5; display: flex; flex-direction: column; gap: 4px;">
-                  <li>Uplift in personalised orders</li>
-                  <li>Customer satisfaction</li>
-                </ul>
+              <div class="phase-card__body" style="margin: 0; display: flex; flex-direction: column; gap: 4px;">
+                <p style="margin: 0;">Launch with engraving and charm options only</p>
+                <p style="margin: 0;">Implement back-end infrastructure for warehouse capabilities</p>
               </div>
             </div>
             <div class="phase-card">
-              <p class="phase-card__num">Phase 03</p>
-              <p class="phase-card__title">All markets and full offering</p>
+              <p class="phase-card__title">03 – All markets and full offering</p>
               <p class="phase-card__market">Market: Global · Target: Dec 25</p>
-              <ul class="phase-card__body" style="list-style: disc; padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 4px;">
-                <li>Launch for all 24 markets with warehouse capabilities</li>
-                <li>Full customisation offering for box and products</li>
-              </ul>
-              <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border);">
-                <p style="font-size: 0.6rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 6px;">KPIs</p>
-                <ul style="list-style: disc; padding-left: 18px; margin: 0; font-size: 0.75rem; font-weight: 300; color: var(--text-secondary); line-height: 1.5; display: flex; flex-direction: column; gap: 4px;">
-                  <li>Uplift in personalised orders</li>
-                  <li>Customer satisfaction</li>
-                </ul>
+              <div class="phase-card__body" style="margin: 0; display: flex; flex-direction: column; gap: 4px;">
+                <p style="margin: 0;">Launch for all 24 markets with warehouse capabilities</p>
+                <p style="margin: 0;">Full customisation offering for box and products</p>
               </div>
             </div>
           </div>
@@ -1320,7 +1279,7 @@
     </div>
   </section>
 
-  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) var(--gutter); display:flex; justify-content:center;">
+  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px); display:flex; justify-content:center;">
     <video src="Custo-vid-1.mp4" autoplay muted loop playsinline style="width:30%;max-width:360px;height:auto;border-radius:16px;display:block;"></video>
   </section>
 
@@ -1354,16 +1313,15 @@
           </div>
 
           <!-- Business impact -->
-          <div style="margin-top: 32px;">
-            <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border);">Business impact</p>
+          <div style="margin-top: 8px;">
             <div class="p02-impact-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
-              <div class="glass" style="padding: 24px; border-radius: 12px;">
-                <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin-bottom: 8px;">Luxury gifting authority</p>
-                <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Positioned JML as a leader in luxury gifting by aligning online and in-store personalisation offerings for the first time.</p>
+              <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px;">
+                <p style="font-size: 0.8125rem; font-weight: 500; color: var(--text-primary); margin: 0 0 8px;">Luxury gifting authority</p>
+                <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0;">Positioned JML as a leader in luxury gifting by aligning online and in-store personalisation offerings for the first time.</p>
               </div>
-              <div class="glass" style="padding: 24px; border-radius: 12px;">
-                <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin-bottom: 8px;">Scalable framework</p>
-                <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Created a scalable personalisation framework that can extend across all product categories and markets as the programme grows.</p>
+              <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px;">
+                <p style="font-size: 0.8125rem; font-weight: 500; color: var(--text-primary); margin: 0 0 8px;">Scalable framework</p>
+                <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0;">Created a scalable personalisation framework that can extend across all product categories and markets as the programme grows.</p>
               </div>
             </div>
           </div>
@@ -1415,10 +1373,7 @@
   </nav>
 
   <!-- More Work -->
-  <section class="work reveal" style="padding-top: clamp(40px, 6vw, 80px);">
-    <div class="work__header">
-      <h2 class="work__title">More work</h2>
-    </div>
+  <section class="work reveal" style="padding-top: 0;">
     <a class="project-row" href="project-03.html">
       <div class="project-row__inner">
         <span class="project-row__num">01</span>
@@ -1588,6 +1543,34 @@
           sectionNav.classList.toggle('expanded');
         });
       }
+    })();
+
+    // ── Solution Tabs – Box Vs Image / Real Time / Review ──
+    (function() {
+      var tabs = document.querySelectorAll('.p02-solution-tab');
+      var panels = document.querySelectorAll('.p02-solution-panel');
+      tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          var idx = tab.dataset.tab;
+          tabs.forEach(function(t) {
+            t.classList.remove('active');
+            t.style.background = 'none';
+            t.style.color = 'var(--text-secondary)';
+            if (t.dataset.tab === idx) {
+              t.classList.add('active');
+              t.style.background = 'var(--text-primary)';
+              t.style.color = 'var(--bg)';
+            }
+          });
+          panels.forEach(function(p) {
+            if (p.dataset.panel === idx) {
+              p.style.display = 'grid';
+            } else {
+              p.style.display = 'none';
+            }
+          });
+        });
+      });
     })();
   </script>
 
