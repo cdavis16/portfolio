@@ -471,7 +471,7 @@ body.cursor-hover .cursor__ring { width: 56px; height: 56px; opacity: 0.6; }
 }
 
 .hero__desc {
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
   font-weight: 300;
   line-height: 1.7;
   color: var(--text-secondary);
@@ -1014,10 +1014,10 @@ body.cursor-hover .cursor__ring { width: 56px; height: 56px; opacity: 0.6; }
   color: var(--text-primary);
 }
 
-.project-overview__details { display: flex; flex-direction: column; gap: 24px; }
+.project-overview__details { display: flex; flex-direction: column; gap: 8px; }
 
 .overview-detail {
-  padding: 20px 24px;
+  padding: 20px 16px;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   background: var(--surface);
@@ -1043,7 +1043,7 @@ body.cursor-hover .cursor__ring { width: 56px; height: 56px; opacity: 0.6; }
   display: grid;
   grid-template-columns: 80px 1fr;
   gap: clamp(32px, 5vw, 64px);
-  padding: clamp(48px, 7vw, 80px) 0;
+  padding: clamp(48px, 7vw, 80px) 0 clamp(32px, 4vw, 48px);
   border-top: 1px solid var(--border);
   align-items: start;
 }

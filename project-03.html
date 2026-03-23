@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Connect Wearables – Claire Davis</title>
   <meta name="description" content="Integrating wearable health data into the Healf ecosystem to personalise product recommendations and deepen user engagement." />
-  <link rel="stylesheet" href="style.css?v=6" />
+  <link rel="stylesheet" href="style.css?v=7" />
   <style>
     /* ── Scroll progress ── */
     .scroll-progress {
@@ -376,6 +376,8 @@
     /* ── Inline grid responsive fixes ─────────────────────── */
     @media (max-width: 768px) {
       .p03-solutions { padding-left: 24px !important; padding-right: 24px !important; }
+      .p03-solution-panel { grid-template-columns: 1fr 1fr !important; }
+      .p03-solution-panel > div:first-child { grid-column: 1 / -1; }
       .p03-solution-grid { grid-template-columns: 1fr 1fr !important; }
       .p03-solution-grid > .glass { grid-column: 1 / -1; }
       .p03-grid-3 { grid-template-columns: 1fr 1fr !important; }
@@ -514,14 +516,36 @@
       .p03-foryou-grid { grid-template-columns: 1fr !important; }
       .p03-foryou-grid > .glass { order: -1; }
       .p03-softlaunch-grid { grid-template-columns: 1fr !important; }
+      .p03-quotes-insight { grid-template-columns: 1fr !important; }
     }
 
     @media (max-width: 480px) {
       .p03-connect-grid { grid-template-columns: 1fr 1fr !important; }
     }
 
+    .p03-grey-section > *,
     .p03-explorations-section > *,
-    .p03-solutions > div { max-width: 1000px; margin-left: auto; margin-right: auto; }
+    .p03-solutions > div,
+    .p03-onboard-section > * { max-width: 900px; margin-left: auto; margin-right: auto; }
+
+    /* Consolidated text styles */
+    .p03-label { font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 8px; }
+    .p03-label--primary { color: var(--text-primary); letter-spacing: 0.02em; }
+    .p03-body { font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-secondary); line-height: 1.8; margin: 0; }
+    .p03-desc { font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+    .p03-card-title { font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px; }
+    .p03-finding-num { font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 8px; }
+
+    /* Consolidated spacing */
+    .p03-glass { padding: clamp(20px, 2.5vw, 32px) 16px; border-radius: 12px; }
+    .p03-glass--lg { padding: clamp(24px, 3vw, 36px) 16px; border-radius: 16px; }
+    .p03-grid-tight { gap: 8px; }
+    .p03-grid-md { gap: 16px; }
+    .p03-grid-wide { gap: 24px; }
+    .p03-mt-section { margin-top: clamp(60px, 8vw, 100px); }
+    .p03-mt-block { margin-top: 32px; }
+    .p03-mt-sm { margin-top: 8px; }
+    .p03-mb-desc { margin-bottom: 16px; }
   </style>
 </head>
 <body>
@@ -593,7 +617,7 @@
         <div class="reveal">
           <p class="eyebrow" style="margin-bottom: 20px;">Overview</p>
           <p class="project-overview__challenge">
-            Healf's users struggled to understand which products were right for them, while the business aimed to better <strong>leverage data</strong> and <strong>increase AOV</strong>. By introducing a <strong>"Connect Wearables"</strong> experience, we enabled more <strong>personalised recommendations</strong>, improving confidence and driving higher conversion on recommended products, resulting in a <strong>23% uplift in AOV</strong>.
+            Healf's users struggled to understand which products were right for them. By introducing a <strong>"Connect Wearables"</strong> experience, we enabled more <strong>personalised recommendations</strong>, improving confidence and driving higher conversion, resulting in a <strong>23% uplift in AOV</strong>.
           </p>
         </div>
 
@@ -616,14 +640,10 @@
   </section>
 
   <!-- Hero screens – full-bleed grey -->
-  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) var(--gutter);">
+  <section class="p03-grey-section" style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) var(--gutter);">
     <div style="max-width: 960px; margin: 0 auto;">
-      <!-- Subcopy -->
-      <div style="margin-bottom: clamp(24px, 3vw, 40px);">
-        <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin: 0;">The journey consisted of 4 key sections:</p>
-      </div>
       <!-- Screens grid -->
-      <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px;">
+      <div class="p03-grid-md" style="display: grid; grid-template-columns: repeat(6, 1fr);">
         <div>
           <img src="Activation2.png" alt="Activation screen" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
         </div>
@@ -644,25 +664,25 @@
         </div>
       </div>
       <!-- Labels below images -->
-      <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-top: 20px;">
+      <div class="p03-grid-md" style="display: grid; grid-template-columns: repeat(6, 1fr); margin-top: 20px;">
         <div style="display: flex; align-items: center; gap: 6px;">
           <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
-          <span style="font-size: clamp(0.65rem, 1vw, 0.8rem); font-weight: 400; font-style: italic; color: var(--text-muted); letter-spacing: 0.02em; white-space: nowrap;">Activation</span>
+          <span style="font-size: clamp(0.65rem, 1vw, 0.8rem); font-weight: 400; color: var(--text-muted); letter-spacing: 0.02em; white-space: nowrap;">Activation</span>
           <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
         </div>
         <div style="grid-column: 2 / 5; display: flex; align-items: center; gap: 6px;">
           <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
-          <span style="font-size: clamp(0.65rem, 1vw, 0.8rem); font-weight: 400; font-style: italic; color: var(--text-muted); letter-spacing: 0.02em; white-space: nowrap;">Onboarding</span>
+          <span style="font-size: clamp(0.65rem, 1vw, 0.8rem); font-weight: 400; color: var(--text-muted); letter-spacing: 0.02em; white-space: nowrap;">Onboarding</span>
           <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
         </div>
         <div style="display: flex; align-items: center; gap: 6px;">
           <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
-          <span style="font-size: clamp(0.65rem, 1vw, 0.8rem); font-weight: 400; font-style: italic; color: var(--text-muted); letter-spacing: 0.02em; white-space: nowrap;">Results</span>
+          <span style="font-size: clamp(0.65rem, 1vw, 0.8rem); font-weight: 400; color: var(--text-muted); letter-spacing: 0.02em; white-space: nowrap;">Results</span>
           <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
         </div>
         <div style="display: flex; align-items: center; gap: 6px;">
           <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
-          <span style="font-size: clamp(0.65rem, 1vw, 0.8rem); font-weight: 400; font-style: italic; color: var(--text-muted); letter-spacing: 0.02em; white-space: nowrap;">Account</span>
+          <span style="font-size: clamp(0.65rem, 1vw, 0.8rem); font-weight: 400; color: var(--text-muted); letter-spacing: 0.02em; white-space: nowrap;">Account</span>
           <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
         </div>
       </div>
@@ -686,63 +706,64 @@
           </div>
 
           <!-- Methodology cards -->
-          <div class="p03-grid-3" data-stagger style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 32px;">
+          <div class="p03-grid-3 p03-grid-tight p03-mt-block" data-stagger style="display: grid; grid-template-columns: repeat(3, 1fr);">
             <div class="insight-card reveal">
               <p class="insight-card__label">Methodology 01</p>
-              <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-primary); line-height: 1.8; margin: 0;">Data audit</p>
+              <p class="p03-body" style="color: var(--text-primary);">Data audit</p>
               <p class="insight-card__desc">Mapping all existing data inputs (onboarding quiz, purchase history, browsing) against the data wearables could provide, to identify the highest-value gaps.</p>
             </div>
             <div class="insight-card reveal">
               <p class="insight-card__label">Methodology 02</p>
-              <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-primary); line-height: 1.8; margin: 0;">User interviews</p>
+              <p class="p03-body" style="color: var(--text-primary);">User interviews</p>
               <p class="insight-card__desc">12 interviews with wearable owners to understand sharing attitudes, privacy concerns, and expectations around health data personalisation.</p>
             </div>
             <div class="insight-card reveal">
               <p class="insight-card__label">Methodology 03</p>
-              <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-primary); line-height: 1.8; margin: 0;">Competitive analysis</p>
+              <p class="p03-body" style="color: var(--text-primary);">Competitive analysis</p>
               <p class="insight-card__desc">Review of how wellness platforms (Whoop, Oura, Lingo) surface wearable data to inform product recommendations and daily guidance.</p>
             </div>
           </div>
 
 
-          <!-- User interview quotes – horizontal carousel -->
-          <div class="reveal" style="margin-top: 40px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border);">
-              <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin: 0;">What users told us</p>
-              <div class="quotes-arrows" style="display: flex; gap: 8px;">
-                <button class="quotes-arrow quotes-arrow--prev" style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.2s ease; font-family: inherit;">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-                </button>
-                <button class="quotes-arrow quotes-arrow--next" style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.2s ease; font-family: inherit;">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="quotes-carousel" style="display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 8px; scroll-behavior: smooth;">
-              <div class="glass" style="flex: 0 0 calc(43% - 4px); min-width: 280px; scroll-snap-align: start; padding: clamp(20px, 2.5vw, 32px); border-radius: 12px;">
-                <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-style: italic; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0 0 16px;">"I already track everything on my Apple Watch, it'd be amazing if Healf could actually use that."</p>
-                <span class="findings-list__source">Participant 3 · Daily tracker</span>
-              </div>
-              <div class="glass" style="flex: 0 0 calc(43% - 4px); min-width: 280px; scroll-snap-align: start; padding: clamp(20px, 2.5vw, 32px); border-radius: 12px;">
-                <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-style: italic; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0 0 16px;">"I filled out the quiz but my needs change. My sleep's been terrible lately and the site doesn't know that."</p>
-                <span class="findings-list__source">Participant 7 · Supplement buyer</span>
-              </div>
-              <div class="glass" style="flex: 0 0 calc(43% - 4px); min-width: 280px; scroll-snap-align: start; padding: clamp(20px, 2.5vw, 32px); border-radius: 12px;">
-                <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-style: italic; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0 0 16px;">"If I'm sharing my health data, I want to see something useful back immediately, not just a generic product list."</p>
-                <span class="findings-list__source">Participant 1 · Whoop user</span>
-              </div>
-              <div class="glass" style="flex: 0 0 calc(43% - 4px); min-width: 280px; scroll-snap-align: start; padding: clamp(20px, 2.5vw, 32px); border-radius: 12px;">
-                <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-style: italic; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0 0 16px;">"I'd share my data if it meant better recommendations. But I'd want to control exactly what I share."</p>
-                <span class="findings-list__source">Participant 9 · Privacy-conscious</span>
-              </div>
-            </div>
-          </div>
+          <!-- User quotes + Key insight – side by side on desktop -->
+          <div class="reveal" style="margin-top: 8px;">
+            <div class="p03-quotes-insight p03-grid-tight" style="display: grid; grid-template-columns: 1fr 1fr; align-items: stretch;">
 
-          <!-- Key insight -->
-          <div class="reveal" style="margin-top: 40px;">
-            <div class="glass" style="padding: clamp(24px, 3vw, 36px); border-radius: 16px;">
-              <p style="font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px;">Key insight</p>
-              <p style="font-size: clamp(1rem, 1.8vw, 1.125rem); font-weight: 300; color: var(--text-secondary); line-height: 1.5; margin: 0; max-width: 50ch;">Users were willing to share wearable data, but only if the <strong style="font-weight: 500; color: var(--text-primary);">value exchange was immediate</strong>, <strong style="font-weight: 500; color: var(--text-primary);">visible</strong>, and <strong style="font-weight: 500; color: var(--text-primary);">under their control</strong>.</p>
+              <!-- Quotes carousel (single card at a time) -->
+              <div class="quotes-carousel" style="display: flex; gap: 8px; overflow: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; min-width: 0;">
+                <div class="glass p03-glass--lg" style="flex: 0 0 100%; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;">
+                  <p class="p03-label p03-label--primary">User insights</p>
+                  <p class="p03-body">"I already track everything on my Apple Watch, it'd be amazing if Healf could actually use that."</p>
+                </div>
+                <div class="glass p03-glass--lg" style="flex: 0 0 100%; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;">
+                  <p class="p03-label p03-label--primary">User insights</p>
+                  <p class="p03-body">"I filled out the quiz but my needs change. My sleep's been terrible lately and the site doesn't know that."</p>
+                </div>
+                <div class="glass p03-glass--lg" style="flex: 0 0 100%; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;">
+                  <p class="p03-label p03-label--primary">User insights</p>
+                  <p class="p03-body">"If I'm sharing my health data, I want to see something useful back immediately, not just a generic product list."</p>
+                </div>
+                <div class="glass p03-glass--lg" style="flex: 0 0 100%; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;">
+                  <p class="p03-label p03-label--primary">User insights</p>
+                  <p class="p03-body">"I'd share my data if it meant better recommendations. But I'd want to control exactly what I share."</p>
+                </div>
+              </div>
+
+              <!-- Key insight -->
+              <div class="glass p03-glass--lg" style="display: flex; flex-direction: column; justify-content: flex-start;">
+                <p class="p03-label p03-label--primary">Key insight</p>
+                <p class="p03-body">Users were willing to share wearable data, but only if the <strong style="font-weight: 500; color: var(--text-primary);">value exchange was immediate</strong>, <strong style="font-weight: 500; color: var(--text-primary);">visible</strong>, and <strong style="font-weight: 500; color: var(--text-primary);">under their control</strong>.</p>
+              </div>
+
+            </div>
+            <!-- Arrows below grid -->
+            <div class="quotes-arrows" style="display: flex; gap: 8px; margin-top: 12px;">
+              <button class="quotes-arrow quotes-arrow--prev" style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.2s ease; font-family: inherit;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button class="quotes-arrow quotes-arrow--next" style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.2s ease; font-family: inherit;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
             </div>
           </div>
 
@@ -761,9 +782,6 @@
           <p class="process-block__label">Ideation</p>
           <h2 class="process-block__title">Design Principles Derived From Research</h2>
           <div class="process-block__body">
-            <p>
-              HMW questions targeting four core design challenges around wearable data integration.
-            </p>
           </div>
 
           <!-- HMW horizontal carousel -->
@@ -799,51 +817,75 @@
     </div>
   </section>
 
-  <!-- User flow – full-bleed grey -->
-  <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) var(--gutter);">
-    <!-- User flow wireframe -->
-    <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 8px;">User flow – wearable connection and data surfaces</p>
-    <div class="flow-scroll" style="overflow-x: auto; padding-bottom: 12px;">
+  <!-- Activation banners + Exploration screens – full-bleed grey -->
+  <section class="p03-explorations-section" style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px); margin-top: clamp(40px, 5vw, 64px);">
+
+    <!-- Activation banners row -->
+    <div class="p03-activation-grid p03-grid-wide" style="display: grid; grid-template-columns: 1fr 2fr; align-items: center; margin-bottom: clamp(60px, 8vw, 100px);">
+      <div class="glass p03-glass" style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
+        <p class="p03-label">Activation banners</p>
+        <p class="p03-desc">These concepts explored the most effective way to <strong style="font-weight: 500; color: var(--text-primary);">communicate the value of connecting a wearable</strong>.</p>
+      </div>
+      <img src="Activation-banners.png" alt="Activation banner explorations" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+    </div>
+
+    <!-- Connection flow explorations -->
+    <div class="p03-connect-grid p03-grid-md" style="display: grid; grid-template-columns: repeat(2, 1fr) minmax(200px, 1fr); align-items: center; margin-bottom: 24px;">
+      <img src="Connect1.png" alt="Connect flow exploration 1" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="Connect3.png" alt="Connect flow exploration 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px; display: flex; flex-direction: column; justify-content: center; height: 100%;">
+        <p class="p03-label">Connection flow</p>
+        <p class="p03-desc">Explorations into what resonated with users the most and was most identifiable to ensure a <strong style="font-weight: 500; color: var(--text-primary);">quick and frictionless</strong> flow.</p>
+      </div>
+    </div>
+
+    <!-- Match score result explorations -->
+    <div class="p03-match-grid p03-grid-md" style="display: grid; grid-template-columns: minmax(200px, 1fr) repeat(2, 1fr); align-items: center; margin-bottom: clamp(60px, 8vw, 100px);">
+      <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px; display: flex; flex-direction: column; justify-content: center; height: 100%;">
+        <p class="p03-label">Results display</p>
+        <p class="p03-desc">Trials for showing the result with a <strong style="font-weight: 500; color: var(--text-primary);">match score</strong>, giving users a clear reason why each product was recommended for them.</p>
+      </div>
+      <img src="Match-2.jpg" alt="Match score exploration 2" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="Match-3.jpg" alt="Match score exploration 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+    </div>
+
+    <!-- For You page explorations grid -->
+    <div class="p03-foryou-grid p03-grid-wide" style="display: grid; grid-template-columns: repeat(2, 1fr);">
+      <img src="Foryou1.png?v=2" alt="For You screen 1" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="Foryou2.png?v=2" alt="For You screen 2" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="Foryou3.png?v=2" alt="For You screen 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <div class="glass p03-glass" style="display: flex; flex-direction: column; justify-content: center;">
+        <p class="p03-label">Product recommendations and results</p>
+        <p class="p03-desc">Exploration focusing on the 'For You' page carousel where users were directed after connection showing their <strong style="font-weight: 500; color: var(--text-primary);">recommended products</strong>.</p>
+      </div>
+    </div>
+
+    <!-- User flow diagram -->
+    <div class="flow-scroll p03-mt-section" style="overflow-x: auto; padding-bottom: 12px;">
       <div style="display: flex; align-items: flex-start; gap: 0; min-width: 900px;">
-        <!-- Entry Points -->
-        <div style="flex: 0 0 auto; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 4px; background: #fff; padding: 20px 14px;">
-          <p style="font-size: 0.65rem; font-weight: 500; color: var(--text-primary); margin: 0 0 10px;">Entry points:</p>
-          <p style="font-size: 0.6rem; color: var(--text-secondary); margin: 0 0 6px;">Collection page</p>
-          <p style="font-size: 0.6rem; color: var(--text-secondary); margin: 0 0 6px;">Account</p>
-          <p style="font-size: 0.6rem; color: var(--text-secondary); margin: 0 0 6px;">For you page</p>
-          <p style="font-size: 0.6rem; color: var(--text-secondary); margin: 0;">PDP</p>
-        </div>
-        <!-- Connector -->
-        <div style="flex: 0 0 20px; height: 1.5px; background: rgba(0,0,0,0.15); align-self: center;"></div>
-        <!-- Step 1 -->
         <div style="flex: 1; min-width: 100px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 4px; background: #fff; padding: 16px 10px; text-align: center; align-self: center;">
           <p style="font-size: 0.6rem; color: var(--text-primary); line-height: 1.4; margin: 0;">On boarding pop up; select a wearable to connect</p>
         </div>
         <div style="flex: 0 0 20px; height: 1.5px; background: rgba(0,0,0,0.15); align-self: center;"></div>
-        <!-- Step 2 -->
         <div style="flex: 1; min-width: 100px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 4px; background: #fff; padding: 16px 10px; text-align: center; align-self: center;">
           <p style="font-size: 0.6rem; color: var(--text-primary); line-height: 1.4; margin: 0 0 4px;">Login to healf</p>
           <p style="font-size: 0.55rem; color: var(--text-muted); line-height: 1.3; margin: 0;">(If already logged in, straight to wearable login)</p>
         </div>
         <div style="flex: 0 0 20px; height: 1.5px; background: rgba(0,0,0,0.15); align-self: center;"></div>
-        <!-- Step 3 -->
         <div style="flex: 1; min-width: 100px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 4px; background: #fff; padding: 16px 10px; text-align: center; align-self: center;">
           <p style="font-size: 0.6rem; color: var(--text-primary); line-height: 1.4; margin: 0;">Login to wearable via wearable third party (Terra)</p>
         </div>
         <div style="flex: 0 0 20px; height: 1.5px; background: rgba(0,0,0,0.15); align-self: center;"></div>
-        <!-- Step 4 -->
         <div style="flex: 1; min-width: 100px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 4px; background: #fff; padding: 16px 10px; text-align: center; align-self: center;">
           <p style="font-size: 0.6rem; color: var(--text-primary); line-height: 1.4; margin: 0;">Confirmation page</p>
         </div>
         <div style="flex: 0 0 20px; height: 1.5px; background: rgba(0,0,0,0.15); align-self: center;"></div>
-        <!-- Step 5: For you page -->
         <div style="flex: 1; min-width: 100px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 4px; background: #fff; padding: 16px 10px; text-align: center; align-self: center;">
           <p style="font-size: 0.6rem; color: var(--text-primary); line-height: 1.4; margin: 0 0 4px;">For you page</p>
           <p style="font-size: 0.55rem; color: var(--text-muted); line-height: 1.3; margin: 0;">(Banner and product carousel)</p>
         </div>
       </div>
     </div>
-    <!-- Branch outcomes – horizontal row below diagram -->
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px;">
       <div style="border: 1.5px solid rgba(0,0,0,0.12); border-radius: 4px; background: #fff; padding: 16px 14px; text-align: center;">
         <p style="font-size: 0.6rem; font-weight: 500; color: var(--text-primary); line-height: 1.4; margin: 0 0 4px;">Account</p>
@@ -856,50 +898,6 @@
       <div style="border: 1.5px solid rgba(0,0,0,0.12); border-radius: 4px; background: #fff; padding: 16px 14px; text-align: center;">
         <p style="font-size: 0.6rem; font-weight: 500; color: var(--text-primary); line-height: 1.4; margin: 0 0 4px;">PDP</p>
         <p style="font-size: 0.55rem; color: var(--text-muted); line-height: 1.3; margin: 0;">(With match score/suggested better match)</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Activation banners + Exploration screens – full-bleed grey -->
-  <section class="p03-explorations-section" style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px); margin-top: clamp(40px, 5vw, 64px);">
-
-    <!-- Activation banners row -->
-    <div class="p03-activation-grid" style="display: grid; grid-template-columns: 1fr 2fr; gap: 24px; align-items: center; margin-bottom: clamp(60px, 8vw, 100px);">
-      <div class="glass" style="padding: clamp(20px, 2.5vw, 32px); border-radius: 12px; display: flex; flex-direction: column; justify-content: center; height: 100%;">
-        <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 8px;">Activation banners</p>
-        <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0;">These concepts explored the most effective way to <strong style="font-weight: 500; color: var(--text-primary);">communicate the value of connecting a wearable</strong>.</p>
-      </div>
-      <img src="Activation-banners.png" alt="Activation banner explorations" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-    </div>
-
-    <!-- Connection flow explorations -->
-    <div class="p03-connect-grid" style="display: grid; grid-template-columns: repeat(2, 1fr) minmax(200px, 1fr); gap: 16px; align-items: center; margin-bottom: 24px;">
-      <img src="Connect1.png" alt="Connect flow exploration 1" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <img src="Connect3.png" alt="Connect flow exploration 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px; display: flex; flex-direction: column; justify-content: center; height: 100%;">
-        <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 8px;">Connection flow</p>
-        <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0;">Explorations into what resonated with users the most and was most identifiable to ensure a <strong style="font-weight: 500; color: var(--text-primary);">quick and frictionless</strong> flow.</p>
-      </div>
-    </div>
-
-    <!-- Match score result explorations -->
-    <div class="p03-match-grid" style="display: grid; grid-template-columns: minmax(200px, 1fr) repeat(2, 1fr); gap: 16px; align-items: center; margin-bottom: clamp(60px, 8vw, 100px);">
-      <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px; display: flex; flex-direction: column; justify-content: center; height: 100%;">
-        <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 8px;">Results display</p>
-        <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0;">Trials for showing the result with a <strong style="font-weight: 500; color: var(--text-primary);">match score</strong>, giving users a clear reason why each product was recommended for them.</p>
-      </div>
-      <img src="Match-2.jpg" alt="Match score exploration 2" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <img src="Match-3.jpg" alt="Match score exploration 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-    </div>
-
-    <!-- For You page explorations grid -->
-    <div class="p03-foryou-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
-      <img src="Foryou1.png?v=2" alt="For You screen 1" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <img src="Foryou2.png?v=2" alt="For You screen 2" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <img src="Foryou3.png?v=2" alt="For You screen 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <div class="glass" style="padding: clamp(20px, 2.5vw, 32px); border-radius: 12px; display: flex; flex-direction: column; justify-content: center;">
-        <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 8px;">Product recommendations and results</p>
-        <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0;">Exploration focusing on the 'For You' page carousel where users were directed after connection showing their <strong style="font-weight: 500; color: var(--text-primary);">recommended products</strong>.</p>
       </div>
     </div>
   </section>
@@ -923,56 +921,37 @@
           </div>
 
           <!-- Feedback themes -->
-          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 32px;" class="p03-merging-grid">
-            <div class="glass" style="padding: 24px; border-radius: 12px; display: flex; flex-direction: column;">
-              <p style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 8px;">Finding 01</p>
-              <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); margin: 0 0 10px;">Value was not immediately visible</p>
-              <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 12px; flex: 1;">Users couldn't see why a product was recommended or how their personal data was being used.</p>
+          <div class="p03-merging-grid p03-grid-tight p03-mt-block" style="display: grid; grid-template-columns: 1fr 1fr 1fr;">
+            <div class="glass p03-glass" style="display: flex; flex-direction: column;">
+              <p class="p03-finding-num">Finding 01</p>
+              <p class="p03-card-title" style="margin-bottom: 10px;">Value was not immediately visible</p>
+              <p class="p03-desc" style="margin-bottom: 12px; flex: 1;">Users couldn't see why a product was recommended or how their personal data was being used.</p>
               <div style="padding: 12px; background: var(--surface-hover); border-radius: 8px;">
                 <p style="font-size: 0.75rem; font-style: italic; color: var(--text-secondary); line-height: 1.5; margin: 0;">"At a high level the recommendations seem relevant... but I would want far more detail."</p>
               </div>
             </div>
-            <div class="glass" style="padding: 24px; border-radius: 12px; display: flex; flex-direction: column;">
-              <p style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 8px;">Finding 02</p>
-              <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); margin: 0 0 10px;">Explanations lacked specificity</p>
-              <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 12px; flex: 1;">Users wanted their actual data referenced. Generic claims reduced perceived intelligence.</p>
+            <div class="glass p03-glass" style="display: flex; flex-direction: column;">
+              <p class="p03-finding-num">Finding 02</p>
+              <p class="p03-card-title" style="margin-bottom: 10px;">Explanations lacked specificity</p>
+              <p class="p03-desc" style="margin-bottom: 12px; flex: 1;">Users wanted their actual data referenced. Generic claims reduced perceived intelligence.</p>
               <div style="padding: 12px; background: var(--surface-hover); border-radius: 8px;">
                 <p style="font-size: 0.75rem; font-style: italic; color: var(--text-secondary); line-height: 1.5; margin: 0;">"It would be so cool to see things like 'you average ABC active calories...'"</p>
               </div>
             </div>
-            <div class="glass" style="padding: 24px; border-radius: 12px; display: flex; flex-direction: column;">
-              <p style="font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 8px;">Finding 03</p>
-              <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); margin: 0 0 10px;">Recommendation noise</p>
-              <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 12px; flex: 1;">No prioritisation and supplements already taken created friction and reduced perceived signal quality.</p>
+            <div class="glass p03-glass" style="display: flex; flex-direction: column;">
+              <p class="p03-finding-num">Finding 03</p>
+              <p class="p03-card-title" style="margin-bottom: 10px;">Recommendation noise</p>
+              <p class="p03-desc" style="margin-bottom: 12px; flex: 1;">No prioritisation and supplements already taken created friction and reduced perceived signal quality.</p>
               <div style="padding: 12px; background: var(--surface-hover); border-radius: 8px;">
                 <p style="font-size: 0.75rem; font-style: italic; color: var(--text-secondary); line-height: 1.5; margin: 0;">"I was recommended something I had tried and didn't like."</p>
               </div>
             </div>
           </div>
 
-          <!-- Soft-launch screens -->
-          <div class="p03-softlaunch-grid" style="margin-top: 24px; background: var(--bg-raised); border-radius: 12px; padding: clamp(20px, 2.5vw, 32px); display: grid; grid-template-columns: 1fr 2fr; gap: 24px; align-items: center;">
-            <div class="glass" style="padding: clamp(20px, 2.5vw, 32px); border-radius: 12px; display: flex; flex-direction: column; justify-content: flex-start; height: 100%;">
-              <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 8px;">Soft launch screens</p>
-              <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin: 0;">Result screens as part of the soft launch had <strong style="font-weight: 500; color: var(--text-primary);">no match score</strong> due to technical constraints.</p>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
-              <div>
-                <img src="You-soft.png?v=2" alt="For You screen" style="width: 100%; height: auto; border-radius: 12px; display: block;">
-              </div>
-              <div>
-                <img src="PDP-soft.png?v=2" alt="Product detail page" style="width: 100%; height: auto; border-radius: 12px; display: block;">
-              </div>
-              <div>
-                <img src="Results-soft.png?v=2" alt="Results screen" style="width: 100%; height: auto; border-radius: 12px; display: block;">
-              </div>
-            </div>
-          </div>
-
           <!-- Reframe callout -->
-          <div class="glass reveal" style="padding: clamp(24px, 3vw, 36px); border-radius: 16px; margin-top: 32px;">
-            <p style="font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px;">Key insight</p>
-            <p style="font-size: clamp(1rem, 1.8vw, 1.125rem); font-weight: 300; color: var(--text-secondary); line-height: 1.5; margin: 0; max-width: 50ch;">The goal became clear: while interest was strong, the results needed to be redesigned to make the reasoning behind suggestions <strong style="font-weight: 500; color: var(--text-primary);">clearer</strong>, <strong style="font-weight: 500; color: var(--text-primary);">more personalised</strong>, and <strong style="font-weight: 500; color: var(--text-primary);">easier to trust</strong>.</p>
+          <div class="glass p03-glass--lg p03-mt-sm reveal">
+            <p class="p03-label p03-label--primary">Key insight</p>
+            <p class="p03-body" style="max-width: 50ch;">The goal became clear: while interest was strong, the results needed to be redesigned to make the reasoning behind suggestions <strong style="font-weight: 500; color: var(--text-primary);">clearer</strong>, <strong style="font-weight: 500; color: var(--text-primary);">more personalised</strong>, and <strong style="font-weight: 500; color: var(--text-primary);">easier to trust</strong>.</p>
           </div>
 
         </div>
@@ -1001,58 +980,80 @@
     </div>
   </section>
 
-  <!-- Design solution – Combined cards + screens -->
+  <!-- Design solution – Tabbed carousel -->
   <section class="p03-solutions" style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px) clamp(24px, 3vw, 40px);">
-    <div style="max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px;">
+    <div style="max-width: 900px; margin: 0 auto;">
 
-      <!-- A. Match Score -->
-      <div class="p03-solution-grid" style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 20px; align-items: center;">
-        <div class="glass" style="padding: 24px; border-radius: 12px; height: 100%; display: flex; flex-direction: column; justify-content: flex-start;">
-          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px;">Finding</p>
-          <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 16px;">Value not immediately visible</p>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin-bottom: 16px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px;">Solution</p>
-          <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 16px;">Specific, data-referenced recommendations via a match score</p>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin-bottom: 16px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px;">Impact</p>
-          <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0;">Match score gives every recommendation a visible reason to exist</p>
+      <!-- Panels -->
+      <div class="p03-solution-panels">
+
+        <!-- Panel A: Value -->
+        <div class="p03-solution-panel active" data-panel="0" style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 20px; align-items: start;">
+          <div>
+            <!-- Tab navigation -->
+            <div class="p03-solution-tabs" style="display: flex; gap: 8px; margin-bottom: 16px;">
+              <button class="p03-solution-tab active" data-tab="0" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: var(--text-primary); color: var(--bg); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Value</button>
+              <button class="p03-solution-tab" data-tab="1" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Specificity</button>
+              <button class="p03-solution-tab" data-tab="2" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Noise</button>
+            </div>
+            <div class="glass p03-glass" style="display: flex; flex-direction: column; justify-content: flex-start;">
+            <p class="p03-card-title">Finding</p>
+            <p class="p03-desc p03-mb-desc">Value not immediately visible</p>
+            <p class="p03-card-title">Solution</p>
+            <p class="p03-desc p03-mb-desc">Specific, data-referenced recommendations via a match score</p>
+            <p class="p03-card-title">Impact</p>
+            <p class="p03-desc">Match score gives every recommendation a visible reason to exist</p>
+            </div>
+          </div>
+          <div style="border-radius: 12px; overflow: hidden; aspect-ratio: 304/669;">
+            <img src="Results-soft.png?v=2" alt="Soft launch results screen" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block;" />
+          </div>
+          <img src="percent2.png" alt="Match score detail view" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
         </div>
-        <img src="percent1.png" alt="Match score on product card" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
-        <img src="percent2.png" alt="Match score detail view" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
-      </div>
 
-      <!-- B. Ask Helix -->
-      <div class="p03-solution-grid" style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 20px; align-items: center;">
-        <div class="glass" style="padding: 24px; border-radius: 12px; height: 100%; display: flex; flex-direction: column; justify-content: flex-start;">
-          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px;">Finding</p>
-          <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 16px;">Explanations lacked specificity</p>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin-bottom: 16px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px;">Solution</p>
-          <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 16px;">Ask Helix, deeper context on demand via an AI assistant pre-loaded with product and user data</p>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin-bottom: 16px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px;">Impact</p>
-          <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0;">Intelligence becomes legible and conversational</p>
+        <!-- Panel B: Specificity -->
+        <div class="p03-solution-panel" data-panel="1" style="display: none; grid-template-columns: 1.4fr 1fr 1fr; gap: 20px; align-items: start;">
+          <div>
+            <div class="p03-solution-tabs" style="display: flex; gap: 8px; margin-bottom: 16px;">
+              <button class="p03-solution-tab" data-tab="0" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Value</button>
+              <button class="p03-solution-tab active" data-tab="1" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: var(--text-primary); color: var(--bg); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Specificity</button>
+              <button class="p03-solution-tab" data-tab="2" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Noise</button>
+            </div>
+            <div class="glass p03-glass" style="display: flex; flex-direction: column; justify-content: flex-start;">
+              <p class="p03-card-title">Finding</p>
+              <p class="p03-desc p03-mb-desc">Explanations lacked specificity</p>
+              <p class="p03-card-title">Solution</p>
+              <p class="p03-desc p03-mb-desc">Ask Helix, deeper context on demand via an AI assistant pre-loaded with product and user data</p>
+              <p class="p03-card-title">Impact</p>
+              <p class="p03-desc">Intelligence becomes legible and conversational</p>
+            </div>
+          </div>
+          <img src="Helix1.png" alt="Helix find out more CTA" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+          <img src="Helix2.png" alt="Helix chat with prompts" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
         </div>
-        <img src="Helix1.png" alt="Helix find out more CTA" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
-        <img src="Helix2.png" alt="Helix chat with prompts" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
-      </div>
 
-      <!-- C. Rate & Feedback -->
-      <div class="p03-solution-grid" style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 20px; align-items: center;">
-        <div class="glass" style="padding: 24px; border-radius: 12px; height: 100%; display: flex; flex-direction: column; justify-content: flex-start;">
-          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px;">Finding</p>
-          <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 16px;">Recommendation noise</p>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin-bottom: 16px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px;">Solution</p>
-          <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0 0 16px;">Aware of existing stack — users flag products they already take and provide feedback to close the loop</p>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin-bottom: 16px;"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-          <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px;">Impact</p>
-          <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0;">Improves recommendation quality, customer trust, and long-term retention</p>
+        <!-- Panel C: Noise -->
+        <div class="p03-solution-panel" data-panel="2" style="display: none; grid-template-columns: 1.4fr 1fr 1fr; gap: 20px; align-items: start;">
+          <div>
+            <div class="p03-solution-tabs" style="display: flex; gap: 8px; margin-bottom: 16px;">
+              <button class="p03-solution-tab" data-tab="0" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Value</button>
+              <button class="p03-solution-tab" data-tab="1" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: none; color: var(--text-secondary); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Specificity</button>
+              <button class="p03-solution-tab active" data-tab="2" style="padding: 8px 20px; border-radius: 100px; border: 1px solid var(--border); background: var(--text-primary); color: var(--bg); font-size: 0.8125rem; font-weight: 400; cursor: pointer; transition: all 0.25s ease; font-family: inherit;">Noise</button>
+            </div>
+            <div class="glass p03-glass" style="display: flex; flex-direction: column; justify-content: flex-start;">
+              <p class="p03-card-title">Finding</p>
+              <p class="p03-desc p03-mb-desc">Recommendation noise</p>
+              <p class="p03-card-title">Solution</p>
+              <p class="p03-desc p03-mb-desc">Aware of existing stack — users flag products they already take and provide feedback to close the loop</p>
+              <p class="p03-card-title">Impact</p>
+              <p class="p03-desc">Improves recommendation quality, customer trust, and long-term retention</p>
+            </div>
+          </div>
+          <img src="Rate 1.png" alt="Thumbs up and down rating" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+          <img src="Rate2.png" alt="Feedback options on thumbs down" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
         </div>
-        <img src="Rate 1.png" alt="Thumbs up and down rating" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
-        <img src="Rate2.png" alt="Feedback options on thumbs down" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
-      </div>
 
+      </div>
     </div>
   </section>
 
@@ -1067,35 +1068,34 @@
           <h2 class="process-block__title">Outcomes and business impact</h2>
 
           <!-- Metrics -->
-          <div class="p03-grid-3" data-stagger style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 32px;">
+          <div class="p03-grid-3 p03-grid-tight p03-mt-block" data-stagger style="display: grid; grid-template-columns: repeat(3, 1fr);">
             <div class="insight-card reveal">
               <p style="font-size: clamp(1.25rem, 2.5vw, 2rem); font-weight: 300; color: var(--text-primary); line-height: 1; margin-bottom: 4px;">+11%</p>
-              <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-primary); line-height: 1.8; margin: 0;">Wearable connection rate</p>
+              <p class="p03-body" style="color: var(--text-primary);">Wearable connection rate</p>
               <p class="insight-card__desc">Of users with known compatible devices connected within the first month of launch.</p>
             </div>
             <div class="insight-card reveal">
               <p style="font-size: clamp(1.25rem, 2.5vw, 2rem); font-weight: 300; color: var(--text-primary); line-height: 1; margin-bottom: 4px;">+4%</p>
-              <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-primary); line-height: 1.8; margin: 0;">Conversion Uplift</p>
+              <p class="p03-body" style="color: var(--text-primary);">Conversion Uplift</p>
               <p class="insight-card__desc">Uplift in conversion, converting visits into purchases from hyper-personalised recommendations powered by wearable data.</p>
             </div>
             <div class="insight-card reveal">
               <p style="font-size: clamp(1.25rem, 2.5vw, 2rem); font-weight: 300; color: var(--text-primary); line-height: 1; margin-bottom: 4px;">+23%</p>
-              <p style="font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-primary); line-height: 1.8; margin: 0;">AOV</p>
+              <p class="p03-body" style="color: var(--text-primary);">AOV</p>
               <p class="insight-card__desc">Increase in purchases among users with connected wearables compared to non-connected users.</p>
             </div>
           </div>
 
           <!-- Business impact -->
-          <div style="margin-top: 32px;">
-            <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border);">Business impact</p>
-            <div class="p03-impact-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
-              <div class="glass" style="padding: 24px; border-radius: 12px;">
-                <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin-bottom: 8px;">Data-driven personalisation at scale</p>
-                <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Established Healf as one of the first wellness e-commerce platforms to meaningfully integrate wearable data into the shopping experience.</p>
+          <div class="p03-mt-sm">
+            <div class="p03-impact-grid p03-grid-tight" style="display: grid; grid-template-columns: repeat(2, 1fr);">
+              <div class="glass p03-glass">
+                <p class="p03-card-title" style="margin-bottom: 8px;">Data-driven personalisation at scale</p>
+                <p class="p03-desc">Established Healf as one of the first wellness e-commerce platforms to meaningfully integrate wearable data into the shopping experience.</p>
               </div>
-              <div class="glass" style="padding: 24px; border-radius: 12px;">
-                <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin-bottom: 8px;">Ongoing engagement loop</p>
-                <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Created a persistent reason for users to return between purchases, with health insights updating daily and recommendations adapting in real time.</p>
+              <div class="glass p03-glass">
+                <p class="p03-card-title" style="margin-bottom: 8px;">Ongoing engagement loop</p>
+                <p class="p03-desc">Created a persistent reason for users to return between purchases, with health insights updating daily and recommendations adapting in real time.</p>
               </div>
             </div>
           </div>
@@ -1109,7 +1109,7 @@
 
   <!-- Onboarding explorations – full-bleed grey -->
   <section class="p03-onboard-section" style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px); margin-top: clamp(40px, 5vw, 64px);">
-    <div class="p03-onboard-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+    <div class="p03-onboard-grid p03-grid-md" style="display: grid; grid-template-columns: repeat(4, 1fr);">
       <img src="1Onboard.png" alt="Onboarding exploration 1" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
       <img src="2Onboard.png" alt="Onboarding exploration 2" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
       <img src="3Onboard.png" alt="Onboarding exploration 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
@@ -1126,18 +1126,18 @@
         <div class="process-block__content">
           <p class="process-block__label">Reflection</p>
           <h2 class="process-block__title">Key learnings</h2>
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px; margin-top: clamp(24px, 3vw, 40px);">
-            <div class="glass" style="padding: 24px; border-radius: 12px;">
-              <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin-bottom: 8px;">Transparency builds trust in personalisation</p>
-              <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Generic recommendations reduced perceived intelligence. Referencing specific user data points made recommendations feel more credible and valuable.</p>
+          <div class="p03-grid-tight" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); margin-top: clamp(24px, 3vw, 40px);">
+            <div class="glass p03-glass">
+              <p class="p03-card-title" style="margin-bottom: 8px;">Transparency builds trust in personalisation</p>
+              <p class="p03-desc">Generic recommendations reduced perceived intelligence. Referencing specific user data points made recommendations feel more credible and valuable.</p>
             </div>
-            <div class="glass" style="padding: 24px; border-radius: 12px;">
-              <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin-bottom: 8px;">Early release accelerates learning</p>
-              <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Launching a simplified version of the feature allowed us to gather real behavioural feedback sooner and iterate faster than waiting for the full experience to be complete.</p>
+            <div class="glass p03-glass">
+              <p class="p03-card-title" style="margin-bottom: 8px;">Early release accelerates learning</p>
+              <p class="p03-desc">Launching a simplified version of the feature allowed us to gather real behavioural feedback sooner and iterate faster than waiting for the full experience to be complete.</p>
             </div>
-            <div class="glass" style="padding: 24px; border-radius: 12px;">
-              <p style="font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin-bottom: 8px;">Context matters as much as recommendation</p>
-              <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Users wanted to understand why a product was relevant to their goals, not just that it was recommended.</p>
+            <div class="glass p03-glass">
+              <p class="p03-card-title" style="margin-bottom: 8px;">Context matters as much as recommendation</p>
+              <p class="p03-desc">Users wanted to understand why a product was relevant to their goals, not just that it was recommended.</p>
             </div>
           </div>
         </div>
@@ -1163,10 +1163,7 @@
   </nav>
 
   <!-- More Work -->
-  <section class="work reveal" style="padding-top: clamp(40px, 6vw, 80px);">
-    <div class="work__header">
-      <h2 class="work__title">More work</h2>
-    </div>
+  <section class="work reveal" style="padding-top: 0;">
     <a class="project-row" href="project-03.html">
       <div class="project-row__inner">
         <span class="project-row__num">01</span>
@@ -1231,6 +1228,35 @@
           carousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
         });
       }
+    })();
+
+    // ── Solution Tabs – Value / Specificity / Noise ──
+    (function() {
+      var tabs = document.querySelectorAll('.p03-solution-tab');
+      var panels = document.querySelectorAll('.p03-solution-panel');
+      tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          var idx = tab.dataset.tab;
+          // Update all tab buttons across all panels
+          tabs.forEach(function(t) {
+            t.classList.remove('active');
+            t.style.background = 'none';
+            t.style.color = 'var(--text-secondary)';
+            if (t.dataset.tab === idx) {
+              t.classList.add('active');
+              t.style.background = 'var(--text-primary)';
+              t.style.color = 'var(--bg)';
+            }
+          });
+          panels.forEach(function(p) {
+            if (p.dataset.panel === idx) {
+              p.style.display = 'grid';
+            } else {
+              p.style.display = 'none';
+            }
+          });
+        });
+      });
     })();
 
     // ── HMW Carousel – tabs scroll the track ──
