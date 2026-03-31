@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VD87P00C9Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VD87P00C9Z');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vibe Coding – Claire Davis</title>
+  <meta name="description" content="A personal exploration of vibe coding — building digital products with AI-assisted development tools." />
+  <link rel="stylesheet" href="style.css?v=7" />
+  <style>
+    /* ── Scroll progress ── */
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 1px;
+      background: rgba(255, 255, 255, 0.5);
+      transform: scaleX(0);
+      transform-origin: left;
+      z-index: 200;
+      transition: transform 0.05s linear;
+    }
+
+    /* ── Full-bleed hero overrides ── */
+    .project-hero {
+      padding-top: 0;
+      display: block;
+      position: relative;
+      min-height: 60vh;
+    }
+    .project-hero__visual--p04 {
+      position: absolute !important;
+      inset: 0 !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      min-height: unset !important;
+      overflow: hidden;
+    }
+    .project-hero__visual--p04::after {
+      content: none;
+    }
+    .project-hero__info {
+      position: absolute !important;
+      z-index: 2;
+      bottom: clamp(24px, 4vw, 40px);
+      left: var(--gutter);
+      right: var(--gutter);
+      max-width: 680px;
+      display: block !important;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 16px;
+      padding: 24px 28px;
+    }
+    .project-hero__title { font-size: clamp(1.75rem, 4vw, 3rem) !important; }
+    .project-hero__meta-grid {
+      margin-top: 16px;
+    }
+    .project-hero__kicker .eyebrow,
+    .project-hero__title,
+    .project-meta-item__label,
+    .project-meta-item__value { color: var(--text-primary) !important; }
+
+    /* Keep nav as glass while scrolling over the hero image */
+    .nav.scrolled:not(.nav--past-hero) {
+      background: rgba(255, 255, 255, 0.18) !important;
+      border-color: rgba(255, 255, 255, 0.25) !important;
+    }
+
+    /* ── Full-width grey gallery ── */
+    .p04-gallery {
+      background: var(--bg-raised, #f5f5f5);
+      padding: clamp(40px, 6vw, 80px) 0;
+      margin-top: clamp(40px, 6vw, 80px);
+    }
+
+    .p04-gallery__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--gutter, 24px);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .p04-gallery__img {
+      width: 100%;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.06);
+      border: 1px dashed rgba(0,0,0,0.12);
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+
+    .p04-gallery__img img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .p04-gallery__row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .p04-gallery__row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .p04-gallery__img {
+        min-height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress"></div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav__bar">
+      <div class="nav__left">
+        <button class="nav__toggle" aria-label="Menu">
+          <span class="nav__toggle-line"></span>
+          <span class="nav__toggle-line"></span>
+          <span class="nav__toggle-line"></span>
+        </button>
+        <a class="nav__logo" href="index.html">Claire Davis</a>
+      </div>
+      <ul class="nav__links">
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+    <ul class="nav__dropdown">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="project-03.html">Connect Wearables</a></li>
+      <li><a href="project-02.html">Customisation Tool</a></li>
+      <li><a href="project-01.html">PDP Optimisation</a></li>
+      <li><a href="project-04.html">Vibe Coding</a></li>
+    </ul>
+  </nav>
+
+  <!-- Project Hero -->
+  <header class="project-hero">
+
+    <!-- Visual / hero image area -->
+    <div class="project-hero__visual project-hero__visual--p04" style="background: #999;">
+    </div>
+
+    <!-- Project title + meta -->
+    <div class="project-hero__info">
+      <div>
+        <h1 class="project-hero__title">Vibe Coding</h1>
+      </div>
+      <div class="project-hero__meta-grid">
+        <div>
+          <p class="project-meta-item__label">Client</p>
+          <p class="project-meta-item__value">Personal Project</p>
+        </div>
+        <div>
+          <p class="project-meta-item__label">Role</p>
+          <p class="project-meta-item__value">Senior Product Designer</p>
+        </div>
+        <div>
+          <p class="project-meta-item__label">Year</p>
+          <p class="project-meta-item__value">2025</p>
+        </div>
+        <div>
+          <p class="project-meta-item__label">Platform</p>
+          <p class="project-meta-item__value">Mobile &amp; Desktop</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Overview -->
+  <section class="section" style="padding-bottom: 0;">
+    <div class="container">
+      <div class="project-overview">
+        <div class="reveal">
+          <p class="eyebrow" style="margin-bottom: 20px;">Overview</p>
+          <p class="project-overview__challenge">
+            In my spare time, I <strong>build and experiment with AI tools</strong>. These projects are less about polish and more about <strong>exploration</strong>: understanding capability, testing boundaries, and staying close to how <strong>AI is reshaping product development</strong>.
+          </p>
+        </div>
+        <div class="project-overview__details reveal reveal-delay-2">
+          <div class="overview-detail">
+            <p class="overview-detail__label">Outcomes</p>
+            <p class="overview-detail__value">SansTabs · Portfolio Site · Shout App (coming soon)</p>
+          </div>
+          <div class="overview-detail">
+            <p class="overview-detail__label">Tools</p>
+            <p class="overview-detail__value">Figma · Loveable · Claude Code · GitHub · Weavy · N8N · UX Pilot</p>
+          </div>
+          <div class="overview-detail">
+            <p class="overview-detail__label">Events</p>
+            <p class="overview-detail__value">Granola · Assembly AI · Monzo · Interface · Brainstation</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 – Sans Tabs -->
+  <section class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container">
+      <div class="process-block reveal" style="border-top: none;">
+        <span class="process-block__num">01</span>
+        <div class="process-block__content">
+          <p class="process-block__label">Loveable</p>
+          <h2 class="process-block__title">Sans Tabs</h2>
+          <div class="process-block__body">
+            <p>
+              As a digital designer, I was constantly saving websites for inspiration. But when I needed to revisit one, I could rarely remember the name — only the visual in my head.
+            </p>
+            <p style="margin-top: 16px;">
+              So I built a visual bookmark manager that lets users pin websites into collections with screenshot previews, turning scattered text links into a browsable, visual library of inspiration. <a href="https://preview--sans-tabs.lovable.app/auth" target="_blank" style="color: var(--text-primary); text-decoration: underline;">Try it out here</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sans Tabs – full-width grey image section -->
+  <div class="p04-gallery" style="margin-top: 0;">
+    <div class="p04-gallery__inner">
+      <div class="p04-gallery__row">
+        <div class="p04-gallery__img"><img src="Loveable.png" alt="Sans Tabs – Loveable screenshot" /></div>
+        <div class="p04-gallery__img"><img src="loveable2.png" alt="Sans Tabs – Loveable screenshot 2" /></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 – Portfolio Site -->
+  <section class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container">
+      <div class="process-block reveal" style="border-top: none;">
+        <span class="process-block__num">02</span>
+        <div class="process-block__content">
+          <p class="process-block__label">Claude Code</p>
+          <h2 class="process-block__title">Portfolio Site</h2>
+          <div class="process-block__body">
+            <p>
+              This entire portfolio was built using Claude Code. I used it as a development partner to structure components, refine layouts, and iterate quickly through ideas, while I directed the architecture, interaction, and visual decisions myself.
+            </p>
+            <p style="margin-top: 16px;">
+              It became an experiment in AI-assisted building: accelerating execution while exercising and maintaining my own judgment.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Site – full-width grey image section -->
+  <div class="p04-gallery" style="margin-top: 0;">
+    <div class="p04-gallery__inner" style="display: flex; flex-direction: column; align-items: center;">
+      <div class="p04-gallery__img" style="max-width: 800px; width: 100%;"><img src="Claude.png" alt="Portfolio Site – Claude Code screenshot" /></div>
+    </div>
+  </div>
+
+  <!-- More Work -->
+  <section class="work reveal" style="padding-top: 0;">
+    <a class="project-row" href="project-03.html">
+      <div class="project-row__inner">
+        <span class="project-row__num">01</span>
+        <span class="project-row__name">Connect Wearables <span class="project-row__brand">Healf</span></span>
+        <div class="project-row__tags">
+          <span class="tag">Wearable integration</span>
+          <span class="tag">Onboarding</span>
+          <span class="tag">Data</span>
+        </div>
+        <span class="project-row__year">2026</span>
+      </div>
+    </a>
+    <a class="project-row" href="project-02.html">
+      <div class="project-row__inner">
+        <span class="project-row__num">02</span>
+        <span class="project-row__name">Customisation tool <span class="project-row__brand">Jo Malone London</span></span>
+        <div class="project-row__tags">
+          <span class="tag">Feature</span>
+          <span class="tag">Prototype</span>
+          <span class="tag">User Testing</span>
+        </div>
+        <span class="project-row__year">2025</span>
+      </div>
+    </a>
+    <a class="project-row" href="project-01.html">
+      <div class="project-row__inner">
+        <span class="project-row__num">03</span>
+        <span class="project-row__name">PDP Optimisation <span class="project-row__brand">Jo Malone London</span></span>
+        <div class="project-row__tags">
+          <span class="tag">E-commerce</span>
+          <span class="tag">UX Research</span>
+          <span class="tag">A/B Testing</span>
+        </div>
+        <span class="project-row__year">2025</span>
+      </div>
+    </a>
+    <a class="project-row" href="project-04.html">
+      <div class="project-row__inner">
+        <span class="project-row__num">04</span>
+        <span class="project-row__name">Vibe Coding <span class="project-row__brand">Personal Project</span></span>
+        <div class="project-row__tags">
+          <span class="tag">Vibe Coding</span>
+          <span class="tag">AI</span>
+          <span class="tag">Experiment</span>
+        </div>
+        <span class="project-row__year">2025</span>
+      </div>
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer container">
+    <p class="footer__copy">&copy; 2026 Claire Davis. All rights reserved.</p>
+    <div class="footer__links">
+      <a href="mailto:c_e_davis162@hotmail.co.uk">Email</a>
+      <a href="https://www.linkedin.com/in/claire-davis-design" target="_blank">LinkedIn</a>
+      <a href="about.html">About</a>
+    </div>
+  </footer>
+
+  <script src="main.js?v=2"></script>
+  <script>
+    // ── Nav past-hero state ──
+    (function () {
+      var hero = document.querySelector('.project-hero');
+      var nav  = document.querySelector('.nav');
+      if (!hero || !nav) return;
+      var obs = new IntersectionObserver(function (entries) {
+        nav.classList.toggle('nav--past-hero', !entries[0].isIntersecting);
+      }, { threshold: 0 });
+      obs.observe(hero);
+    })();
+  </script>
+
+</body>
+</html>
