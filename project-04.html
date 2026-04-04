@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vibe Coding – Claire Davis</title>
   <meta name="description" content="A personal exploration of vibe coding — building digital products with AI-assisted development tools." />
-  <link rel="stylesheet" href="style.css?v=7" />
+  <link rel="stylesheet" href="css/style.css?v=7" />
   <style>
     /* ── Scroll progress ── */
     .scroll-progress {
@@ -56,7 +56,7 @@
       background: rgba(255, 255, 255, 0.18);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      border: none;
       border-radius: 16px;
       padding: 24px 28px;
     }
@@ -234,8 +234,13 @@
               As a digital designer, I was constantly saving websites for inspiration. But when I needed to revisit one, I could rarely remember the name — only the visual in my head.
             </p>
             <p style="margin-top: 16px;">
-              So I built a visual bookmark manager that lets users pin websites into collections with screenshot previews, turning scattered text links into a browsable, visual library of inspiration. <a href="https://preview--sans-tabs.lovable.app/auth" target="_blank" style="color: var(--text-primary); text-decoration: underline;">Try it out here</a>.
+              So I built a visual bookmark manager that lets users pin websites into collections with screenshot previews, turning scattered text links into a browsable, visual library of inspiration.
             </p>
+            <div style="margin-top: 24px;">
+              <a href="https://preview--sans-tabs.lovable.app/auth" target="_blank" class="btn-pill">
+                Try it out here <span class="btn-arrow">&#8599;</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -246,8 +251,8 @@
   <div class="p04-gallery" style="margin-top: 0;">
     <div class="p04-gallery__inner">
       <div class="p04-gallery__row">
-        <div class="p04-gallery__img"><img src="Loveable.png" alt="Sans Tabs – Loveable screenshot" /></div>
-        <div class="p04-gallery__img"><img src="loveable2.png" alt="Sans Tabs – Loveable screenshot 2" /></div>
+        <div class="p04-gallery__img"><img src="images/Loveable.png" alt="Sans Tabs – Loveable screenshot" /></div>
+        <div class="p04-gallery__img"><img src="images/loveable2.png" alt="Sans Tabs – Loveable screenshot 2" /></div>
       </div>
     </div>
   </div>
@@ -276,7 +281,7 @@
   <!-- Portfolio Site – full-width grey image section -->
   <div class="p04-gallery" style="margin-top: 0;">
     <div class="p04-gallery__inner" style="display: flex; flex-direction: column; align-items: center;">
-      <div class="p04-gallery__img" style="max-width: 800px; width: 100%;"><img src="Claude.png" alt="Portfolio Site – Claude Code screenshot" /></div>
+      <div class="p04-gallery__img" style="max-width: 800px; width: 100%;"><img src="images/Claude.png" alt="Portfolio Site – Claude Code screenshot" /></div>
     </div>
   </div>
 
@@ -333,16 +338,18 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer container">
-    <p class="footer__copy">&copy; 2026 Claire Davis. All rights reserved.</p>
-    <div class="footer__links">
-      <a href="mailto:c_e_davis162@hotmail.co.uk">Email</a>
-      <a href="https://www.linkedin.com/in/claire-davis-design" target="_blank">LinkedIn</a>
-      <a href="about.html">About</a>
+  <footer class="footer">
+    <div class="footer__inner container">
+      <p class="footer__copy">&copy; 2026 Claire Davis. All rights reserved.</p>
+      <div class="footer__links">
+        <a href="mailto:c_e_davis162@hotmail.co.uk">Email</a>
+        <a href="https://www.linkedin.com/in/claire-davis-design" target="_blank">LinkedIn</a>
+        <a href="about.html">About</a>
+      </div>
     </div>
   </footer>
 
-  <script src="main.js?v=2"></script>
+  <script src="js/main.js?v=2"></script>
   <script>
     // ── Nav past-hero state ──
     (function () {

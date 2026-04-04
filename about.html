@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About — Claire Davis</title>
   <meta name="description" content="Senior Product Designer with 10+ years shaping user-centred digital experiences." />
-  <link rel="stylesheet" href="style.css?v=6" />
+  <link rel="stylesheet" href="css/style.css?v=6" />
 </head>
 <body>
 
@@ -41,103 +41,217 @@
     </ul>
   </nav>
 
-  <!-- Hero -->
-  <section class="about-hero">
-    <div class="about-hero__label reveal">
-      <span class="eyebrow">About</span>
-    </div>
-    <h1 class="about-hero__title reveal reveal-delay-1">
-      Hi there,<br>
-      <strong>I'm Claire.</strong>
-    </h1>
-  </section>
+  <!-- About Layout: content left, sticky image right -->
+  <div class="about-layout">
+    <div class="about-layout__content">
+      <!-- Hero -->
+      <section class="about-hero">
+        <div class="about-hero__left">
+          <div class="about-hero__label reveal">
+            <span class="eyebrow">About</span>
+          </div>
+          <h1 class="about-hero__title reveal reveal-delay-1">
+            Hi there,<br>
+            <strong>I'm Claire.</strong>
+          </h1>
+        </div>
+      </section>
 
-  <!-- Bio + Image -->
+      <!-- Bio -->
+      <section class="section" style="padding-top: 0;">
+        <div style="padding: 0 var(--gutter);">
+          <div class="about-bio reveal" style="max-width: 640px;">
+            <p>
+              Senior Product Designer with <strong>10+ years' experience</strong> crafting intuitive digital products.
+            </p>
+            <p>
+              Currently at Healf, I connect e-commerce and healthtech, designing commercially effective experiences across purchase, onboarding, and growth journeys.
+            </p>
+            <p>
+              I balance innovation with usability and refined UI, and continuously experiment with <strong>emerging technologies and AI tools</strong> to enhance speed, execution, and creative exploration.
+            </p>
+          </div>
+
+          <div class="reveal reveal-delay-1" style="margin-top: 40px; display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="mailto:c_e_davis162@hotmail.co.uk" class="btn-pill">
+              Get in touch <span class="btn-arrow">&#8599;</span>
+            </a>
+            <a href="https://www.linkedin.com/in/claire-davis-design" target="_blank" class="btn-pill">
+              LinkedIn <span class="btn-arrow">&#8599;</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="about-layout__image">
+      <div class="about-hero__right reveal">
+        <div class="about-image">
+          <div class="about-image__inner">
+            <img src="images/me.jpg" alt="Claire Davis" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LinkedIn Posts -->
   <section class="section" style="padding-top: 0;">
-    <div class="container">
-      <div class="about-grid">
-        <div class="reveal">
-          <div class="about-bio">
-            <p>
-              With over <strong>10 years of experience</strong> designing user-centred,
-              visually rich digital experiences, I specialise in creating intuitive,
-              engaging products that connect with people.
-            </p>
-            <p>
-              I'm constantly experimenting with <strong>new technologies</strong> whether
-              that's for automating, wireframing, designing, prototyping or just
-              vibe coding in my downtime.
-            </p>
-            <p>
-              I'm passionate about creating <strong>elegant, meaningful design</strong>
-              that meets real user needs and adapts to a constantly changing
-              digital world.
-            </p>
-          </div>
+    <div style="padding: 0 var(--gutter);">
+      <h2 class="reveal" style="font-size: clamp(1.5rem, 3.5vw, 3rem); font-weight: 300; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 16px;">London Design & Tech Events</h2>
+      <p class="reveal reveal-delay-1" style="font-size: 0.875rem; font-weight: 300; color: var(--text-secondary); line-height: 1.7; max-width: 640px; margin-bottom: 24px;">I stay connected to the industry through London's design and tech community, regularly attending events and meetups. If you know of any great ones coming up, I'd love to hear about them. See you there. For the full list see my posts on LinkedIn.</p>
+      <div class="reveal reveal-delay-1" style="margin-bottom: clamp(32px, 4vw, 56px);">
+        <a href="https://www.linkedin.com/in/claire-davis-design" target="_blank" class="btn-pill">
+          LinkedIn <span class="btn-arrow">&#8599;</span>
+        </a>
+      </div>
+    </div>
 
-          <div style="margin-top: 40px; display: flex; gap: 16px; flex-wrap: wrap;">
-            <a href="mailto:c_e_davis162@hotmail.co.uk" class="btn">
-              Get in touch <span class="btn-arrow">→</span>
-            </a>
-<a href="https://www.linkedin.com/in/claire-davis-design" class="btn" target="_blank">
-              LinkedIn <span class="btn-arrow">→</span>
-            </a>
+    <!-- Post 1 — Real -->
+    <div class="linkedin-row reveal reveal-delay-1" data-linkedin-row>
+      <div class="linkedin-row__header">
+        <div class="linkedin-row__inner">
+          <span class="linkedin-row__num">01</span>
+          <div class="linkedin-row__info">
+            <span class="linkedin-row__name">AI Voice - AssemblyAI x Granola</span>
+            <span class="linkedin-row__sub">Key takeaways from the event at Granola offices</span>
           </div>
+          <span class="linkedin-row__date">31 Mar 2026</span>
+          <span class="linkedin-row__toggle">+</span>
         </div>
-
-        <div class="reveal reveal-delay-2">
-          <div class="about-image">
-            <div class="about-image__inner">
-              <img src="me.jpg" alt="Claire Davis" />
-            </div>
+      </div>
+      <div class="linkedin-row__body">
+        <div class="linkedin-row__content">
+          <img class="linkedin-row__image" src="images/Granola_voice.jpeg" alt="AI Voice event at Granola offices" />
+          <div class="linkedin-row__text">
+            <p>AI Voice - AssemblyAI x Granola. Key takeaways: Customers care about quality of documentation over speed of transcription. Tonality and emotion is a key unlock for better context. Adoption for always-on voice recording wearables will be at a societal level. Flemish is tricky.</p>
+            <p>Voice isn't my main domain, but as AI becomes more deeply woven into our daily lives and workflows, voice interfaces will inevitably become an even bigger part of more user journeys - and in many cases, a helpful tool to solve problems.</p>
+            <p>It was great to get a glimpse of what's happening under the hood, and the complexities involved. Great event hosted at the Granola offices - lovely to meet lots of new faces.</p>
           </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- Working with me -->
-  <section class="section" style="padding-top: 0; padding-bottom: clamp(80px,12vw,160px);">
-    <div class="container">
-      <div class="section-label reveal">
-        <span class="eyebrow">Working with me</span>
+    <!-- Post 2 — Real -->
+    <div class="linkedin-row reveal reveal-delay-2" data-linkedin-row>
+      <div class="linkedin-row__header">
+        <div class="linkedin-row__inner">
+          <span class="linkedin-row__num">02</span>
+          <div class="linkedin-row__info">
+            <span class="linkedin-row__name">Backstage at Monzo: From Problem to Product</span>
+            <span class="linkedin-row__sub">Timing, simplicity of UX and proposition matter</span>
+          </div>
+          <span class="linkedin-row__date">Mar 2026</span>
+          <span class="linkedin-row__toggle">+</span>
+        </div>
       </div>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px;" class="reveal reveal-delay-1" data-stagger>
-        <div class="glass" style="padding: 32px 28px; border-radius: 16px;">
-          <p style="font-size: 0.6875rem; letter-spacing: 0.01em; text-transform: none; color: var(--text-muted); margin-bottom: 12px;">01</p>
-          <h3 style="font-size: 1rem; font-weight: 400; color: var(--text-primary); margin-bottom: 10px;">Designing for the user comes first, with research guiding every step</h3>
-          <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.7;">Each design decision is grounded in evidence, drawing from user testing, analytics, evaluation, and competitive analysis.</p>
-        </div>
-        <div class="glass" style="padding: 32px 28px; border-radius: 16px;">
-          <p style="font-size: 0.6875rem; letter-spacing: 0.01em; text-transform: none; color: var(--text-muted); margin-bottom: 12px;">02</p>
-          <h3 style="font-size: 1rem; font-weight: 400; color: var(--text-primary); margin-bottom: 10px;">Craft without compromise</h3>
-          <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.7;">Pixel-level attention to detail. I believe beautiful design and functional design are the same thing.</p>
-        </div>
-        <div class="glass" style="padding: 32px 28px; border-radius: 16px;">
-          <p style="font-size: 0.6875rem; letter-spacing: 0.01em; text-transform: none; color: var(--text-muted); margin-bottom: 12px;">03</p>
-          <h3 style="font-size: 1rem; font-weight: 400; color: var(--text-primary); margin-bottom: 10px;">Strategic thinking</h3>
-          <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.7;">I connect design to business outcomes, ensuring the needs of the user are met while driving conversion, retention, and growth.</p>
-        </div>
-        <div class="glass" style="padding: 32px 28px; border-radius: 16px;">
-          <p style="font-size: 0.6875rem; letter-spacing: 0.01em; text-transform: none; color: var(--text-muted); margin-bottom: 12px;">04</p>
-          <h3 style="font-size: 1rem; font-weight: 400; color: var(--text-primary); margin-bottom: 10px;">Collaborative partner</h3>
-          <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.7;">I work closely with PMs, engineers, and cross-functional teams, understanding the need for open communication and diverse perspectives.</p>
+      <div class="linkedin-row__body">
+        <div class="linkedin-row__content">
+          <img class="linkedin-row__image" src="images/Monzo+Problem.jpeg" alt="Backstage at Monzo event" />
+          <div class="linkedin-row__text">
+            <p>Key takeaways: Timing, simplicity of UX and proposition matter. Lean on behavioural models. Ship early and often.</p>
+            <p>It's not my first time attending Monzo product events. There is a reason I mark the date in the diary (and also rope colleagues into attending too). Their product design thinking is best in class and their case studies are insightful and inspiring. They balance commercial goals whilst being customer centric, they are unafraid to tread new ground in the finance sphere and they also like to add, in their words, 'monzo magic' to make finance more fun.</p>
+            <p>Last night was no exception as they guided us through making pensions accessible and tax easier - plus my personal favourite, the deep dive into their staggeringly successful 1p challenge.</p>
+            <p>If you are in product (or not!) I highly recommend attending these - see you at the next one Monzo Bank. Also nice to see PD Ladies as always.</p>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- Posts 3–10 — Placeholders -->
+
+    <!-- Post 3 — Real -->
+    <div class="linkedin-row reveal reveal-delay-2" data-linkedin-row>
+      <div class="linkedin-row__header">
+        <div class="linkedin-row__inner">
+          <span class="linkedin-row__num">03</span>
+          <div class="linkedin-row__info">
+            <span class="linkedin-row__name">INTERFACE: AI in Design & Creative</span>
+            <span class="linkedin-row__sub">Future forward processes and tools with practical use cases</span>
+          </div>
+          <span class="linkedin-row__date">Mar 2026</span>
+          <span class="linkedin-row__toggle">+</span>
+        </div>
+      </div>
+      <div class="linkedin-row__body">
+        <div class="linkedin-row__content">
+          <img class="linkedin-row__image" src="images/Interface.jpeg" alt="INTERFACE event" />
+          <div class="linkedin-row__text">
+            <p>Can't deny last night was one of my favourite talks of the year. Both aspirational and achievable, the presenters demo'd future forward processes and tools with no mystery or vagueness. Step by step practical use cases designing and building cool things.</p>
+            <p>Thank you INTERFACE for putting together a great event and Checkout.com for hosting.</p>
+            <p>I fan-girled over Paavan Buddhdev after realising he designed londondesignevents.com. He gave great insights into his vibe coding and use of AI in both his work and personal pursuits.</p>
+            <p>Kevin H. gave an incredible breakdown of AI onboarding and the importance of getting a team with a varied AI skillset to a shared baseline.</p>
+            <p>James Finlay of Myth Studio gave one of the coolest talks of the year so far. A step by step of how to create a full AI motion sequence. Whilst not my world or part of my day to day, it was so inspiring to watch a passionate creative create with AI tools I didn't even know existed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post 4 — Real -->
+    <div class="linkedin-row reveal reveal-delay-2" data-linkedin-row>
+      <div class="linkedin-row__header">
+        <div class="linkedin-row__inner">
+          <span class="linkedin-row__num">04</span>
+          <div class="linkedin-row__info">
+            <span class="linkedin-row__name">Backstage at Monzo: Streaks, Insurance & Leadership</span>
+            <span class="linkedin-row__sub">Behind the scenes product design at Monzo</span>
+          </div>
+          <span class="linkedin-row__date">—</span>
+          <span class="linkedin-row__toggle">+</span>
+        </div>
+      </div>
+      <div class="linkedin-row__body">
+        <div class="linkedin-row__content">
+          <img class="linkedin-row__image" src="images/Monzo_2.jpeg" alt="Backstage at Monzo event" />
+          <div class="linkedin-row__text">
+            <p>Back at Monzo Bank last night for another insightful night of behind the scenes product design at Monzo.</p>
+            <p>Clara Clements Dalbera walked us through the solution of utilising streaks to offer credit to customers who might normally have fallen through the net.</p>
+            <p>Elsa Corcione spoke about designing for trust, not just simplicity, when Monzo introduced their first insurance product.</p>
+            <p>And an open discussion with Lily Dart and Natalie Waller about I&amp;D and how to be a leader of designers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post 5 — Real -->
+    <div class="linkedin-row reveal reveal-delay-2" data-linkedin-row>
+      <div class="linkedin-row__header">
+        <div class="linkedin-row__inner">
+          <span class="linkedin-row__num">05</span>
+          <div class="linkedin-row__info">
+            <span class="linkedin-row__name">Future of Beauty: AI & Sustainability</span>
+            <span class="linkedin-row__sub">AI-driven personalisation and omni-channel experiences</span>
+          </div>
+          <span class="linkedin-row__date">—</span>
+          <span class="linkedin-row__toggle">+</span>
+        </div>
+      </div>
+      <div class="linkedin-row__body">
+        <div class="linkedin-row__content">
+          <img class="linkedin-row__image" src="images/Brainstation_Max.jpeg" alt="BrainStation beauty event" />
+          <div class="linkedin-row__text">
+            <p>Technology, sustainability, and evolving consumer expectations are redefining the future of the beauty industry.</p>
+            <p>Beauty Pie's Max Fumagalli and Deciem's Anne-Claire Ahouangonou gave lots of insights and guided us through topics such as AI-driven personalisation, environmentally conscious consumers and the importance of omni-channel experiences at BrainStation last night.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </section>
+
 
   <!-- Footer -->
-  <footer class="footer container">
-    <p class="footer__copy">© 2026 Claire Davis. All rights reserved.</p>
-    <div class="footer__links">
-      <a href="mailto:c_e_davis162@hotmail.co.uk">Email</a>
-      <a href="https://www.linkedin.com/in/claire-davis-design" target="_blank">LinkedIn</a>
-      <a href="about.html">About</a>
+  <footer class="footer">
+    <div class="footer__inner container">
+      <p class="footer__copy">© 2026 Claire Davis. All rights reserved.</p>
+      <div class="footer__links">
+        <a href="mailto:c_e_davis162@hotmail.co.uk">Email</a>
+        <a href="https://www.linkedin.com/in/claire-davis-design" target="_blank">LinkedIn</a>
+        <a href="about.html">About</a>
+      </div>
     </div>
   </footer>
 
-  <script src="main.js?v=2"></script>
+  <script src="js/main.js?v=2"></script>
 </body>
 </html>

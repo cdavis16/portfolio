@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PDP Optimisation — Claire Davis</title>
   <meta name="description" content="Redesigning the Jo Malone London product detail page to drive Add to Bag conversion." />
-  <link rel="stylesheet" href="style.css?v=7" />
+  <link rel="stylesheet" href="css/style.css?v=7" />
   <style>
     /* ── Scroll progress ── */
     .scroll-progress {
@@ -56,7 +56,7 @@
       background: rgba(255, 255, 255, 0.18);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      border: none;
       border-radius: 16px;
       padding: 24px 28px;
     }
@@ -308,13 +308,13 @@
 
     .hmw-card {
       padding: 20px;
-      border: 1px solid var(--border);
+      border: none;
       border-radius: 8px;
       background: var(--surface);
-      transition: background 0.4s ease, border-color 0.4s ease;
+      transition: background 0.4s ease;
     }
 
-    .hmw-card:hover { background: var(--surface-hover); border-color: var(--border-hover); }
+    .hmw-card:hover { background: var(--surface-hover); }
 
     .hmw-card__prefix {
       font-size: 0.625rem;
@@ -533,7 +533,7 @@
       background: rgba(255, 255, 255, 0.45);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border: 1px solid var(--border);
+      border: none;
       border-radius: 12px;
       padding: 14px 40px 14px 24px;
       min-width: 240px;
@@ -702,7 +702,7 @@
 
     <!-- Visual / hero image area -->
     <div class="project-hero__visual project-hero__visual--pdp">
-      <img src="Header_banner_pdp.jpg" alt="PDP hero banner" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+      <img src="images/Header_banner_pdp.jpg" alt="PDP hero banner" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
     </div>
 
     <!-- Project title + meta -->
@@ -762,7 +762,7 @@
 
   <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px); margin-top: clamp(40px, 5vw, 64px); display: flex; justify-content: center;">
     <video autoplay loop muted playsinline style="width: 100%; max-width: 560px; border-radius: 12px; display: block;">
-      <source src="pdp_changes.mp4" type="video/mp4" />
+      <source src="videos/pdp_changes.mp4" type="video/mp4" />
     </video>
   </section>
 
@@ -812,10 +812,10 @@
   <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) var(--gutter) clamp(40px, 5vw, 64px); overflow: hidden;">
     <div class="p01-discover-flex" style="display: flex; justify-content: center; align-items: flex-start; gap: 12px;">
       <div style="width: clamp(260px, 40vw, 480px); overflow: hidden; border-radius: 8px; border: 1px solid var(--border); flex-shrink: 0;">
-        <img src="Desktop_old.jpg" alt="Jo Malone London PDP — desktop view" style="width: 100%; display: block; object-fit: contain; object-position: center;" />
+        <img src="images/Desktop_old.jpg" alt="Jo Malone London PDP — desktop view" style="width: 100%; display: block; object-fit: contain; object-position: center;" />
       </div>
       <div style="width: clamp(100px, 14vw, 180px); overflow: hidden; border-radius: 8px; border: 1px solid var(--border); flex-shrink: 0;">
-        <img src="Longer_mob.jpg" alt="Jo Malone London PDP — product page" style="width: 100%; display: block; margin-top: -8%; margin-bottom: -8%;" />
+        <img src="images/Longer_mob.jpg" alt="Jo Malone London PDP — product page" style="width: 100%; display: block; margin-top: -8%; margin-bottom: -8%;" />
       </div>
     </div>
   </section>
@@ -838,7 +838,7 @@
           <div class="p01-define-grid reveal" style="margin-top: 32px; display: grid; grid-template-columns: 220px 1fr; gap: 32px; align-items: stretch;">
             <div style="position: relative; border-radius: 8px; overflow: hidden;">
               <div id="pdp-scroll-img" style="position: absolute; inset: 0; overflow-y: scroll; scrollbar-width: none; -ms-overflow-style: none;">
-                <img src="Longer_mob.jpg" alt="Jo Malone London PDP on mobile" style="width: 100%; height: auto; display: block;" />
+                <img src="images/Longer_mob.jpg" alt="Jo Malone London PDP on mobile" style="width: 100%; height: auto; display: block;" />
               </div>
               <!-- Scroll prompt -->
               <div id="pdp-scroll-hint" style="position: absolute; bottom: 0; left: 0; right: 0; height: 80px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.95)); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 12px; gap: 4px; pointer-events: none; z-index: 2; transition: opacity 0.3s ease;">
@@ -952,13 +952,13 @@
   <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) var(--gutter);">
     <div class="p01-wireframe-grid" style="max-width: min(60%, 780px); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 3vw, 32px);">
       <div style="overflow: hidden; border-radius: 8px;">
-        <img src="Wireframe 1.jpg" alt="Wireframe exploration 1" style="width: 100%; display: block;" />
+        <img src="images/Wireframe 1.jpg" alt="Wireframe exploration 1" style="width: 100%; display: block;" />
       </div>
       <div style="overflow: hidden; border-radius: 8px;">
-        <img src="Wireframe 2.jpg" alt="Wireframe exploration 2" style="width: 100%; display: block;" />
+        <img src="images/Wireframe 2.jpg" alt="Wireframe exploration 2" style="width: 100%; display: block;" />
       </div>
       <div style="overflow: hidden; border-radius: 8px;">
-        <img src="Wireframe 3.jpg" alt="Wireframe exploration 3" style="width: 100%; display: block;" />
+        <img src="images/Wireframe 3.jpg" alt="Wireframe exploration 3" style="width: 100%; display: block;" />
       </div>
     </div>
   </section>
@@ -969,21 +969,21 @@
     <div class="p01-carousel-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 3vw, 32px);">
       <div>
         <div style="overflow: hidden; border-radius: 8px;">
-          <img src="PDP_grid.jpg" alt="Grid carousel layout exploration" style="width: 100%; display: block;" />
+          <img src="images/PDP_grid.jpg" alt="Grid carousel layout exploration" style="width: 100%; display: block;" />
         </div>
         <p style="font-size: 0.8125rem; font-weight: 400; color: var(--text-primary); margin-top: 16px; margin-bottom: 6px;">Grid format</p>
         <p style="font-size: 0.75rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">A mosaic grid surfaces multiple lifestyle images simultaneously, giving users a richer, more immediate visual overview of the product before scrolling.</p>
       </div>
       <div>
         <div style="overflow: hidden; border-radius: 8px;">
-          <img src="pdp_scroll.jpg" alt="Scroll carousel layout exploration" style="width: 100%; display: block;" />
+          <img src="images/pdp_scroll.jpg" alt="Scroll carousel layout exploration" style="width: 100%; display: block;" />
         </div>
         <p style="font-size: 0.8125rem; font-weight: 400; color: var(--text-primary); margin-top: 16px; margin-bottom: 6px;">Static container with vertical scroll</p>
         <p style="font-size: 0.75rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">A fixed-height container with internal scroll keeps imagery contained within the page structure while allowing deeper exploration without disrupting the layout.</p>
       </div>
       <div>
         <div style="overflow: hidden; border-radius: 8px;">
-          <img src="PDP.thumbs.jpg" alt="Thumbnail carousel layout exploration" style="width: 100%; display: block;" />
+          <img src="images/PDP.thumbs.jpg" alt="Thumbnail carousel layout exploration" style="width: 100%; display: block;" />
         </div>
         <p style="font-size: 0.8125rem; font-weight: 400; color: var(--text-primary); margin-top: 16px; margin-bottom: 6px;">Visible thumbnails</p>
         <p style="font-size: 0.75rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6;">Thumbnail navigation alongside the primary image gives users direct control, making the full image set visible at a glance and reducing uncertainty about what's available.</p>
@@ -1056,14 +1056,14 @@
                 <!-- Control panel -->
                 <div data-tab="test01-control" style="display: block;">
                   <div class="process-img" style="aspect-ratio: auto; padding: 0;">
-                    <img src="PDP_Desktop.jpg" alt="Control: image chips" style="width: 100%; display: block; border-radius: 8px;" />
+                    <img src="images/PDP_Desktop.jpg" alt="Control: image chips" style="width: 100%; display: block; border-radius: 8px;" />
                   </div>
                   <span style="display: block; margin-top: 6px; font-size: 0.6rem; color: var(--text-muted);">Control: image chips</span>
                 </div>
                 <!-- Variant panel -->
                 <div data-tab="test01-variant" style="display: none;">
                   <div class="process-img" style="aspect-ratio: auto; padding: 0;">
-                    <img src="PDP_Desktop_2.jpg" alt="Variant: text chips" style="width: 100%; display: block; border-radius: 8px;" />
+                    <img src="images/PDP_Desktop_2.jpg" alt="Variant: text chips" style="width: 100%; display: block; border-radius: 8px;" />
                   </div>
                   <span style="display: block; margin-top: 6px; font-size: 0.6rem; color: var(--text-muted);">Variant: text chips</span>
                 </div>
@@ -1123,19 +1123,19 @@
                 <div class="test02-img-inner" style="width: 180px; margin-left: auto;">
                   <div data-tab="test02-control" style="display: block;">
                     <div class="process-img" style="aspect-ratio: auto; padding: 0;">
-                      <img src="sticky1.jpg" alt="Control: current CTA" style="width: 100%; display: block; border-radius: 8px;" />
+                      <img src="images/sticky1.jpg" alt="Control: current CTA" style="width: 100%; display: block; border-radius: 8px;" />
                     </div>
                     <span style="display: block; margin-top: 6px; font-size: 0.6rem; color: var(--text-muted);">Control: current</span>
                   </div>
                   <div data-tab="test02-varA" style="display: none;">
                     <div class="process-img" style="aspect-ratio: auto; padding: 0;">
-                      <img src="sticky3.jpg" alt="Variant A: price left" style="width: 100%; display: block; border-radius: 8px;" />
+                      <img src="images/sticky3.jpg" alt="Variant A: price left" style="width: 100%; display: block; border-radius: 8px;" />
                     </div>
                     <span style="display: block; margin-top: 6px; font-size: 0.6rem; color: var(--text-muted);">Variant A: price left</span>
                   </div>
                   <div data-tab="test02-varB" style="display: none;">
                     <div class="process-img" style="aspect-ratio: auto; padding: 0;">
-                      <img src="sticky2.jpg" alt="Variant B: price right" style="width: 100%; display: block; border-radius: 8px;" />
+                      <img src="images/sticky2.jpg" alt="Variant B: price right" style="width: 100%; display: block; border-radius: 8px;" />
                     </div>
                     <span style="display: block; margin-top: 6px; font-size: 0.6rem; color: var(--text-muted);">Variant B: price right</span>
                   </div>
@@ -1163,7 +1163,7 @@
             <!-- Image column (scrollable) -->
             <div id="changes-video-col" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); height: 564px;">
               <div id="changes-scroll-img" style="position: absolute; inset: 0; overflow-y: scroll; scrollbar-width: none; -ms-overflow-style: none;">
-                <img src="Global_PDP.png" alt="Global PDP design" style="width: 100%; height: auto; display: block;" />
+                <img src="images/Global_PDP.png" alt="Global PDP design" style="width: 100%; height: auto; display: block;" />
               </div>
               <div id="changes-scroll-hint" style="position: absolute; bottom: 0; left: 0; right: 0; height: 80px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.95)); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 12px; gap: 4px; pointer-events: none; z-index: 2; transition: opacity 0.3s ease;">
                 <svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.5;">
@@ -1320,7 +1320,7 @@
 
   <!-- After image — full-bleed grey -->
   <section style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) var(--gutter);">
-    <img src="After.jpg" alt="PDP — after" style="width: 100%; max-width: 70%; display: block; margin: 0 auto; border-radius: 8px; mix-blend-mode: multiply;" />
+    <img src="images/After.jpg" alt="PDP — after" style="width: 100%; max-width: 70%; display: block; margin: 0 auto; border-radius: 8px; mix-blend-mode: multiply;" />
   </section>
 
   <!-- Phased Rollout -->
@@ -1351,13 +1351,13 @@
             <div class="p01-phases-desktop" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
               <div>
                 <div style="overflow: hidden; border-radius: 8px; border: 1px solid var(--border); aspect-ratio: 1050/644;">
-                  <img src="Phase1desktop.jpg" alt="Phase 01 — desktop" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                  <img src="images/Phase1desktop.jpg" alt="Phase 01 — desktop" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
                 </div>
                 <span style="display: block; margin-top: 8px; font-size: 0.6rem; letter-spacing: 0.01em; color: var(--text-muted);">Phase 01 — Desktop</span>
               </div>
               <div>
                 <div style="overflow: hidden; border-radius: 8px; border: 1px solid var(--border); aspect-ratio: 1050/644;">
-                  <img src="phase2desktop.jpg" alt="Phase 02 — desktop" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                  <img src="images/phase2desktop.jpg" alt="Phase 02 — desktop" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
                 </div>
                 <span style="display: block; margin-top: 8px; font-size: 0.6rem; letter-spacing: 0.01em; color: var(--text-muted);">Phase 02 — Desktop</span>
               </div>
@@ -1365,15 +1365,15 @@
             <!-- Mobile row -->
             <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
               <div style="display: flex; flex-direction: column; align-items: center;">
-                <img src="Phase1mob.jpg" alt="Beginning — mobile" style="width: 60%; height: auto; object-fit: contain; border-radius: 8px; display: block; border: 1px solid var(--border);" />
+                <img src="images/Phase1mob.jpg" alt="Beginning — mobile" style="width: 60%; height: auto; object-fit: contain; border-radius: 8px; display: block; border: 1px solid var(--border);" />
                 <span style="display: block; margin-top: 8px; font-size: 0.6rem; letter-spacing: 0.01em; color: var(--text-muted);">Beginning</span>
               </div>
               <div style="display: flex; flex-direction: column; align-items: center;">
-                <img src="phase2mob.jpg" alt="Phase 01 — mobile" style="width: 60%; height: auto; object-fit: contain; border-radius: 8px; display: block; border: 1px solid var(--border);" />
+                <img src="images/phase2mob.jpg" alt="Phase 01 — mobile" style="width: 60%; height: auto; object-fit: contain; border-radius: 8px; display: block; border: 1px solid var(--border);" />
                 <span style="display: block; margin-top: 8px; font-size: 0.6rem; letter-spacing: 0.01em; color: var(--text-muted);">Phase 01</span>
               </div>
               <div style="display: flex; flex-direction: column; align-items: center;">
-                <img src="phase3mob.jpg" alt="Phase 02 — mobile" style="width: 60%; height: auto; object-fit: contain; border-radius: 8px; display: block; border: 1px solid var(--border);" />
+                <img src="images/phase3mob.jpg" alt="Phase 02 — mobile" style="width: 60%; height: auto; object-fit: contain; border-radius: 8px; display: block; border: 1px solid var(--border);" />
                 <span style="display: block; margin-top: 8px; font-size: 0.6rem; letter-spacing: 0.01em; color: var(--text-muted);">Phase 02</span>
               </div>
             </div>
@@ -1431,9 +1431,6 @@
 
   <!-- More Work -->
   <section class="work reveal" style="padding-top: clamp(40px, 6vw, 80px);">
-    <div class="work__header">
-      <h2 class="work__title">More work</h2>
-    </div>
     <a class="project-row" href="project-03.html">
       <div class="project-row__inner">
         <span class="project-row__num">01</span>
@@ -1485,16 +1482,18 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer container">
-    <p class="footer__copy">© 2026 Claire Davis. All rights reserved.</p>
-    <div class="footer__links">
-      <a href="mailto:c_e_davis162@hotmail.co.uk">Email</a>
-      <a href="https://www.linkedin.com/in/claire-davis-design" target="_blank">LinkedIn</a>
-      <a href="about.html">About</a>
+  <footer class="footer">
+    <div class="footer__inner container">
+      <p class="footer__copy">© 2026 Claire Davis. All rights reserved.</p>
+      <div class="footer__links">
+        <a href="mailto:c_e_davis162@hotmail.co.uk">Email</a>
+        <a href="https://www.linkedin.com/in/claire-davis-design" target="_blank">LinkedIn</a>
+        <a href="about.html">About</a>
+      </div>
     </div>
   </footer>
 
-  <script src="main.js?v=2"></script>
+  <script src="js/main.js?v=2"></script>
   <script>
     // ── Tab switcher ──
     function switchTab(group, tab, btn) {

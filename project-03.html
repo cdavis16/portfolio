@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Connect Wearables – Claire Davis</title>
   <meta name="description" content="Integrating wearable health data into the Healf ecosystem to personalise product recommendations and deepen user engagement." />
-  <link rel="stylesheet" href="style.css?v=7" />
+  <link rel="stylesheet" href="css/style.css?v=7" />
   <style>
     /* ── Scroll progress ── */
     .scroll-progress {
@@ -56,7 +56,7 @@
       background: rgba(255, 255, 255, 0.18);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      border: none;
       border-radius: 16px;
       padding: 24px 28px;
     }
@@ -208,14 +208,14 @@
 
     .hmw-card {
       padding: 20px;
-      border: 1px solid var(--border);
+      border: none;
       border-radius: 8px;
       background: var(--surface);
-      transition: background 0.4s ease, border-color 0.4s ease;
+      transition: background 0.4s ease;
       flex: 1;
     }
 
-    .hmw-card:hover { background: var(--surface-hover); border-color: var(--border-hover); }
+    .hmw-card:hover { background: var(--surface-hover); }
 
     /* HMW Horizontal Carousel */
     .process-block__content { min-width: 0; overflow: hidden; }
@@ -317,7 +317,7 @@
       background: rgba(255, 255, 255, 0.45);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border: 1px solid var(--border);
+      border: none;
       border-radius: 12px;
       padding: 14px 40px 14px 24px;
       min-width: 240px;
@@ -582,7 +582,7 @@
 
     <!-- Visual / hero image area -->
     <div class="project-hero__visual project-hero__visual--p03" style="background: #1a1a1a;">
-      <img src="aura-ring.jpg" alt="Connect Wearables hero" style="width: 100%; height: 100%; object-fit: cover;">
+      <img src="images/aura-ring.jpg" alt="Connect Wearables hero" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
 
     <!-- Project title + meta -->
@@ -646,22 +646,22 @@
       <!-- Screens grid -->
       <div class="p03-grid-md" style="display: grid; grid-template-columns: repeat(6, 1fr);">
         <div>
-          <img src="Activation2.png" alt="Activation screen" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+          <img src="images/Activation2.png" alt="Activation screen" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
         </div>
         <div>
-          <img src="Onboarding1.png" alt="Onboarding step 1" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+          <img src="images/Onboarding1.png" alt="Onboarding step 1" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
         </div>
         <div>
-          <img src="Onboarding2.png" alt="Onboarding step 2" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+          <img src="images/Onboarding2.png" alt="Onboarding step 2" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
         </div>
         <div>
-          <img src="Onboarding3.png" alt="Onboarding step 3" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+          <img src="images/Onboarding3.png" alt="Onboarding step 3" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
         </div>
         <div>
-          <img src="Results.png" alt="Results screen" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+          <img src="images/Results.png" alt="Results screen" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
         </div>
         <div>
-          <img src="Account.png" alt="Account screen" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+          <img src="images/Account.png" alt="Account screen" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
         </div>
       </div>
       <!-- Labels below images -->
@@ -827,13 +827,13 @@
         <p class="p03-label">Activation banners</p>
         <p class="p03-desc">These concepts explored the most effective way to <strong style="font-weight: 500; color: var(--text-primary);">communicate the value of connecting a wearable</strong>.</p>
       </div>
-      <img src="Activation-banners.png" alt="Activation banner explorations" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="images/Activation-banners.png" alt="Activation banner explorations" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
     </div>
 
     <!-- Connection flow explorations -->
     <div class="p03-connect-grid p03-grid-md" style="display: grid; grid-template-columns: repeat(2, 1fr) minmax(200px, 1fr); align-items: center; margin-bottom: 24px;">
-      <img src="Connect1.png" alt="Connect flow exploration 1" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <img src="Connect3.png" alt="Connect flow exploration 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="images/Connect1.png" alt="Connect flow exploration 1" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="images/Connect3.png" alt="Connect flow exploration 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
       <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px; display: flex; flex-direction: column; justify-content: center; height: 100%;">
         <p class="p03-label">Connection flow</p>
         <p class="p03-desc">Explorations into what resonated with users the most and was most identifiable to ensure a <strong style="font-weight: 500; color: var(--text-primary);">quick and frictionless</strong> flow.</p>
@@ -846,15 +846,15 @@
         <p class="p03-label">Results display</p>
         <p class="p03-desc">Trials for showing the result with a <strong style="font-weight: 500; color: var(--text-primary);">match score</strong>, giving users a clear reason why each product was recommended for them.</p>
       </div>
-      <img src="Match-2.jpg" alt="Match score exploration 2" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <img src="Match-3.jpg" alt="Match score exploration 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="images/Match-2.jpg" alt="Match score exploration 2" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="images/Match-3.jpg" alt="Match score exploration 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
     </div>
 
     <!-- For You page explorations grid -->
     <div class="p03-foryou-grid p03-grid-wide" style="display: grid; grid-template-columns: repeat(2, 1fr);">
-      <img src="Foryou1.png?v=2" alt="For You screen 1" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <img src="Foryou2.png?v=2" alt="For You screen 2" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <img src="Foryou3.png?v=2" alt="For You screen 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="images/Foryou1.png?v=2" alt="For You screen 1" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="images/Foryou2.png?v=2" alt="For You screen 2" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="images/Foryou3.png?v=2" alt="For You screen 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
       <div class="glass p03-glass" style="display: flex; flex-direction: column; justify-content: center;">
         <p class="p03-label">Product recommendations and results</p>
         <p class="p03-desc">Exploration focusing on the 'For You' page carousel where users were directed after connection showing their <strong style="font-weight: 500; color: var(--text-primary);">recommended products</strong>.</p>
@@ -1007,9 +1007,9 @@
             </div>
           </div>
           <div style="border-radius: 12px; overflow: hidden; aspect-ratio: 304/669;">
-            <img src="Results-soft.png?v=2" alt="Soft launch results screen" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block;" />
+            <img src="images/Results-soft.png?v=2" alt="Soft launch results screen" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block;" />
           </div>
-          <img src="percent2.png" alt="Match score detail view" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+          <img src="images/percent2.png" alt="Match score detail view" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
         </div>
 
         <!-- Panel B: Specificity -->
@@ -1029,8 +1029,8 @@
               <p class="p03-desc">Intelligence becomes legible and conversational</p>
             </div>
           </div>
-          <img src="Helix1.png" alt="Helix find out more CTA" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
-          <img src="Helix2.png" alt="Helix chat with prompts" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+          <img src="images/Helix1.png" alt="Helix find out more CTA" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+          <img src="images/Helix2.png" alt="Helix chat with prompts" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
         </div>
 
         <!-- Panel C: Noise -->
@@ -1050,8 +1050,8 @@
               <p class="p03-desc">Improves recommendation quality, customer trust, and long-term retention</p>
             </div>
           </div>
-          <img src="Rate 1.png" alt="Thumbs up and down rating" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
-          <img src="Rate2.png" alt="Feedback options on thumbs down" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+          <img src="images/Rate 1.png" alt="Thumbs up and down rating" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+          <img src="images/Rate2.png" alt="Feedback options on thumbs down" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
         </div>
 
       </div>
@@ -1111,10 +1111,10 @@
   <!-- Onboarding explorations – full-bleed grey -->
   <section class="p03-onboard-section" style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px); margin-top: clamp(40px, 5vw, 64px);">
     <div class="p03-onboard-grid p03-grid-md" style="display: grid; grid-template-columns: repeat(4, 1fr);">
-      <img src="1Onboard.png" alt="Onboarding exploration 1" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <img src="2Onboard.png" alt="Onboarding exploration 2" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <img src="3Onboard.png" alt="Onboarding exploration 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <img src="Onboard4.png" alt="Onboarding exploration 4" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="images/1Onboard.png" alt="Onboarding exploration 1" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="images/2Onboard.png" alt="Onboarding exploration 2" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="images/3Onboard.png" alt="Onboarding exploration 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="images/Onboard4.png" alt="Onboarding exploration 4" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
     </div>
   </section>
 
@@ -1216,16 +1216,18 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer container">
-    <p class="footer__copy">&copy; 2026 Claire Davis. All rights reserved.</p>
-    <div class="footer__links">
-      <a href="mailto:c_e_davis162@hotmail.co.uk">Email</a>
-      <a href="https://www.linkedin.com/in/claire-davis-design" target="_blank">LinkedIn</a>
-      <a href="about.html">About</a>
+  <footer class="footer">
+    <div class="footer__inner container">
+      <p class="footer__copy">&copy; 2026 Claire Davis. All rights reserved.</p>
+      <div class="footer__links">
+        <a href="mailto:c_e_davis162@hotmail.co.uk">Email</a>
+        <a href="https://www.linkedin.com/in/claire-davis-design" target="_blank">LinkedIn</a>
+        <a href="about.html">About</a>
+      </div>
     </div>
   </footer>
 
-  <script src="main.js?v=2"></script>
+  <script src="js/main.js?v=2"></script>
   <script>
     // ── Quotes Carousel – arrow navigation ──
     (function() {

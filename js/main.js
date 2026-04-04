@@ -185,6 +185,20 @@
     }, { passive: true });
   }
 
+
+  /* ── LinkedIn Accordion ────────────────────────────────────────── */
+  document.querySelectorAll('[data-linkedin-row]').forEach(row => {
+    const header = row.querySelector('.linkedin-row__header');
+    if (!header) return;
+    header.addEventListener('click', () => {
+      const isOpen = row.classList.contains('open');
+      // Close all others
+      document.querySelectorAll('[data-linkedin-row].open').forEach(r => r.classList.remove('open'));
+      // Toggle clicked
+      if (!isOpen) row.classList.add('open');
+    });
+  });
+
   /* ── Stagger children ─────────────────────────────────────────── */
   document.querySelectorAll('[data-stagger]').forEach(parent => {
     const children = parent.children;

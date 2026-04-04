@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Personalisation Hub – Claire Davis</title>
   <meta name="description" content="Designing a centralised customisation hub for Jo Malone London to unify gifting and personalisation." />
-  <link rel="stylesheet" href="style.css?v=7" />
+  <link rel="stylesheet" href="css/style.css?v=7" />
   <style>
     /* ── Scroll progress ── */
     .scroll-progress {
@@ -56,7 +56,7 @@
       background: rgba(255, 255, 255, 0.18);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      border: none;
       border-radius: 16px;
       padding: 24px 28px;
     }
@@ -208,13 +208,13 @@
 
     .hmw-card {
       padding: 20px;
-      border: 1px solid var(--border);
+      border: none;
       border-radius: 8px;
       background: var(--surface);
-      transition: background 0.4s ease, border-color 0.4s ease;
+      transition: background 0.4s ease;
     }
 
-    .hmw-card:hover { background: var(--surface-hover); border-color: var(--border-hover); }
+    .hmw-card:hover { background: var(--surface-hover); }
 
     /* HMW Horizontal Carousel */
     .process-block__content { min-width: 0; overflow: hidden; }
@@ -492,7 +492,7 @@
       background: rgba(255, 255, 255, 0.45);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border: 1px solid var(--border);
+      border: none;
       border-radius: 12px;
       padding: 14px 40px 14px 24px;
       min-width: 240px;
@@ -660,7 +660,7 @@
 
     <!-- Visual / hero image area -->
     <div class="project-hero__visual project-hero__visual--p02" style="background: #1a1a1a;">
-      <img src="engraving.jpg" alt="Customisation tool hero" style="width: 100%; height: 100%; object-fit: cover;">
+      <img src="images/engraving.jpg" alt="Customisation tool hero" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
 
     <!-- Project title + meta -->
@@ -723,7 +723,7 @@
 
   <!-- Hero video – full-bleed grey -->
   <section class="p02-grey" style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px); display:flex; justify-content:center;">
-    <video src="Custo-vid-2.mp4" autoplay muted loop playsinline style="width:30%;max-width:360px;height:auto;border-radius:16px;display:block;"></video>
+    <video src="videos/Custo-vid-2.mp4" autoplay muted loop playsinline style="width:30%;max-width:360px;height:auto;border-radius:16px;display:block;"></video>
   </section>
 
   <!-- PROCESS SECTIONS -->
@@ -777,7 +777,7 @@
 
         <!-- Left: PDP screenshot with annotation -->
         <div style="flex: 0 0 auto; width: clamp(140px, 16vw, 210px);">
-          <img src="old_custo_cta.jpg" alt="Jo Malone PDP – Add Customizations CTA" style="width: 100%; height: auto; border-radius: 8px; display: block;">
+          <img src="images/old_custo_cta.jpg" alt="Jo Malone PDP – Add Customizations CTA" style="width: 100%; height: auto; border-radius: 8px; display: block;">
           <!-- Annotation note -->
           <div style="margin-top: 12px;">
             <p style="font-size: 0.6875rem; font-weight: 300; color: var(--text-secondary); line-height: 1.5; margin: 0;">'Add customisation' was lost within the hierarchy</p>
@@ -794,11 +794,11 @@
         <!-- Right: Mobile popup + desktop popup side by side -->
         <div class="p02-popup-row" style="flex: 1; display: flex; gap: 16px; align-items: flex-start; min-width: 0;">
           <div style="flex: 1; min-width: 0;">
-            <img src="Old_popup_mob.jpg" alt="PDP engraving overlay – input tab" style="width: 100%; height: auto; border-radius: 8px; display: block;">
+            <img src="images/Old_popup_mob.jpg" alt="PDP engraving overlay – input tab" style="width: 100%; height: auto; border-radius: 8px; display: block;">
             <p style="font-size: 0.6875rem; font-weight: 300; color: var(--text-secondary); line-height: 1.5; margin-top: 10px;">On mobile user had to tab between preview image and text field input, a UX that was frustrating and inefficient</p>
           </div>
           <div style="flex: 1.5; min-width: 0;">
-            <img src="old_popup_desktop.jpg?v=2" alt="PDP engraving overlay – desktop" style="width: 100%; height: auto; border-radius: 8px; display: block;">
+            <img src="images/old_popup_desktop.jpg?v=2" alt="PDP engraving overlay – desktop" style="width: 100%; height: auto; border-radius: 8px; display: block;">
           </div>
         </div>
 
@@ -808,17 +808,17 @@
       <div class="reveal" style="margin-top: 64px;">
         <div class="p02-grid-3" data-stagger style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
           <div class="reveal">
-            <img src="Tiffany.jpg" alt="Tiffany & Co. personalisation" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;" />
+            <img src="images/Tiffany.jpg" alt="Tiffany & Co. personalisation" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;" />
             <p style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); line-height: 1.6; margin: 0 0 8px;">Multi-step PDP personalisation</p>
             <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0;">Guided, step-by-step engraving flow with real-time preview directly on the PDP – personalisation central to the purchase decision, not an afterthought.</p>
           </div>
           <div class="reveal">
-            <img src="CD.jpg" alt="Dior personalisation" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;" />
+            <img src="images/CD.jpg" alt="Dior personalisation" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;" />
             <p style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); line-height: 1.6; margin: 0 0 8px;">Dedicated customisation hub</p>
             <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0;">Standalone personalisation destination accessible from the main nav – consolidates all options and positions customisation as a core brand pillar.</p>
           </div>
           <div class="reveal">
-            <img src="Burberry.jpg" alt="Burberry personalisation" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;" />
+            <img src="images/Burberry.jpg" alt="Burberry personalisation" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;" />
             <p style="font-size: 0.9rem; font-weight: 400; color: var(--text-primary); line-height: 1.6; margin: 0 0 8px;">Live product preview</p>
             <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0;">Real-time rendering as users select monogramming, colours, and styles – removes uncertainty and drives emotional engagement with the product.</p>
           </div>
@@ -966,14 +966,14 @@
   <section class="p02-grey" style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px);">
     <p style="font-size: 0.6875rem; letter-spacing: 0.01em; color: var(--text-muted); margin-bottom: 24px;">Early explorations – navigation and flow structure</p>
     <div style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px; margin-bottom: clamp(40px, 5vw, 56px);" class="p02-explorations">
-      <img src="Exp_1.jpg" alt="Exploration 01" style="width:100%;height:auto;border-radius:8px;display:block;">
-      <img src="Exp_2.jpg" alt="Exploration 02" style="width:100%;height:auto;border-radius:8px;display:block;">
-      <img src="Exp_3.jpg" alt="Exploration 03" style="width:100%;height:auto;border-radius:8px;display:block;">
-      <img src="Exp_4.jpg" alt="Exploration 04" style="width:100%;height:auto;border-radius:8px;display:block;">
-      <img src="Exp_5.jpg" alt="Exploration 05" style="width:100%;height:auto;border-radius:8px;display:block;">
-      <img src="Exp_6.jpg" alt="Exploration 06" style="width:100%;height:auto;border-radius:8px;display:block;">
-      <img src="Exp_7.jpg" alt="Exploration 07" style="width:100%;height:auto;border-radius:8px;display:block;">
-      <img src="Exp_8.jpg" alt="Exploration 08" style="width:100%;height:auto;border-radius:8px;display:block;">
+      <img src="images/Exp_1.jpg" alt="Exploration 01" style="width:100%;height:auto;border-radius:8px;display:block;">
+      <img src="images/Exp_2.jpg" alt="Exploration 02" style="width:100%;height:auto;border-radius:8px;display:block;">
+      <img src="images/Exp_3.jpg" alt="Exploration 03" style="width:100%;height:auto;border-radius:8px;display:block;">
+      <img src="images/Exp_4.jpg" alt="Exploration 04" style="width:100%;height:auto;border-radius:8px;display:block;">
+      <img src="images/Exp_5.jpg" alt="Exploration 05" style="width:100%;height:auto;border-radius:8px;display:block;">
+      <img src="images/Exp_6.jpg" alt="Exploration 06" style="width:100%;height:auto;border-radius:8px;display:block;">
+      <img src="images/Exp_7.jpg" alt="Exploration 07" style="width:100%;height:auto;border-radius:8px;display:block;">
+      <img src="images/Exp_8.jpg" alt="Exploration 08" style="width:100%;height:auto;border-radius:8px;display:block;">
     </div>
     <!-- User flow wireframe -->
     <div class="p02-userflow">
@@ -1137,10 +1137,10 @@
             </div>
             <!-- Images below: horizontal row -->
             <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 16px;">
-              <img src="ProtoA-1@2x.jpg" alt="Prototype A screen 1" style="width: 100%; height: auto; border-radius: 6px; display: block;">
-              <img src="ProtoA-2@2x.jpg" alt="Prototype A screen 2" style="width: 100%; height: auto; border-radius: 6px; display: block;">
-              <img src="ProtoA-3@2x.jpg" alt="Prototype A screen 3" style="width: 100%; height: auto; border-radius: 6px; display: block;">
-              <img src="ProtoA-4@2x.jpg" alt="Prototype A screen 4" style="width: 100%; height: auto; border-radius: 6px; display: block;">
+              <img src="images/ProtoA-1@2x.jpg" alt="Prototype A screen 1" style="width: 100%; height: auto; border-radius: 6px; display: block;">
+              <img src="images/ProtoA-2@2x.jpg" alt="Prototype A screen 2" style="width: 100%; height: auto; border-radius: 6px; display: block;">
+              <img src="images/ProtoA-3@2x.jpg" alt="Prototype A screen 3" style="width: 100%; height: auto; border-radius: 6px; display: block;">
+              <img src="images/ProtoA-4@2x.jpg" alt="Prototype A screen 4" style="width: 100%; height: auto; border-radius: 6px; display: block;">
             </div>
           </div>
 
@@ -1157,10 +1157,10 @@
             </div>
             <!-- Images below: horizontal row -->
             <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 16px;">
-              <img src="ProtoB-1@2x.jpg" alt="Prototype B screen 1" style="width: 100%; height: auto; border-radius: 6px; display: block;">
-              <img src="ProtoB-2@2x.jpg" alt="Prototype B screen 2" style="width: 100%; height: auto; border-radius: 6px; display: block;">
-              <img src="ProtoB-3@2x.jpg" alt="Prototype B screen 3" style="width: 100%; height: auto; border-radius: 6px; display: block;">
-              <img src="ProtoB-4@2x.jpg" alt="Prototype B screen 4" style="width: 100%; height: auto; border-radius: 6px; display: block;">
+              <img src="images/ProtoB-1@2x.jpg" alt="Prototype B screen 1" style="width: 100%; height: auto; border-radius: 6px; display: block;">
+              <img src="images/ProtoB-2@2x.jpg" alt="Prototype B screen 2" style="width: 100%; height: auto; border-radius: 6px; display: block;">
+              <img src="images/ProtoB-3@2x.jpg" alt="Prototype B screen 3" style="width: 100%; height: auto; border-radius: 6px; display: block;">
+              <img src="images/ProtoB-4@2x.jpg" alt="Prototype B screen 4" style="width: 100%; height: auto; border-radius: 6px; display: block;">
             </div>
           </div>
   </section>
@@ -1188,8 +1188,8 @@
             <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0;">Separate review step showing all selections before confirming felt like an extra step</p>
           </div>
         </div>
-        <img src="ReviewA-1@2x.jpg" alt="Prototype A review screen" style="width: 100%; height: auto; border-radius: 12px; display: block;">
-        <img src="ReviewA-2@2x.jpg" alt="Prototype A review detail" style="width: 100%; height: auto; border-radius: 12px; display: block;">
+        <img src="images/ReviewA-1@2x.jpg" alt="Prototype A review screen" style="width: 100%; height: auto; border-radius: 12px; display: block;">
+        <img src="images/ReviewA-2@2x.jpg" alt="Prototype A review detail" style="width: 100%; height: auto; border-radius: 12px; display: block;">
       </div>
 
       <!-- Panel 1: Real Time -->
@@ -1209,8 +1209,8 @@
             <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0;">Persistent 'Your Selections' accordion removes the need for a separate review step – overview always accessible</p>
           </div>
         </div>
-        <img src="ReviewB-1@2x.jpg" alt="Real-time preview screen" style="width: 100%; height: auto; border-radius: 12px; display: block;">
-        <img src="ReviewB-2@2x.jpg" alt="Real-time preview detail" style="width: 100%; height: auto; border-radius: 12px; display: block;">
+        <img src="images/ReviewB-1@2x.jpg" alt="Real-time preview screen" style="width: 100%; height: auto; border-radius: 12px; display: block;">
+        <img src="images/ReviewB-2@2x.jpg" alt="Real-time preview detail" style="width: 100%; height: auto; border-radius: 12px; display: block;">
       </div>
 
       <!-- Panel 2: Review -->
@@ -1230,8 +1230,8 @@
             <p style="font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0;">Longer review flow after 8 steps lengthened the journey and frustrated users who'd already made decisions</p>
           </div>
         </div>
-        <img src="ReviewM-1@2x.jpg" alt="Merged solution screen" style="width: 100%; height: auto; border-radius: 12px; display: block;">
-        <img src="ReviewM-2@2x.jpg" alt="Merged solution detail" style="width: 100%; height: auto; border-radius: 12px; display: block;">
+        <img src="images/ReviewM-1@2x.jpg" alt="Merged solution screen" style="width: 100%; height: auto; border-radius: 12px; display: block;">
+        <img src="images/ReviewM-2@2x.jpg" alt="Merged solution detail" style="width: 100%; height: auto; border-radius: 12px; display: block;">
       </div>
 
     </div>
@@ -1284,7 +1284,7 @@
   </section>
 
   <section class="p02-grey" style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px); display:flex; justify-content:center;">
-    <video src="Custo-vid-1.mp4" autoplay muted loop playsinline style="width:30%;max-width:360px;height:auto;border-radius:16px;display:block;"></video>
+    <video src="videos/Custo-vid-1.mp4" autoplay muted loop playsinline style="width:30%;max-width:360px;height:auto;border-radius:16px;display:block;"></video>
   </section>
 
   <section class="section" style="padding-top: 0; padding-bottom: 0;">
@@ -1429,16 +1429,18 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer container">
-    <p class="footer__copy">© 2026 Claire Davis. All rights reserved.</p>
-    <div class="footer__links">
-      <a href="mailto:c_e_davis162@hotmail.co.uk">Email</a>
-      <a href="https://www.linkedin.com/in/claire-davis-design" target="_blank">LinkedIn</a>
-      <a href="about.html">About</a>
+  <footer class="footer">
+    <div class="footer__inner container">
+      <p class="footer__copy">© 2026 Claire Davis. All rights reserved.</p>
+      <div class="footer__links">
+        <a href="mailto:c_e_davis162@hotmail.co.uk">Email</a>
+        <a href="https://www.linkedin.com/in/claire-davis-design" target="_blank">LinkedIn</a>
+        <a href="about.html">About</a>
+      </div>
     </div>
   </footer>
 
-  <script src="main.js?v=2"></script>
+  <script src="js/main.js?v=2"></script>
   <script>
     // ── Quotes Carousel – arrow navigation ──
     (function() {
