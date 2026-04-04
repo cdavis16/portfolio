@@ -1398,10 +1398,10 @@ body.cursor-hover .cursor__dot  { width: 6px; height: 6px; }
 @media (max-width: 640px) {
   .about-hero { padding-top: 96px; }
   .about-layout { grid-template-columns: 1fr; padding-right: 0; }
-  .about-layout__content { order: 1; }
-  .about-layout__image { order: 2; padding: 0 var(--gutter) clamp(40px, 6vw, 80px); display: flex; justify-content: center; }
+  .about-layout__content { order: 2; }
+  .about-layout__image { order: 1; padding: 80px var(--gutter) 0; display: flex; justify-content: center; }
   .about-hero__right { position: static; width: 100%; max-width: 280px; }
-  .about-hero__right { position: static; width: 100%; max-width: 280px; }
+  .about-hero { min-height: auto; padding-top: clamp(24px, 4vw, 40px); }
   .about-image { width: 100%; max-width: 280px; }
 }
 
@@ -1568,6 +1568,7 @@ body.cursor-hover .cursor__dot  { width: 6px; height: 6px; }
   object-fit: cover;
   border-radius: var(--radius-md);
   display: block;
+  filter: grayscale(100%);
 }
 
 .linkedin-row__text {
