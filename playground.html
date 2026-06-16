@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VD87P00C9Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VD87P00C9Z');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio — Claire Davis</title>
+  <meta name="description" content="A showcase of creative projects and experiments." />
+  <link rel="stylesheet" href="css/style.css?v=6" />
+  <style>
+    body { background: #3d3d3d; }
+
+    /* Invert nav */
+    .nav {
+      background: rgba(61, 61, 61, 0.75) !important;
+    }
+    .nav__logo { color: #fff !important; }
+    .nav__toggle-line { background: #fff !important; }
+    .nav__links a { color: rgba(255,255,255,0.6) !important; }
+    .nav__links a:hover { color: #fff !important; }
+    .nav__links a.active { color: #fff !important; }
+
+    /* Invert footer */
+    .footer__copy { color: rgba(255,255,255,0.5) !important; }
+    .footer__links a { color: rgba(255,255,255,0.5) !important; }
+    .footer__links a:hover { color: #fff !important; }
+
+    /* Invert cursor */
+    .cursor__dot { background: #fff !important; }
+
+    /* Invert dropdown */
+    .nav__dropdown { background: rgba(61, 61, 61, 0.95) !important; }
+    .nav__dropdown a { color: rgba(255,255,255,0.6) !important; }
+    .nav__dropdown a:hover { color: #fff !important; }
+
+    /* Top grid — 3 columns */
+    .playground-grid--top {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 60px 4px;
+      padding: 80px var(--gutter) 0;
+      align-items: start;
+    }
+
+    .playground-grid--top .playground-grid__item:nth-child(1)  { margin-top: 0; }
+    .playground-grid--top .playground-grid__item:nth-child(2)  { margin-top: 100px; }
+    .playground-grid--top .playground-grid__item:nth-child(3)  { margin-top: 40px; }
+    .playground-grid--top .playground-grid__item:nth-child(4)  { margin-top: 70px; }
+    .playground-grid--top .playground-grid__item:nth-child(5)  { margin-top: 0; }
+    .playground-grid--top .playground-grid__item:nth-child(6)  { margin-top: 120px; }
+    .playground-grid--top .playground-grid__item:nth-child(7)  { margin-top: 30px; }
+    .playground-grid--top .playground-grid__item:nth-child(8)  { margin-top: 90px; }
+    .playground-grid--top .playground-grid__item:nth-child(9)  { margin-top: 0; }
+
+    /* Bottom grid — 5 columns */
+    .playground-grid--bottom {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 60px 4px;
+      padding: 60px var(--gutter) 0;
+      align-items: start;
+    }
+
+    .playground-grid--bottom .playground-grid__item:nth-child(1)  { margin-top: 30px; }
+    .playground-grid--bottom .playground-grid__item:nth-child(2)  { margin-top: 100px; }
+    .playground-grid--bottom .playground-grid__item:nth-child(3)  { margin-top: 10px; }
+    .playground-grid--bottom .playground-grid__item:nth-child(4)  { margin-top: 60px; }
+    .playground-grid--bottom .playground-grid__item:nth-child(5)  { margin-top: 120px; }
+    .playground-grid--bottom .playground-grid__item:nth-child(6)  { margin-top: 0; }
+    .playground-grid--bottom .playground-grid__item:nth-child(7)  { margin-top: 80px; }
+    .playground-grid--bottom .playground-grid__item:nth-child(8)  { margin-top: 50px; }
+    .playground-grid--bottom .playground-grid__item:nth-child(9)  { margin-top: 130px; }
+    .playground-grid--bottom .playground-grid__item:nth-child(10) { margin-top: 15px; }
+    .playground-grid--bottom .playground-grid__item:nth-child(11) { margin-top: 95px; }
+    .playground-grid--bottom .playground-grid__item:nth-child(12) { margin-top: 45px; }
+
+    .playground-grid__item {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1;
+      background: #3d3d3d;
+    }
+
+
+    .playground-grid__item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .playground-grid__item--scaled video {
+      width: auto;
+      height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      margin: 0 auto;
+      border-radius: 8px;
+      padding: 8%;
+    }
+
+    .playground-grid__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .playground-grid__item--wide {
+      grid-column: span 2;
+    }
+
+    .playground-grid__item--contain img {
+      object-fit: contain;
+      padding: 8%;
+    }
+
+    /* Sticky info box */
+    .playground-info {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 99;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 12px;
+      padding: 16px 24px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.8125rem;
+      font-weight: 300;
+      line-height: 1.5;
+      max-width: 280px;
+    }
+
+    @media (max-width: 768px) {
+      .playground-grid--top,
+      .playground-grid--bottom {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .playground-info {
+        bottom: 16px;
+        left: 16px;
+        right: 16px;
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav__bar">
+      <div class="nav__left">
+        <button class="nav__toggle" aria-label="Menu">
+          <span class="nav__toggle-line"></span>
+          <span class="nav__toggle-line"></span>
+          <span class="nav__toggle-line"></span>
+        </button>
+        <a class="nav__logo" href="index.html">Claire Davis</a>
+      </div>
+      <ul class="nav__links">
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+    <ul class="nav__dropdown">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="project-03.html">Connect Wearables</a></li>
+      <li><a href="project-05.html">Healf App</a></li>
+      <li><a href="project-02.html">Customisation Tool</a></li>
+      <li><a href="project-01.html">PDP Optimisation</a></li>
+      <li><a href="project-04.html">Vibe Coding</a></li>
+    </ul>
+  </nav>
+
+  <!-- Top grid — 3 columns -->
+  <div class="playground-grid--top">
+    <div class="playground-grid__item playground-grid__item--scaled">
+      <video src="videos/Playground_page/jo_malonie.mp4" autoplay loop muted playsinline></video>
+    </div>
+    <div class="playground-grid__item">
+      <img src="videos/Playground_page/Christmas.jpg" alt="Christmas campaign" />
+    </div>
+    <div class="playground-grid__item playground-grid__item--scaled">
+      <video src="videos/Playground_page/PDP_v2.mp4" autoplay loop muted playsinline></video>
+    </div>
+
+    <div class="playground-grid__item">
+      <img src="videos/Playground_page/Hsbc 1.jpg" alt="HSBC design" />
+    </div>
+    <div class="playground-grid__item playground-grid__item--scaled">
+      <video src="videos/Playground_page/Stamp.mp4" autoplay loop muted playsinline></video>
+    </div>
+    <div class="playground-grid__item">
+      <video src="videos/Playground_page/preview_BG.mp4" autoplay loop muted playsinline></video>
+    </div>
+
+    <div class="playground-grid__item playground-grid__item--scaled">
+      <video src="videos/Playground_page/Write.mp4" autoplay loop muted playsinline></video>
+    </div>
+    <div class="playground-grid__item">
+      <video src="videos/Playground_page/message_BG.mp4" autoplay loop muted playsinline></video>
+    </div>
+    <div class="playground-grid__item playground-grid__item--scaled">
+      <video src="videos/Playground_page/Custo-vid-1.mp4" autoplay loop muted playsinline></video>
+    </div>
+  </div>
+
+  <!-- Bottom grid — 5 columns -->
+  <div class="playground-grid--bottom">
+    <div class="playground-grid__item playground-grid__item--scaled">
+      <video src="videos/Playground_page/Scent_finder_AI.mp4" autoplay loop muted playsinline></video>
+    </div>
+    <div class="playground-grid__item playground-grid__item--wide">
+      <img src="videos/Playground_page/Feeld 1.jpg" alt="Feeld design" />
+    </div>
+    <div class="playground-grid__item playground-grid__item--scaled">
+      <video src="videos/Playground_page/Swipe_Pic.mp4" autoplay loop muted playsinline></video>
+    </div>
+    <div class="playground-grid__item playground-grid__item--scaled">
+      <video src="videos/Playground_page/pads_1.mp4" autoplay loop muted playsinline></video>
+    </div>
+
+    <div class="playground-grid__item playground-grid__item--wide">
+      <img src="videos/Playground_page/PDP_Image.jpg" alt="PDP design" />
+    </div>
+    <div class="playground-grid__item playground-grid__item--scaled">
+      <video src="videos/Playground_page/Custo-vid-2.mp4" autoplay loop muted playsinline></video>
+    </div>
+    <div class="playground-grid__item playground-grid__item--wide playground-grid__item--contain">
+      <img src="videos/Playground_page/Sans.png" alt="Sans design" />
+    </div>
+
+    <div class="playground-grid__item">
+      <video src="videos/Playground_page/preview_2_BG.mp4" autoplay loop muted playsinline></video>
+    </div>
+    <div class="playground-grid__item playground-grid__item--wide">
+      <img src="videos/Playground_page/Care.jpg" alt="Care design" />
+    </div>
+    <div class="playground-grid__item playground-grid__item--scaled">
+      <video src="videos/Playground_page/Scents_v2.mp4" autoplay loop muted playsinline></video>
+    </div>
+    <div class="playground-grid__item playground-grid__item--wide">
+      <img src="videos/Playground_page/Pads.jpg" alt="Pads design" />
+    </div>
+  </div>
+
+  <!-- Sticky info box -->
+  <div class="playground-info">
+    This is a showcase of projects
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner container">
+      <p class="footer__copy">&copy; 2026 Claire Davis. All rights reserved.</p>
+      <div class="footer__links">
+        <a href="mailto:c_e_davis162@hotmail.co.uk">Email</a>
+        <a href="https://www.linkedin.com/in/claire-davis-design" target="_blank">LinkedIn</a>
+        <a href="about.html">About</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=2"></script>
+</body>
+</html>

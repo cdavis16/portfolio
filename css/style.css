@@ -1386,6 +1386,13 @@ body.cursor-hover .cursor__dot  { width: 6px; height: 6px; }
   .nav__links { gap: 20px; }
   .nav__dropdown { gap: 12px; flex-direction: column; }
   .nav.dropdown-open .nav__dropdown { max-height: 200px; padding-bottom: 20px; }
+  .nav__logo { font-size: 0; }
+  .nav__logo::after {
+    content: 'CD';
+    font-size: 0.8125rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
 }
 
 /* ── Hero ────────────────────────────────────────────────────── */

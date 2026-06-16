@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VD87P00C9Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VD87P00C9Z');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Healf App – Claire Davis</title>
+  <meta name="description" content="Healf App — a work-in-progress project, showing early e-commerce screens from the app." />
+  <link rel="stylesheet" href="css/style.css?v=7" />
+  <style>
+    /* ── Scroll progress ── */
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 1px;
+      background: rgba(255, 255, 255, 0.5);
+      transform: scaleX(0);
+      transform-origin: left;
+      z-index: 200;
+      transition: transform 0.05s linear;
+    }
+
+    /* ── Full-bleed hero overrides ── */
+    .project-hero {
+      padding-top: 0;
+      display: block;
+      position: relative;
+      min-height: 60vh;
+    }
+    .project-hero__visual--p05 {
+      position: absolute !important;
+      inset: 0 !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      min-height: unset !important;
+      overflow: hidden;
+    }
+    .project-hero__visual--p05::after {
+      content: none;
+    }
+    .project-hero__info {
+      position: absolute !important;
+      z-index: 2;
+      bottom: clamp(24px, 4vw, 40px);
+      left: var(--gutter);
+      right: var(--gutter);
+      max-width: 680px;
+      display: block !important;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: none;
+      border-radius: 16px;
+      padding: 24px 28px;
+    }
+    .project-hero__title { font-size: clamp(1.75rem, 4vw, 3rem) !important; }
+    .project-hero__meta-grid {
+      margin-top: 16px;
+    }
+    .project-hero__kicker .eyebrow,
+    .project-hero__title,
+    .project-meta-item__value { color: #fff !important; }
+    .project-meta-item__label { color: rgba(255, 255, 255, 0.7) !important; }
+
+    /* Keep nav as glass while scrolling over the hero image */
+    .nav.scrolled:not(.nav--past-hero) {
+      background: rgba(255, 255, 255, 0.18) !important;
+      border-color: rgba(255, 255, 255, 0.25) !important;
+    }
+
+    /* ── Full-width grey gallery ── */
+    .p05-gallery {
+      background: var(--bg-raised, #f5f5f5);
+      padding: clamp(40px, 6vw, 80px) 0;
+      margin-top: clamp(40px, 6vw, 80px);
+    }
+
+    .p05-gallery__inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .p05-gallery__img {
+      width: 100%;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.06);
+      border: 1px dashed rgba(0,0,0,0.12);
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+
+    .p05-gallery__img img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .p05-gallery__row {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .p05-gallery__row .p05-gallery__img {
+      flex: 0 0 auto;
+      width: auto;
+      min-height: 0;
+      background: transparent;
+      border: none;
+    }
+
+    .p05-gallery__row .p05-gallery__img img {
+      width: auto;
+      max-height: clamp(360px, 50vh, 500px);
+    }
+
+    .p05-gallery__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    @media (max-width: 768px) {
+      .p05-gallery__row {
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .p05-gallery__row .p05-gallery__img img {
+        max-height: 44vh;
+      }
+    }
+
+    /* Tighter title → body spacing for this page's sections */
+    .section .process-block__title { margin-bottom: clamp(10px, 1.5vw, 16px); }
+
+    /* ── Section Navigator ── */
+    .section-nav {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 99;
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: none;
+      border-radius: 12px;
+      padding: 14px 40px 14px 24px;
+      min-width: 240px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .section-nav__toggle {
+      display: none;
+    }
+
+    .section-nav__items {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .section-nav__item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .section-nav__item:hover { background: var(--surface-hover); }
+    .section-nav__num {
+      font-size: 0.5625rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      min-width: 16px;
+      transition: color 0.2s ease;
+    }
+    .section-nav__label {
+      font-size: 0.6875rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      transition: color 0.2s ease;
+    }
+    .section-nav__item.active .section-nav__num,
+    .section-nav__item.active .section-nav__label {
+      color: var(--text-primary);
+      font-weight: 400;
+    }
+    @media (max-width: 640px) {
+      .section-nav {
+        bottom: 0; left: 0; right: 0;
+        border-radius: 0;
+        border-left: none; border-right: none; border-bottom: none;
+        gap: 0;
+        padding: 0;
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        min-width: 0;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .section-nav__toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        background: none;
+        border: none;
+        border-bottom: 1px solid transparent;
+        color: var(--text-muted);
+        cursor: pointer;
+        font-family: var(--font);
+        transition: border-color 0.4s ease;
+      }
+
+      .section-nav__toggle svg {
+        transition: transform 0.5s var(--ease-expo);
+      }
+
+      .section-nav__items {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding: 0 20px;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.7s var(--ease-expo),
+                    opacity 0.3s var(--ease-smooth),
+                    padding 0.7s var(--ease-expo);
+      }
+
+      .section-nav__item {
+        opacity: 0;
+        transform: translateY(6px);
+        padding: 8px 10px;
+        transition: opacity 0.4s var(--ease-smooth),
+                    transform 0.4s var(--ease-expo),
+                    background 0.2s ease;
+      }
+
+      .section-nav__num {
+        min-width: 20px;
+        font-size: 0.5625rem;
+      }
+
+      .section-nav.expanded .section-nav__toggle {
+        border-color: var(--border);
+      }
+
+      .section-nav.expanded .section-nav__toggle svg {
+        transform: rotate(180deg);
+      }
+
+      .section-nav.expanded .section-nav__items {
+        max-height: 400px;
+        opacity: 1;
+        padding: 12px 20px;
+      }
+
+      .section-nav.expanded .section-nav__item {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .section-nav.expanded .section-nav__item:nth-child(1) { transition-delay: 0.10s; }
+      .section-nav.expanded .section-nav__item:nth-child(2) { transition-delay: 0.15s; }
+      .section-nav.expanded .section-nav__item:nth-child(3) { transition-delay: 0.20s; }
+      .section-nav.expanded .section-nav__item:nth-child(4) { transition-delay: 0.25s; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress"></div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav__bar">
+      <div class="nav__left">
+        <button class="nav__toggle" aria-label="Menu">
+          <span class="nav__toggle-line"></span>
+          <span class="nav__toggle-line"></span>
+          <span class="nav__toggle-line"></span>
+        </button>
+        <a class="nav__logo" href="index.html">Claire Davis</a>
+      </div>
+      <ul class="nav__links">
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+    <ul class="nav__dropdown">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="project-03.html">Connect Wearables</a></li>
+      <li><a href="project-05.html">Healf App</a></li>
+      <li><a href="project-02.html">Customisation Tool</a></li>
+      <li><a href="project-01.html">PDP Optimisation</a></li>
+      <li><a href="project-04.html">Vibe Coding</a></li>
+    </ul>
+  </nav>
+
+  <!-- Project Hero -->
+  <header class="project-hero">
+
+    <!-- Visual / hero image area -->
+    <div class="project-hero__visual project-hero__visual--p05" style="background: #999 url('images/Healf_header.jpg') center / cover no-repeat;">
+    </div>
+
+    <!-- Project title + meta -->
+    <div class="project-hero__info">
+      <div>
+        <h1 class="project-hero__title">Healf App</h1>
+      </div>
+      <div class="project-hero__meta-grid">
+        <div>
+          <p class="project-meta-item__label">Client</p>
+          <p class="project-meta-item__value">Healf</p>
+        </div>
+        <div>
+          <p class="project-meta-item__label">Role</p>
+          <p class="project-meta-item__value">Senior Product Designer</p>
+        </div>
+        <div>
+          <p class="project-meta-item__label">Year</p>
+          <p class="project-meta-item__value">2026</p>
+        </div>
+        <div>
+          <p class="project-meta-item__label">Status</p>
+          <p class="project-meta-item__value">Launch Q3</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Overview -->
+  <section class="section" style="padding-bottom: 0;">
+    <div class="container">
+      <div class="project-overview">
+        <div class="reveal">
+          <p class="eyebrow" style="margin-bottom: 20px;">Overview</p>
+          <p class="project-overview__challenge">
+            This case study showcases selected e-commerce screens from an ongoing <strong>0–1 product build</strong>. As the product is currently in development and undergoing <strong>user testing</strong>, I'm only able to share a limited set of work-in-progress designs, including the <strong>PDP</strong>, <strong>product listing</strong>, and <strong>cart</strong> experiences.
+          </p>
+        </div>
+        <div class="project-overview__details reveal reveal-delay-2">
+          <div class="overview-detail">
+            <p class="overview-detail__label">Platform</p>
+            <p class="overview-detail__value">Mobile app</p>
+          </div>
+          <div class="overview-detail">
+            <p class="overview-detail__label">Tools</p>
+            <p class="overview-detail__value">Claude Code · Figma · Linear</p>
+          </div>
+          <div class="overview-detail">
+            <p class="overview-detail__label">Status</p>
+            <p class="overview-detail__value">Launch Q3</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 – Product Listing -->
+  <section id="section-listing" class="section" style="padding-top: clamp(36px, 5vw, 56px); padding-bottom: 0;">
+    <div class="container">
+      <div class="process-block reveal" style="border-top: none;">
+        <span class="process-block__num">01</span>
+        <div class="process-block__content">
+          <p class="process-block__label">E-commerce</p>
+          <h2 class="process-block__title">Product Listing</h2>
+          <div class="process-block__body">
+            <p>
+              Collection view with the ability to toggle between all products and items within a 4 for 3 offer. Sort by and search within the collection.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="p05-gallery" style="margin-top: 0;">
+    <div class="p05-gallery__inner">
+      <div class="p05-gallery__row">
+        <div class="p05-gallery__img"><img src="images/Coll%201.png" alt="Healf App — Collection screen 1" /></div>
+        <div class="p05-gallery__img"><img src="images/Coll%202.png" alt="Healf App — Collection screen 2" /></div>
+        <div class="p05-gallery__img"><img src="images/Coll%203.png" alt="Healf App — Collection screen 3" /></div>
+        <div class="p05-gallery__img"><img src="images/Coll%204.png" alt="Healf App — Collection screen 4" /></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 – Product Detail Page -->
+  <section id="section-pdp" class="section" style="padding-top: clamp(36px, 5vw, 56px); padding-bottom: 0;">
+    <div class="container">
+      <div class="process-block reveal" style="border-top: none;">
+        <span class="process-block__num">02</span>
+        <div class="process-block__content">
+          <p class="process-block__label">E-commerce</p>
+          <h2 class="process-block__title">Product Detail Page</h2>
+          <div class="process-block__body">
+            <p>
+              Necessary imagery, key information, and purchase options along with filtering and a deep dive of reviews.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="p05-gallery" style="margin-top: 0;">
+    <div class="p05-gallery__inner">
+      <div class="p05-gallery__row">
+        <div class="p05-gallery__img"><img src="images/PDP%201.png" alt="Healf App — PDP screen 1" /></div>
+        <div class="p05-gallery__img"><img src="images/PDP2.png" alt="Healf App — PDP screen 2" /></div>
+        <div class="p05-gallery__img"><img src="images/PDP%203.png" alt="Healf App — PDP screen 3" /></div>
+        <div class="p05-gallery__img"><img src="images/PDP%204.png" alt="Healf App — PDP screen 4" /></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 – Search -->
+  <section id="section-search" class="section" style="padding-top: clamp(36px, 5vw, 56px); padding-bottom: 0;">
+    <div class="container">
+      <div class="process-block reveal" style="border-top: none;">
+        <span class="process-block__num">03</span>
+        <div class="process-block__content">
+          <p class="process-block__label">E-commerce</p>
+          <h2 class="process-block__title">Search</h2>
+          <div class="process-block__body">
+            <p>
+              Suggested search terms while typing, search results, and keyboard collapsed.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="p05-gallery" style="margin-top: 0;">
+    <div class="p05-gallery__inner">
+      <div class="p05-gallery__row">
+        <div class="p05-gallery__img"><img src="images/Search%201.png" alt="Healf App — Search screen 1" /></div>
+        <div class="p05-gallery__img"><img src="images/Search%202.png" alt="Healf App — Search screen 2" /></div>
+        <div class="p05-gallery__img"><img src="images/Search%203.png" alt="Healf App — Search screen 3" /></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 – Cart -->
+  <section id="section-cart" class="section" style="padding-top: clamp(36px, 5vw, 56px); padding-bottom: 0;">
+    <div class="container">
+      <div class="process-block reveal" style="border-top: none;">
+        <span class="process-block__num">04</span>
+        <div class="process-block__content">
+          <p class="process-block__label">E-commerce</p>
+          <h2 class="process-block__title">Cart</h2>
+          <div class="process-block__body">
+            <p>
+              Empty cart view and free gift with purchase stepper explorations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="p05-gallery" style="margin-top: 0;">
+    <div class="p05-gallery__inner">
+      <div class="p05-gallery__row">
+        <div class="p05-gallery__img"><img src="images/cart%201.png" alt="Healf App — Cart screen 1" /></div>
+        <div class="p05-gallery__img"><img src="images/cart%202.png" alt="Healf App — Cart screen 2" /></div>
+        <div class="p05-gallery__img"><img src="images/cart%203.png" alt="Healf App — Cart screen 3" /></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section Navigator -->
+  <nav class="section-nav" aria-label="Page sections">
+    <button class="section-nav__toggle" aria-label="Expand navigation">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 8L6 4L10 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="section-nav__items">
+      <a class="section-nav__item" data-target="section-listing"><span class="section-nav__num">01</span><span class="section-nav__label">Product Listing</span></a>
+      <a class="section-nav__item" data-target="section-pdp"><span class="section-nav__num">02</span><span class="section-nav__label">Product Detail Page</span></a>
+      <a class="section-nav__item" data-target="section-search"><span class="section-nav__num">03</span><span class="section-nav__label">Search</span></a>
+      <a class="section-nav__item" data-target="section-cart"><span class="section-nav__num">04</span><span class="section-nav__label">Cart</span></a>
+    </div>
+  </nav>
+
+  <!-- More Work -->
+  <section class="work reveal" style="padding-top: 0;">
+    <a class="project-row" href="project-03.html">
+      <div class="project-row__inner">
+        <span class="project-row__num">01</span>
+        <span class="project-row__name">Connect Wearables <span class="project-row__brand">Healf</span></span>
+        <div class="project-row__tags">
+          <span class="tag">Wearable integration</span>
+          <span class="tag">Onboarding</span>
+          <span class="tag">Data</span>
+        </div>
+        <span class="project-row__year">2026</span>
+      </div>
+    </a>
+    <a class="project-row" href="project-05.html">
+      <div class="project-row__inner">
+        <span class="project-row__num">02</span>
+        <span class="project-row__name">Healf App <span class="project-row__brand">Healf</span></span>
+        <div class="project-row__tags">
+          <span class="tag">Ongoing</span>
+          <span class="tag">Mobile App</span>
+          <span class="tag">0–1 Build</span>
+        </div>
+        <span class="project-row__year">2026</span>
+      </div>
+    </a>
+
+    <a class="project-row" href="project-02.html">
+      <div class="project-row__inner">
+        <span class="project-row__num">03</span>
+        <span class="project-row__name">Customisation tool <span class="project-row__brand">Jo Malone London</span></span>
+        <div class="project-row__tags">
+          <span class="tag">Feature</span>
+          <span class="tag">Prototype</span>
+          <span class="tag">User Testing</span>
+        </div>
+        <span class="project-row__year">2025</span>
+      </div>
+    </a>
+    <a class="project-row" href="project-01.html">
+      <div class="project-row__inner">
+        <span class="project-row__num">04</span>
+        <span class="project-row__name">PDP Optimisation <span class="project-row__brand">Jo Malone London</span></span>
+        <div class="project-row__tags">
+          <span class="tag">E-commerce</span>
+          <span class="tag">UX Research</span>
+          <span class="tag">A/B Testing</span>
+        </div>
+        <span class="project-row__year">2025</span>
+      </div>
+    </a>
+    <a class="project-row" href="project-04.html">
+      <div class="project-row__inner">
+        <span class="project-row__num">05</span>
+        <span class="project-row__name">Vibe Coding <span class="project-row__brand">Personal Project</span></span>
+        <div class="project-row__tags">
+          <span class="tag">Vibe Coding</span>
+          <span class="tag">AI</span>
+          <span class="tag">Experiment</span>
+        </div>
+        <span class="project-row__year">2025</span>
+      </div>
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner container">
+      <p class="footer__copy">&copy; 2026 Claire Davis. All rights reserved.</p>
+      <div class="footer__links">
+        <a href="mailto:c_e_davis162@hotmail.co.uk">Email</a>
+        <a href="https://www.linkedin.com/in/claire-davis-design" target="_blank">LinkedIn</a>
+        <a href="about.html">About</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=2"></script>
+  <script>
+    // ── Nav past-hero state ──
+    (function () {
+      var hero = document.querySelector('.project-hero');
+      var nav  = document.querySelector('.nav');
+      if (!hero || !nav) return;
+      var obs = new IntersectionObserver(function (entries) {
+        nav.classList.toggle('nav--past-hero', !entries[0].isIntersecting);
+      }, { threshold: 0 });
+      obs.observe(hero);
+    })();
+
+    // ── Section Navigator ──
+    (function () {
+      var sectionNav = document.querySelector('.section-nav');
+      var items = document.querySelectorAll('.section-nav__item');
+      if (!sectionNav || !items.length) return;
+
+      var sections = [];
+      items.forEach(function (item) {
+        var target = document.getElementById(item.dataset.target);
+        if (target) sections.push({ el: target, item: item });
+      });
+
+      var activeObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            items.forEach(function (i) { i.classList.remove('active'); });
+            sections.forEach(function (s) {
+              if (s.el === entry.target) s.item.classList.add('active');
+            });
+          }
+        });
+      }, { rootMargin: '-30% 0px -60% 0px' });
+
+      sections.forEach(function (s) { activeObs.observe(s.el); });
+
+      items.forEach(function (item) {
+        item.addEventListener('click', function (e) {
+          e.preventDefault();
+          var target = document.getElementById(item.dataset.target);
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if (window.innerWidth <= 640) {
+            sectionNav.classList.remove('expanded');
+          }
+        });
+      });
+
+      // Mobile expand/collapse toggle
+      var toggleBtn = sectionNav.querySelector('.section-nav__toggle');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', function () {
+          sectionNav.classList.toggle('expanded');
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>
