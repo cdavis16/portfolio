@@ -11,8 +11,8 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Healf App – Claire Davis</title>
-  <meta name="description" content="Healf App, a work-in-progress project, showing early e-commerce screens from the app." />
+  <title>Spurr App – Claire Davis</title>
+  <meta name="description" content="Spurr App, a work-in-progress project, showing early e-commerce screens from the app." />
   <link rel="stylesheet" href="css/style.css?v=7" />
   <style>
     /* ── Scroll progress ── */
@@ -44,6 +44,15 @@
     }
     .project-hero__visual--p05::after {
       content: none;
+    }
+    .project-hero__logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: clamp(160px, 20vw, 280px);
+      height: auto;
+      z-index: 1;
     }
     .project-hero__info {
       position: absolute !important;
@@ -138,6 +147,20 @@
       text-transform: uppercase;
       color: var(--text-muted);
       margin-bottom: 4px;
+    }
+
+    /* 3-up stacked grid (e.g. onboarding) */
+    .p05-gallery__row--grid3 {
+      flex-wrap: wrap;
+      max-width: 725px;
+      margin: 0 auto;
+    }
+    .p05-gallery__row--grid3 .p05-gallery__img {
+      flex: 0 1 calc(33.333% - 11px);
+    }
+    .p05-gallery__row--grid3 .p05-gallery__img img {
+      width: 100%;
+      max-height: none;
     }
 
     @media (max-width: 768px) {
@@ -331,22 +354,23 @@
   <header class="project-hero">
 
     <!-- Visual / hero image area -->
-    <div class="project-hero__visual project-hero__visual--p05" style="background: #999 url('images/Healf_header.jpg') center / cover no-repeat;">
+    <div class="project-hero__visual project-hero__visual--p05" style="background: #999 url('images/Spurr/runners-bg.png') center / cover no-repeat;">
+      <img class="project-hero__logo" src="images/Spurr/Logo-circle-v2.png" alt="Spurr" />
     </div>
 
     <!-- Project title + meta -->
     <div class="project-hero__info">
       <div>
-        <h1 class="project-hero__title">Healf App</h1>
+        <h1 class="project-hero__title">Spurr App</h1>
       </div>
       <div class="project-hero__meta-grid">
         <div>
           <p class="project-meta-item__label">Client</p>
-          <p class="project-meta-item__value">Healf</p>
+          <p class="project-meta-item__value">Personal Project</p>
         </div>
         <div>
           <p class="project-meta-item__label">Role</p>
-          <p class="project-meta-item__value">Senior Product Designer</p>
+          <p class="project-meta-item__value">Designer &amp; Developer</p>
         </div>
         <div>
           <p class="project-meta-item__label">Year</p>
@@ -354,7 +378,7 @@
         </div>
         <div>
           <p class="project-meta-item__label">Status</p>
-          <p class="project-meta-item__value">Launch Q3</p>
+          <p class="project-meta-item__value">Beta</p>
         </div>
       </div>
     </div>
@@ -367,7 +391,7 @@
         <div class="reveal">
           <p class="eyebrow" style="margin-bottom: 20px;">Overview</p>
           <p class="project-overview__challenge">
-            This case study showcases selected e-commerce screens from an ongoing <strong>0–1 product build</strong>. As the product is currently in development and undergoing <strong>user testing</strong>, I'm only able to share a limited set of work-in-progress designs, including the <strong>PDP</strong>, <strong>product listing</strong>, and <strong>cart</strong> experiences.
+            An app I've <strong>designed and built</strong>, currently in <strong>Beta</strong> (link available on request). Spurr solves a familiar problem for runners: need mid-race motivation, only to miss your friends at the sideline, or to have family who couldn't make it there at all. Supporters record <strong>voice messages</strong> through a <strong>unique share link</strong> generated for each race, and those voicenotes play back at <strong>distance milestones</strong> the runner chooses during their race.
           </p>
         </div>
         <div class="project-overview__details reveal reveal-delay-2">
@@ -377,28 +401,28 @@
           </div>
           <div class="overview-detail">
             <p class="overview-detail__label">Tools</p>
-            <p class="overview-detail__value">Claude Code · Figma · Linear</p>
+            <p class="overview-detail__value">Claude Code · Midjourney · Supabase</p>
           </div>
           <div class="overview-detail">
             <p class="overview-detail__label">Status</p>
-            <p class="overview-detail__value">Launch Q3</p>
+            <p class="overview-detail__value">Beta</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 01 – Product Listing -->
-  <section id="section-listing" class="section" style="padding-top: clamp(36px, 5vw, 56px); padding-bottom: 0;">
+  <!-- 01 – Onboarding -->
+  <section id="section-onboarding" class="section" style="padding-top: clamp(36px, 5vw, 56px); padding-bottom: 0;">
     <div class="container">
       <div class="process-block reveal" style="border-top: none;">
         <span class="process-block__num">01</span>
         <div class="process-block__content">
-          <p class="process-block__label">E-commerce</p>
-          <h2 class="process-block__title">Product Listing</h2>
+          <p class="process-block__label">Create a race</p>
+          <h2 class="process-block__title">Onboarding</h2>
           <div class="process-block__body">
             <p>
-              Collection view with the ability to toggle between all products and items within a 4 for 3 offer. Sort by and search within the collection.
+              The onboarding flow walks a runner through setting up their race, naming the run, choosing a distance, and picking race day, then creating an account to generate their unique share link.
             </p>
           </div>
         </div>
@@ -408,26 +432,28 @@
 
   <div class="p05-gallery" style="margin-top: 0;">
     <div class="p05-gallery__inner">
-      <div class="p05-gallery__row">
-        <div class="p05-gallery__img"><img src="images/Coll%201.png" alt="Healf App, Collection screen 1" /></div>
-        <div class="p05-gallery__img"><img src="images/Coll%202.png" alt="Healf App, Collection screen 2" /></div>
-        <div class="p05-gallery__img"><img src="images/Coll%203.png" alt="Healf App, Collection screen 3" /></div>
-        <div class="p05-gallery__img"><img src="images/Coll%204.png" alt="Healf App, Collection screen 4" /></div>
+      <div class="p05-gallery__row p05-gallery__row--grid3">
+        <div class="p05-gallery__img"><img src="images/Spurr/Onboarding/1.jpg" alt="Spurr App, Onboarding screen 1" /></div>
+        <div class="p05-gallery__img"><img src="images/Spurr/Onboarding/2.jpg" alt="Spurr App, Onboarding screen 2" /></div>
+        <div class="p05-gallery__img"><img src="images/Spurr/Onboarding/3.jpg" alt="Spurr App, Onboarding screen 3" /></div>
+        <div class="p05-gallery__img"><img src="images/Spurr/Onboarding/4.jpg" alt="Spurr App, Onboarding screen 4" /></div>
+        <div class="p05-gallery__img"><img src="images/Spurr/Onboarding/5.jpg" alt="Spurr App, Onboarding screen 5" /></div>
+        <div class="p05-gallery__img"><img src="images/Spurr/Onboarding/6.jpg" alt="Spurr App, Onboarding screen 6" /></div>
       </div>
     </div>
   </div>
 
-  <!-- 02 – Product Detail Page -->
-  <section id="section-pdp" class="section" style="padding-top: clamp(36px, 5vw, 56px); padding-bottom: 0;">
+  <!-- 02 – Share -->
+  <section id="section-share" class="section" style="padding-top: clamp(36px, 5vw, 56px); padding-bottom: 0;">
     <div class="container">
       <div class="process-block reveal" style="border-top: none;">
         <span class="process-block__num">02</span>
         <div class="process-block__content">
-          <p class="process-block__label">E-commerce</p>
-          <h2 class="process-block__title">Product Detail Page</h2>
+          <p class="process-block__label">Invite</p>
+          <h2 class="process-block__title">Share</h2>
           <div class="process-block__body">
             <p>
-              Necessary imagery, key information, and purchase options along with filtering and a deep dive of reviews.
+              Once a race is set up, the runner shares their unique link. They can share a variety of ways, and include their own unique message alongside.
             </p>
           </div>
         </div>
@@ -438,25 +464,25 @@
   <div class="p05-gallery" style="margin-top: 0;">
     <div class="p05-gallery__inner">
       <div class="p05-gallery__row">
-        <div class="p05-gallery__img"><img src="images/PDP%201.png" alt="Healf App, PDP screen 1" /></div>
-        <div class="p05-gallery__img"><img src="images/PDP2.png" alt="Healf App, PDP screen 2" /></div>
-        <div class="p05-gallery__img"><img src="images/PDP%203.png" alt="Healf App, PDP screen 3" /></div>
-        <div class="p05-gallery__img"><img src="images/PDP%204.png" alt="Healf App, PDP screen 4" /></div>
+        <div class="p05-gallery__img"><img src="images/Spurr/Share/1.jpeg" alt="Spurr App, Share screen 1" /></div>
+        <div class="p05-gallery__img"><img src="images/Spurr/Share/2.jpeg" alt="Spurr App, Share screen 2" /></div>
+        <div class="p05-gallery__img"><img src="images/Spurr/Share/3.jpeg" alt="Spurr App, Share screen 3" /></div>
+        <div class="p05-gallery__img"><img src="images/Spurr/Share/4.jpeg" alt="Spurr App, Share screen 4" /></div>
       </div>
     </div>
   </div>
 
-  <!-- 03 – Search -->
-  <section id="section-search" class="section" style="padding-top: clamp(36px, 5vw, 56px); padding-bottom: 0;">
+  <!-- 03 – Share link (web) -->
+  <section id="section-sharelink" class="section" style="padding-top: clamp(36px, 5vw, 56px); padding-bottom: 0;">
     <div class="container">
       <div class="process-block reveal" style="border-top: none;">
         <span class="process-block__num">03</span>
         <div class="process-block__content">
-          <p class="process-block__label">E-commerce</p>
-          <h2 class="process-block__title">Search</h2>
+          <p class="process-block__label">Web</p>
+          <h2 class="process-block__title">Share link</h2>
           <div class="process-block__body">
             <p>
-              Suggested search terms while typing, search results, and keyboard collapsed.
+              The web experience friends and family land on when they open the link is a simple flow to record and send a voice message for the runner, no app required.
             </p>
           </div>
         </div>
@@ -467,24 +493,25 @@
   <div class="p05-gallery" style="margin-top: 0;">
     <div class="p05-gallery__inner">
       <div class="p05-gallery__row">
-        <div class="p05-gallery__img"><img src="images/Search%201.png" alt="Healf App, Search screen 1" /></div>
-        <div class="p05-gallery__img"><img src="images/Search%202.png" alt="Healf App, Search screen 2" /></div>
-        <div class="p05-gallery__img"><img src="images/Search%203.png" alt="Healf App, Search screen 3" /></div>
+        <div class="p05-gallery__img"><img src="images/Spurr/Share%20link/1.jpeg" alt="Spurr App, Share link (web) screen 1" /></div>
+        <div class="p05-gallery__img"><img src="images/Spurr/Share%20link/2.jpeg" alt="Spurr App, Share link (web) screen 2" /></div>
+        <div class="p05-gallery__img"><img src="images/Spurr/Share%20link/3.jpeg" alt="Spurr App, Share link (web) screen 3" /></div>
+        <div class="p05-gallery__img"><img src="images/Spurr/Share%20link/4.jpeg" alt="Spurr App, Share link (web) screen 4" /></div>
       </div>
     </div>
   </div>
 
-  <!-- 04 – Cart -->
-  <section id="section-cart" class="section" style="padding-top: clamp(36px, 5vw, 56px); padding-bottom: 0;">
+  <!-- 04 – Assign Spurrs to Milestones -->
+  <section id="section-assign" class="section" style="padding-top: clamp(36px, 5vw, 56px); padding-bottom: 0;">
     <div class="container">
       <div class="process-block reveal" style="border-top: none;">
         <span class="process-block__num">04</span>
         <div class="process-block__content">
-          <p class="process-block__label">E-commerce</p>
-          <h2 class="process-block__title">Cart</h2>
+          <p class="process-block__label">Set up</p>
+          <h2 class="process-block__title">Assign Spurrs to Milestones</h2>
           <div class="process-block__body">
             <p>
-              Empty cart view and free gift with purchase stepper explorations.
+              The runner assigns each recorded Spurr to a distance milestone via a simple drag and drop, similar to the edit playlist pattern on Spotify. The user chooses exactly where along the route each voice message will play during their race.
             </p>
           </div>
         </div>
@@ -495,9 +522,40 @@
   <div class="p05-gallery" style="margin-top: 0;">
     <div class="p05-gallery__inner">
       <div class="p05-gallery__row">
-        <div class="p05-gallery__img"><img src="images/cart%201.png" alt="Healf App, Cart screen 1" /></div>
-        <div class="p05-gallery__img"><img src="images/cart%202.png" alt="Healf App, Cart screen 2" /></div>
-        <div class="p05-gallery__img"><img src="images/cart%203.png" alt="Healf App, Cart screen 3" /></div>
+        <div class="p05-gallery__img"><img src="images/Spurr/Assign/1.jpeg" alt="Spurr App, Assign Spurrs to milestones screen 1" /></div>
+        <div class="p05-gallery__img"><img src="images/Spurr/Assign/2.jpeg" alt="Spurr App, Assign Spurrs to milestones screen 2" /></div>
+        <div class="p05-gallery__img"><img src="images/Spurr/Assign/3.jpeg" alt="Spurr App, Assign Spurrs to milestones screen 3" /></div>
+        <div class="p05-gallery__img"><img src="images/Spurr/Assign/4.jpeg" alt="Spurr App, Assign Spurrs to milestones screen 4" /></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 – Race day -->
+  <section id="section-raceday" class="section" style="padding-top: clamp(36px, 5vw, 56px); padding-bottom: 0;">
+    <div class="container">
+      <div class="process-block reveal" style="border-top: none;">
+        <span class="process-block__num">05</span>
+        <div class="process-block__content">
+          <p class="process-block__label">The run</p>
+          <h2 class="process-block__title">Race day</h2>
+          <div class="process-block__body">
+            <p>
+              On race day, the race is unlocked and the runner starts their race, just like they would a Strava run. Each Spurr plays automatically at its chosen milestone, with a countdown display so the user knows exactly when their next Spurr will be.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="p05-gallery" style="margin-top: 0;">
+    <div class="p05-gallery__inner">
+      <div class="p05-gallery__row">
+        <div class="p05-gallery__img"><img src="images/Spurr/Race%20day/1.jpeg" alt="Spurr App, Race day screen 1" /></div>
+        <div class="p05-gallery__img"><img src="images/Spurr/Race%20day/2.jpeg" alt="Spurr App, Race day screen 2" /></div>
+        <div class="p05-gallery__img"><img src="images/Spurr/Race%20day/3.jpeg" alt="Spurr App, Race day screen 3" /></div>
+        <div class="p05-gallery__img"><img src="images/Spurr/Race%20day/4.jpeg" alt="Spurr App, Race day screen 4" /></div>
+        <div class="p05-gallery__img"><img src="images/Spurr/Race%20day/5.jpeg" alt="Spurr App, Race day screen 5" /></div>
       </div>
     </div>
   </div>
@@ -508,10 +566,11 @@
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 8L6 4L10 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
     <div class="section-nav__items">
-      <a class="section-nav__item" data-target="section-listing"><span class="section-nav__num">01</span><span class="section-nav__label">Product Listing</span></a>
-      <a class="section-nav__item" data-target="section-pdp"><span class="section-nav__num">02</span><span class="section-nav__label">Product Detail Page</span></a>
-      <a class="section-nav__item" data-target="section-search"><span class="section-nav__num">03</span><span class="section-nav__label">Search</span></a>
-      <a class="section-nav__item" data-target="section-cart"><span class="section-nav__num">04</span><span class="section-nav__label">Cart</span></a>
+      <a class="section-nav__item" data-target="section-onboarding"><span class="section-nav__num">01</span><span class="section-nav__label">Onboarding</span></a>
+      <a class="section-nav__item" data-target="section-share"><span class="section-nav__num">02</span><span class="section-nav__label">Share</span></a>
+      <a class="section-nav__item" data-target="section-sharelink"><span class="section-nav__num">03</span><span class="section-nav__label">Share link</span></a>
+      <a class="section-nav__item" data-target="section-assign"><span class="section-nav__num">04</span><span class="section-nav__label">Assign to Milestones</span></a>
+      <a class="section-nav__item" data-target="section-raceday"><span class="section-nav__num">05</span><span class="section-nav__label">Race day</span></a>
     </div>
   </nav>
 
