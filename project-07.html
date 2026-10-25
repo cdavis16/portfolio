@@ -12,7 +12,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Connect Wearables – Claire Davis</title>
-  <meta name="description" content="Connecting wearable health data into Healf to break a broken engagement loop — turning continuous, passive signal into personalised recommendations users trust." />
+  <meta name="description" content="Connecting wearable health data into Healf to break a broken engagement loop, turning continuous, passive signal into personalised recommendations users trust." />
   <link rel="stylesheet" href="css/style.css?v=7" />
   <style>
     /* ── Scroll progress ── */
@@ -282,8 +282,8 @@
 
     .phase-card__num {
       font-size: 0.6rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-transform: none;
       color: var(--text-muted);
       margin-bottom: 16px;
     }
@@ -534,7 +534,7 @@
     .p03-body { font-size: clamp(0.875rem, 1.4vw, 1rem); font-weight: 300; color: var(--text-secondary); line-height: 1.8; margin: 0; }
     .p03-desc { font-size: 0.8125rem; font-weight: 300; color: var(--text-secondary); line-height: 1.6; margin: 0; }
     .p03-card-title { font-size: 0.875rem; font-weight: 400; color: var(--text-primary); letter-spacing: 0.02em; margin: 0 0 6px; }
-    .p03-finding-num { font-size: 0.6875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 8px; }
+    .p03-finding-num { font-size: 0.6875rem; font-weight: 500; text-transform: none; letter-spacing: 0.04em; color: var(--text-muted); margin: 0 0 8px; }
 
     /* Consolidated spacing */
     .p03-glass { padding: clamp(20px, 2.5vw, 32px) 16px; border-radius: 12px; }
@@ -546,6 +546,50 @@
     .p03-mt-block { margin-top: 32px; }
     .p03-mt-sm { margin-top: 8px; }
     .p03-mb-desc { margin-bottom: 16px; }
+    .nstar-head { white-space: nowrap; }
+    @media (max-width: 760px) { .nstar-head { white-space: normal; } }
+    @media (max-width: 640px) {
+      .p03-grey-section > div { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--text-muted) transparent; padding-bottom: 10px; }
+      .p03-grey-section > div::-webkit-scrollbar { height: 4px; }
+      .p03-grey-section > div::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 4px; }
+      .p03-grey-section > div > .p03-grid-md { min-width: 760px; }
+    }
+
+    /* ── Circular loop diagram ── */
+    .loop-circle { width: 100%; display: flex; justify-content: center; margin-top: 16px; }
+    .loop-circle__stage {
+      --d: min(460px, 90vw);
+      --r: calc(var(--d) * 0.34);
+      position: relative;
+      width: var(--d);
+      height: var(--d);
+      flex: 0 0 auto;
+    }
+    .loop-circle__ring { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+    .loop-node {
+      position: absolute; top: 50%; left: 50%;
+      width: clamp(88px, 27%, 124px);
+      min-height: 48px;
+      border: 1.5px solid rgba(0,0,0,0.12);
+      border-radius: 8px;
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      padding: 8px 10px; text-align: center;
+      box-sizing: border-box;
+    }
+    .loop-node p { margin: 0; font-size: clamp(0.6rem, 1.5vw, 0.7rem); line-height: 1.3; color: var(--text-primary); }
+    .loop-node--active { background: var(--text-primary); border-color: var(--text-primary); }
+    .loop-node--active p { color: var(--bg); }
+    .loop-node--n1 { transform: translate(-50%, -50%) translate(0, calc(-1 * var(--r))); }
+    .loop-node--n2 { transform: translate(-50%, -50%) translate(calc(0.951 * var(--r)), calc(-0.309 * var(--r))); }
+    .loop-node--n3 { transform: translate(-50%, -50%) translate(calc(0.588 * var(--r)), calc(0.809 * var(--r))); }
+    .loop-node--n4 { transform: translate(-50%, -50%) translate(calc(-0.588 * var(--r)), calc(0.809 * var(--r))); }
+    .loop-node--n5 { transform: translate(-50%, -50%) translate(calc(-0.951 * var(--r)), calc(-0.309 * var(--r))); }
+    .loop-circle__center {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      text-align: center; max-width: 36%;
+      font-size: clamp(0.62rem, 1.5vw, 0.72rem); color: var(--text-muted); line-height: 1.35; margin: 0;
+    }
   </style>
 </head>
 <body>
@@ -622,14 +666,27 @@
         <div class="reveal">
           <p class="eyebrow" style="margin-bottom: 20px;">Overview</p>
           <p class="project-overview__challenge">
-            As part of Healf's <strong>Personalisation Pod</strong>, the goal was growth: lift <strong>AOV and LTV</strong>, with recommendation CTR and repeat-purchase rate as the leading indicators. The funnel leaked at every stage — high interest, but low confidence turning views into purchases, and few people coming back. Our bet: <strong>if users connect a wearable</strong> (Oura, Apple Watch and more) via the Terra API, continuous passive health data makes recommendations relevant enough to move the whole funnel — <strong>CTR → conversion → AOV → return rate</strong> — turning a one-time transaction into a compounding engagement loop. It lifted <strong>AOV by 23%</strong>.
+            With high browsing interest but <strong>low purchase confidence</strong> and few repeat purchases, the challenge was to improve <strong>monetisation and retention</strong>. Underneath that sat a data problem: recommendations were only as good as the thin, one-off data we held on each user.
           </p>
-          <div class="reveal" style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
-            <span class="p03-label" style="margin: 0 4px 0 0;">North-star</span>
-            <span class="insight-pill">Repeat-purchase rate · connected users</span>
-            <span class="p03-label" style="margin: 0 4px 0 12px;">Guardrails</span>
-            <span class="insight-pill">Connect drop-off</span>
-            <span class="insight-pill">Data-permission opt-out</span>
+          <div class="reveal" style="margin-top: 24px; display: flex; flex-direction: column; gap: 16px;">
+            <div>
+              <p class="p03-label p03-label--primary" style="margin-bottom: 4px;">Goal</p>
+              <p class="p03-body" style="margin: 0;">Solve <strong>data acquisition</strong>, capturing richer and continuous user signal, to increase <strong>AOV and LTV</strong>, using recommendation CTR and repeat-purchase rate as leading indicators.</p>
+            </div>
+            <div>
+              <p class="p03-label p03-label--primary" style="margin-bottom: 4px;">Our bet</p>
+              <p class="p03-body" style="margin: 0;">Connecting a wearable would turn continuous, passive health data into more relevant recommendations, moving users from click-through to conversion, higher basket value and repeat purchases. It would also give Healf a renewable stream of <strong>first-party data</strong>, turning one-off transactions into a <strong>compounding engagement loop</strong>.</p>
+            </div>
+            <div>
+              <p class="p03-label p03-label--primary" style="margin-bottom: 10px;">Result</p>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                <span class="insight-pill" style="border: none;"><strong style="color: var(--text-primary); font-weight: 500;">+23%</strong>&nbsp; AOV</span>
+                <span class="insight-pill" style="border: none;"><strong style="color: var(--text-primary); font-weight: 500;">+4%</strong>&nbsp; Conversion on recommended products</span>
+                <span class="insight-pill" style="border: none;"><strong style="color: var(--text-primary); font-weight: 500;">+11%</strong>&nbsp; Wearable connection rate</span>
+                <span class="insight-pill" style="border: none;"><strong style="color: var(--text-primary); font-weight: 500;">+18%</strong>&nbsp; Return visit rate</span>
+              </div>
+              <p class="stat-callout__context" style="margin-top: 10px;">Plus a continuous, first-party data signal now flowing from every connected user.</p>
+            </div>
           </div>
         </div>
 
@@ -649,24 +706,6 @@
         </div>
       </div>
 
-      <!-- Pod / team -->
-      <div class="p03-grid-3 p03-grid-tight reveal" data-stagger style="display: grid; grid-template-columns: repeat(3, 1fr); margin-top: clamp(32px, 4vw, 48px);">
-        <div class="insight-card reveal">
-          <p class="insight-card__label">Product Designer × 1</p>
-          <p class="p03-body" style="color: var(--text-primary);">Design &amp; research</p>
-          <p class="insight-card__desc">Led design strategy, research synthesis, and end-to-end UX across activation, onboarding and results.</p>
-        </div>
-        <div class="insight-card reveal">
-          <p class="insight-card__label">Product Manager</p>
-          <p class="p03-body" style="color: var(--text-primary);">Roadmap &amp; metrics</p>
-          <p class="insight-card__desc">Owned roadmap prioritisation, stakeholder alignment, and success metrics.</p>
-        </div>
-        <div class="insight-card reveal">
-          <p class="insight-card__label">Engineering × 2</p>
-          <p class="p03-body" style="color: var(--text-primary);">Build &amp; integration</p>
-          <p class="insight-card__desc">Built wearable integrations via the Terra API, the recommendation engine, and front-end implementation.</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -730,7 +769,7 @@
           <h2 class="process-block__title">High interest. Low confidence.</h2>
           <div class="process-block__body">
             <p>
-              Users were <strong style="color: var(--text-primary);">browsing but not buying</strong>. With a broad catalogue and no strong signal, product recommendations felt generic — so people lacked the confidence to know what was actually right for them.
+              Users were <strong style="color: var(--text-primary);">browsing but not buying</strong>. With a broad catalogue and no strong signal, product recommendations felt generic, so people lacked the confidence to know what was actually right for them.
             </p>
           </div>
 
@@ -756,96 +795,21 @@
           <!-- The broken loop -->
           <div class="reveal p03-mt-block">
             <p class="p03-label p03-label--primary">The broken loop</p>
-            <div class="flow-scroll" style="overflow-x: auto; padding-bottom: 12px; margin-top: 12px;">
-              <div style="display: flex; align-items: center; gap: 0; min-width: 760px;">
-                <div style="flex: 1; min-width: 120px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 6px; background: #fff; padding: 16px 12px; text-align: center;"><p style="font-size: 0.7rem; color: var(--text-primary); margin: 0;">Limited user data</p></div>
-                <div style="flex: 0 0 24px; height: 1.5px; background: rgba(0,0,0,0.15);"></div>
-                <div style="flex: 1; min-width: 120px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 6px; background: #fff; padding: 16px 12px; text-align: center;"><p style="font-size: 0.7rem; color: var(--text-primary); margin: 0;">Generic recommendations</p></div>
-                <div style="flex: 0 0 24px; height: 1.5px; background: rgba(0,0,0,0.15);"></div>
-                <div style="flex: 1; min-width: 120px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 6px; background: #fff; padding: 16px 12px; text-align: center;"><p style="font-size: 0.7rem; color: var(--text-primary); margin: 0;">Low confidence</p></div>
-                <div style="flex: 0 0 24px; height: 1.5px; background: rgba(0,0,0,0.15);"></div>
-                <div style="flex: 1; min-width: 120px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 6px; background: #fff; padding: 16px 12px; text-align: center;"><p style="font-size: 0.7rem; color: var(--text-primary); margin: 0;">No purchase</p></div>
-                <div style="flex: 0 0 24px; height: 1.5px; background: rgba(0,0,0,0.15);"></div>
-                <div style="flex: 1; min-width: 120px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 6px; background: #fff; padding: 16px 12px; text-align: center;"><p style="font-size: 0.7rem; color: var(--text-primary); margin: 0;">No new signal</p></div>
-                <div style="flex: 0 0 24px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.8rem;">↺</div>
+            <div class="loop-circle">
+              <div class="loop-circle__stage">
+                <svg class="loop-circle__ring" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+                  <circle cx="50" cy="50" r="34" stroke="rgba(0,0,0,0.15)" stroke-width="0.6" stroke-dasharray="1.5 2"/>
+                  <path d="M 58.5 17.2 L 63.2 16.0 L 60.8 20.3 Z" fill="rgba(0,0,0,0.38)"/>
+                </svg>
+                <div class="loop-node loop-node--n1"><p>Limited user data</p></div>
+                <div class="loop-node loop-node--n2"><p>Generic recommendations</p></div>
+                <div class="loop-node loop-node--n3"><p>Low confidence</p></div>
+                <div class="loop-node loop-node--n4"><p>No purchase</p></div>
+                <div class="loop-node loop-node--n5"><p>No new signal</p></div>
               </div>
             </div>
           </div>
 
-          <!-- Data confirmed -->
-          <div class="glass p03-glass--lg reveal" style="margin-top: 16px;">
-            <p class="p03-label p03-label--primary">The data confirmed</p>
-            <p class="p03-body" style="max-width: 60ch;">High interest, low conversion · Low interaction with recommended products · One-time purchase. The loop fed itself: without richer data, recommendations stayed generic — and generic recommendations never earned enough trust to generate new data.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ PROBLEM — GROWTH MOCK-UP (below existing for comparison) ============ -->
-  <section class="section" style="padding-top: 0; padding-bottom: 0;">
-    <div class="container">
-      <div class="process-block" style="border-top: 1.5px dashed var(--border); position: relative;">
-        <span class="process-block__num">01</span>
-        <div class="process-block__content">
-          <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 14px;">
-            <span style="font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bg); background: var(--text-primary); padding: 4px 10px; border-radius: 100px;">Mock-up</span>
-            <span class="p03-label" style="margin: 0;">Growth-framed alternative — same section, as a funnel</span>
-          </div>
-          <p class="process-block__label">Problem</p>
-          <h2 class="process-block__title">A funnel that leaked at every stage</h2>
-          <div class="process-block__body">
-            <p>
-              Same insight, told as a funnel: interest was high at the top, but each step down to a repeat purchase lost most of the people above it. The biggest leak was recommendation relevance — the step a wearable signal was meant to fix.
-            </p>
-          </div>
-
-          <!-- Drop-off funnel -->
-          <div class="reveal p03-mt-block">
-            <div style="display: flex; flex-direction: column; gap: 6px;">
-              <!-- stage 1 -->
-              <div style="display: flex; align-items: stretch; gap: 12px;">
-                <div style="width: 100%; max-width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px;">
-                  <span style="font-size: 0.8125rem; color: var(--text-primary);">Session started</span>
-                  <span style="font-size: 1rem; font-weight: 300; color: var(--text-primary);">100%</span>
-                </div>
-                <span class="insight-pill" style="flex: 0 0 auto; align-self: center;">Acquisition</span>
-              </div>
-              <!-- stage 2 -->
-              <div style="display: flex; align-items: stretch; gap: 12px;">
-                <div style="width: 62%; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px;">
-                  <span style="font-size: 0.8125rem; color: var(--text-primary);">Viewed a product</span>
-                  <span style="font-size: 1rem; font-weight: 300; color: var(--text-primary);">~62%<span style="color: var(--text-muted);">*</span></span>
-                </div>
-                <span class="insight-pill" style="flex: 0 0 auto; align-self: center;">Activation</span>
-              </div>
-              <!-- stage 3 -->
-              <div style="display: flex; align-items: stretch; gap: 12px;">
-                <div style="width: 30%; background: #fff5f5; border: 1.5px solid #e4b4b4; border-radius: 8px; padding: 14px 18px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px;">
-                  <span style="font-size: 0.8125rem; color: var(--text-primary);">Clicked a recommendation</span>
-                  <span style="font-size: 1rem; font-weight: 300; color: var(--text-primary);">1.2%</span>
-                </div>
-                <span class="insight-pill" style="flex: 0 0 auto; align-self: center; border-color: #e4b4b4; color: #b4524f;">Biggest leak</span>
-              </div>
-              <!-- stage 4 -->
-              <div style="display: flex; align-items: stretch; gap: 12px;">
-                <div style="width: 22%; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px;">
-                  <span style="font-size: 0.8125rem; color: var(--text-primary);">Purchased</span>
-                  <span style="font-size: 1rem; font-weight: 300; color: var(--text-primary);">~0.8%<span style="color: var(--text-muted);">*</span></span>
-                </div>
-                <span class="insight-pill" style="flex: 0 0 auto; align-self: center;">Monetisation</span>
-              </div>
-              <!-- stage 5 -->
-              <div style="display: flex; align-items: stretch; gap: 12px;">
-                <div style="width: 16%; min-width: 180px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px;">
-                  <span style="font-size: 0.8125rem; color: var(--text-primary);">Returned in 30 days</span>
-                  <span style="font-size: 1rem; font-weight: 300; color: var(--text-primary);">35%</span>
-                </div>
-                <span class="insight-pill" style="flex: 0 0 auto; align-self: center;">Retention</span>
-              </div>
-            </div>
-            <p class="stat-callout__context" style="margin-top: 12px;">Bar widths are illustrative. <span style="color: var(--text-muted);">*</span> placeholder — pending the real funnel figures; 1.2% CTR and 35% 30-day return are the measured values.</p>
-          </div>
         </div>
       </div>
     </div>
@@ -861,31 +825,30 @@
           <h2 class="process-block__title">Improving confidence through better personalisation</h2>
           <div class="process-block__body">
             <p>
-              To break the loop we had to swap <strong style="color: var(--text-primary);">generic</strong> recommendations for <strong style="color: var(--text-primary);">personalised</strong> ones — and that meant a greater quantity of richer data. So <strong style="color: var(--text-primary);">data acquisition</strong> replaced <strong style="color: var(--text-primary);">limited user data</strong> as the first move.
+              To break the loop we had to swap <strong style="color: var(--text-primary);">generic</strong> recommendations for <strong style="color: var(--text-primary);">personalised</strong> ones, and that meant a greater quantity of richer data. So <strong style="color: var(--text-primary);">data acquisition</strong> replaced <strong style="color: var(--text-primary);">limited user data</strong> as the first move.
             </p>
           </div>
 
           <!-- Breaking the loop (highlighted) -->
           <div class="reveal p03-mt-block">
             <p class="p03-label p03-label--primary">Breaking the loop</p>
-            <div class="flow-scroll" style="overflow-x: auto; padding-bottom: 12px; margin-top: 12px;">
-              <div style="display: flex; align-items: center; gap: 0; min-width: 760px;">
-                <div style="flex: 1; min-width: 120px; border-radius: 6px; background: var(--text-primary); padding: 16px 12px; text-align: center;"><p style="font-size: 0.7rem; color: var(--bg); margin: 0;">Data acquisition</p></div>
-                <div style="flex: 0 0 24px; height: 1.5px; background: rgba(0,0,0,0.15);"></div>
-                <div style="flex: 1; min-width: 120px; border-radius: 6px; background: var(--text-primary); padding: 16px 12px; text-align: center;"><p style="font-size: 0.7rem; color: var(--bg); margin: 0;">Personalised recommendations</p></div>
-                <div style="flex: 0 0 24px; height: 1.5px; background: rgba(0,0,0,0.15);"></div>
-                <div style="flex: 1; min-width: 120px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 6px; background: #fff; padding: 16px 12px; text-align: center;"><p style="font-size: 0.7rem; color: var(--text-primary); margin: 0;">High confidence</p></div>
-                <div style="flex: 0 0 24px; height: 1.5px; background: rgba(0,0,0,0.15);"></div>
-                <div style="flex: 1; min-width: 120px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 6px; background: #fff; padding: 16px 12px; text-align: center;"><p style="font-size: 0.7rem; color: var(--text-primary); margin: 0;">Purchase</p></div>
-                <div style="flex: 0 0 24px; height: 1.5px; background: rgba(0,0,0,0.15);"></div>
-                <div style="flex: 1; min-width: 120px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 6px; background: #fff; padding: 16px 12px; text-align: center;"><p style="font-size: 0.7rem; color: var(--text-primary); margin: 0;">Credible new signal</p></div>
-                <div style="flex: 0 0 24px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.8rem;">↺</div>
+            <div class="loop-circle">
+              <div class="loop-circle__stage">
+                <svg class="loop-circle__ring" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+                  <circle cx="50" cy="50" r="34" stroke="rgba(0,0,0,0.15)" stroke-width="0.6" stroke-dasharray="1.5 2"/>
+                  <path d="M 58.5 17.2 L 63.2 16.0 L 60.8 20.3 Z" fill="rgba(0,0,0,0.38)"/>
+                </svg>
+                <div class="loop-node loop-node--n1 loop-node--active"><p>Data acquisition</p></div>
+                <div class="loop-node loop-node--n2 loop-node--active"><p>Personalised recommendations</p></div>
+                <div class="loop-node loop-node--n3"><p>High confidence</p></div>
+                <div class="loop-node loop-node--n4"><p>Purchase</p></div>
+                <div class="loop-node loop-node--n5"><p>Credible new signal</p></div>
               </div>
             </div>
           </div>
 
           <!-- Data acquisition options -->
-          <p class="p03-label p03-label--primary p03-mt-block">Data acquisition — four routes to richer data</p>
+          <p class="p03-label p03-label--primary p03-mt-block">Data acquisition, four routes to richer data</p>
           <div class="p03-grid-4 p03-grid-tight" data-stagger style="display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 12px;">
             <div class="glass p03-glass reveal">
               <p class="p03-finding-num">Option 01</p>
@@ -898,9 +861,9 @@
               <p class="p03-desc">Declarative data built over time via micro check-ins. Lower friction and relevant, but relies on sustained effort.</p>
             </div>
             <div class="glass p03-glass reveal" style="outline: 1.5px solid var(--text-primary); outline-offset: -1.5px;">
-              <p class="p03-finding-num">Option 03 · Chosen</p>
+              <p class="p03-finding-num">Option 03 · chosen</p>
               <p class="p03-card-title">Wearable integration</p>
-              <p class="p03-desc">Continuous, passive, real-time behavioural signal. No user effort after the initial connection — but limited to wearable owners.</p>
+              <p class="p03-desc">Continuous, passive, real-time behavioural signal. No user effort after the initial connection, but limited to wearable owners.</p>
             </div>
             <div class="glass p03-glass reveal">
               <p class="p03-finding-num">Option 04</p>
@@ -919,96 +882,7 @@
             <span class="insight-pill">Business context</span>
           </div>
 
-          <!-- Lever prioritisation — GROWTH MOCK-UP (below existing for comparison) -->
-          <div class="reveal" style="margin-top: 20px; border: 1.5px dashed var(--border); border-radius: 12px; padding: clamp(16px, 2.5vw, 24px);">
-            <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px;">
-              <span style="font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bg); background: var(--text-primary); padding: 4px 10px; border-radius: 100px;">Mock-up</span>
-              <span class="p03-label" style="margin: 0;">Same decision, scored — why the wearable won</span>
-            </div>
-            <p class="p03-desc p03-mb-desc" style="max-width: 68ch;">Each route scored 1–5 against the criteria above. The wearable loses on trust threshold (asking for health data is a big step) but wins decisively on data quality, effort and longevity — the levers that compound.</p>
-            <div style="overflow-x: auto;">
-              <table style="width: 100%; min-width: 600px; border-collapse: collapse; font-weight: 300;">
-                <thead>
-                  <tr style="text-align: left;">
-                    <th style="padding: 10px 12px; font-size: 0.6875rem; font-weight: 400; color: var(--text-muted); border-bottom: 1px solid var(--border);">Route</th>
-                    <th style="padding: 10px 12px; font-size: 0.6875rem; font-weight: 400; color: var(--text-muted); border-bottom: 1px solid var(--border); text-align: center;">Data quality</th>
-                    <th style="padding: 10px 12px; font-size: 0.6875rem; font-weight: 400; color: var(--text-muted); border-bottom: 1px solid var(--border); text-align: center;">Low effort</th>
-                    <th style="padding: 10px 12px; font-size: 0.6875rem; font-weight: 400; color: var(--text-muted); border-bottom: 1px solid var(--border); text-align: center;">Longevity</th>
-                    <th style="padding: 10px 12px; font-size: 0.6875rem; font-weight: 400; color: var(--text-muted); border-bottom: 1px solid var(--border); text-align: center;">Trust</th>
-                    <th style="padding: 10px 12px; font-size: 0.6875rem; font-weight: 400; color: var(--text-muted); border-bottom: 1px solid var(--border); text-align: center;">Business</th>
-                    <th style="padding: 10px 12px; font-size: 0.6875rem; font-weight: 400; color: var(--text-primary); border-bottom: 1px solid var(--border); text-align: center;">Score*</th>
-                  </tr>
-                </thead>
-                <tbody style="font-size: 0.8125rem; color: var(--text-secondary);">
-                  <tr>
-                    <td style="padding: 12px; border-bottom: 1px solid var(--border); color: var(--text-primary);">Welcome quiz + incentive</td>
-                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">3</td>
-                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">4</td>
-                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">2</td>
-                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">4</td>
-                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">3</td>
-                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; color: var(--text-primary);">16</td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 12px; border-bottom: 1px solid var(--border); color: var(--text-primary);">Progressive profiling</td>
-                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">3</td>
-                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">3</td>
-                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">3</td>
-                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">4</td>
-                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">3</td>
-                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; color: var(--text-primary);">16</td>
-                  </tr>
-                  <tr style="background: var(--surface);">
-                    <td style="padding: 12px; border-bottom: 1px solid var(--border); color: var(--text-primary); font-weight: 400;">Wearable integration <span style="font-size: 0.625rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--bg); background: var(--text-primary); padding: 2px 7px; border-radius: 100px; margin-left: 6px;">Chosen</span></td>
-                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; color: var(--text-primary);">5</td>
-                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; color: var(--text-primary);">5</td>
-                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; color: var(--text-primary);">5</td>
-                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">2</td>
-                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; color: var(--text-primary);">5</td>
-                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; color: var(--text-primary); font-weight: 400;">22</td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 12px; color: var(--text-primary);">Stack builder &amp; goals</td>
-                    <td style="padding: 12px; text-align: center;">4</td>
-                    <td style="padding: 12px; text-align: center;">2</td>
-                    <td style="padding: 12px; text-align: center;">3</td>
-                    <td style="padding: 12px; text-align: center;">4</td>
-                    <td style="padding: 12px; text-align: center;">3</td>
-                    <td style="padding: 12px; text-align: center; color: var(--text-primary);">16</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <p class="stat-callout__context" style="margin-top: 12px;"><span style="color: var(--text-muted);">*</span> placeholder scores for illustration — I'd set these with the team against real evidence before this went live.</p>
-          </div>
-
-          <!-- Back-end work -->
-          <div class="p03-impact-grid p03-grid-tight reveal" style="display: grid; grid-template-columns: repeat(2, 1fr); margin-top: 16px;">
-            <div class="glass p03-glass">
-              <p class="p03-finding-num">Back-end</p>
-              <p class="p03-card-title" style="margin-bottom: 8px;">Recommendation engine</p>
-              <p class="p03-desc">Upgraded the matching algorithm to factor in health goals, biometrics and purchase history — not just category.</p>
-            </div>
-            <div class="glass p03-glass">
-              <p class="p03-finding-num">Back-end</p>
-              <p class="p03-card-title" style="margin-bottom: 8px;">Product library tagging</p>
-              <p class="p03-desc">Richer metadata across the catalogue so the engine has meaningful attributes to match a person's signal against.</p>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Connect flow screens – full-bleed grey -->
-  <section class="p03-explorations-section" style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px); margin-top: clamp(40px, 5vw, 64px);">
-    <div class="p03-connect-grid p03-grid-md" style="display: grid; grid-template-columns: repeat(3, 1fr) minmax(200px, 1fr); align-items: center;">
-      <img src="images/Connect1.png" alt="Connect wearable flow — select a device" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <img src="images/Connect2.png" alt="Connect wearable flow — authorise via Terra" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <img src="images/Connect3.png" alt="Connect wearable flow — syncing" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px; display: flex; flex-direction: column; justify-content: center; height: 100%;">
-        <p class="p03-label">Connection flow</p>
-        <p class="p03-desc">A <strong style="font-weight: 500; color: var(--text-primary);">quick, frictionless</strong> connect journey — select a wearable, authorise securely via Terra, and land on personalised results.</p>
       </div>
     </div>
   </section>
@@ -1025,17 +899,17 @@
             <div class="phase-card reveal">
               <p class="phase-card__num">01</p>
               <p class="phase-card__title">Continuous, quality data</p>
-              <p class="phase-card__body">Behavioural signal rather than declarative — it compounds over time instead of going stale, creating a self-reinforcing loop.</p>
+              <p class="phase-card__body">Behavioural signal rather than declarative, it compounds over time instead of going stale, creating a self-reinforcing loop.</p>
             </div>
             <div class="phase-card reveal">
               <p class="phase-card__num">02</p>
               <p class="phase-card__title">Category first-mover</p>
-              <p class="phase-card__body">No wellness-commerce platform had meaningfully done this. A moat, not a feature.</p>
+              <p class="phase-card__body">No wellness-commerce platform had meaningfully done this.</p>
             </div>
             <div class="phase-card reveal">
               <p class="phase-card__num">03</p>
               <p class="phase-card__title">Zero ongoing user effort</p>
-              <p class="phase-card__body">A one-time connection replaces repeated manual input — the data keeps arriving without asking anything more of the user.</p>
+              <p class="phase-card__body">A one-time connection replaces repeated manual input, the data keeps arriving without asking anything more of the user.</p>
             </div>
           </div>
           <div class="reveal" style="margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
@@ -1048,11 +922,215 @@
     </div>
   </section>
 
+  <!-- ============ PROCESS ============ -->
+  <section class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container">
+      <div id="section-process" class="process-block reveal" style="border-top: none;">
+        <span class="process-block__num">04</span>
+        <div class="process-block__content">
+          <p class="process-block__label">Process</p>
+          <h2 class="process-block__title">Deep dive into explorations</h2>
+          <div class="process-block__body">
+            <p>Three phases took the idea from research to a live, iterating product.</p>
+          </div>
+
+          <div class="p03-grid-3 p03-grid-tight p03-mt-block" data-stagger style="display: grid; grid-template-columns: repeat(3, 1fr);">
+            <div class="phase-card reveal">
+              <p class="phase-card__num">01 · Discovery</p>
+              <p class="phase-card__title">Crystallising the direction</p>
+              <p class="phase-card__body">What users told us about sharing health data, and the insight that shaped every concept that followed.</p>
+            </div>
+            <div class="phase-card reveal">
+              <p class="phase-card__num">02 · Design</p>
+              <p class="phase-card__title">Four key moments</p>
+              <p class="phase-card__body">Activation, onboarding, results and account management, the explorations, trade-offs and decisions behind each.</p>
+            </div>
+            <div class="phase-card reveal">
+              <p class="phase-card__num">03 · Launch + iteration</p>
+              <p class="phase-card__title">Shipping and learning</p>
+              <p class="phase-card__body">Soft-launch feedback, the three interventions we shipped in response, and the ongoing iteration since going live.</p>
+            </div>
+          </div>
+
+          <!-- Discovery -->
+          <div class="reveal p03-mt-section">
+            <p class="p03-label p03-label--primary" style="font-size: 0.8125rem;">Discovery</p>
+            <p class="p03-body" style="max-width: 62ch; margin-top: 10px; font-size: clamp(1.0625rem, 1.8vw, 1.35rem); line-height: 1.7;">Before designing anything, we needed to understand how people felt about sharing health data. We conducted <strong style="font-weight: 500; color: var(--text-primary);">12 interviews</strong> with Healf members and wearable users.</p>
+          </div>
+
+          <!-- User insights carousel -->
+          <div class="reveal" style="margin-top: 24px;">
+            <p class="p03-label p03-label--primary">User insights</p>
+            <div class="quotes-carousel" style="display: flex; gap: 8px; overflow: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; min-width: 0; margin-top: 12px;">
+              <div class="glass p03-glass--lg" style="flex: 0 0 100%; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;">
+                <p class="p03-body">"I'd share my data if it meant better recommendations. But I'd want to control exactly what I share."</p>
+              </div>
+              <div class="glass p03-glass--lg" style="flex: 0 0 100%; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;">
+                <p class="p03-body">"If I'm sharing my health data, I want to see something useful back immediately, not just a generic product list."</p>
+              </div>
+              <div class="glass p03-glass--lg" style="flex: 0 0 100%; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;">
+                <p class="p03-body">"I filled out the quiz but my needs change. My sleep's been terrible lately and the site doesn't know that."</p>
+              </div>
+              <div class="glass p03-glass--lg" style="flex: 0 0 100%; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;">
+                <p class="p03-body">"I already track everything on my Apple Watch, it'd be amazing if Healf could actually use that."</p>
+              </div>
+            </div>
+            <!-- Arrows -->
+            <div class="quotes-arrows" style="display: flex; gap: 8px; margin-top: 12px;">
+              <button class="quotes-arrow quotes-arrow--prev" style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.2s ease; font-family: inherit;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button class="quotes-arrow quotes-arrow--next" style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.2s ease; font-family: inherit;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Key insight (was north star) -->
+          <div class="reveal" style="margin-top: 32px;">
+            <p class="p03-label p03-label--primary">Key insight</p>
+            <h3 class="nstar-head" style="font-size: clamp(1.05rem, 2.2vw, 1.6rem); font-weight: 300; color: var(--text-primary); line-height: 1.3; margin: 8px 0 16px;">Privacy wasn't the barrier. The value exchange was.</h3>
+            <p class="p03-body" style="max-width: 68ch; font-size: clamp(1rem, 1.5vw, 1.1875rem); line-height: 1.7;">Users were willing to share wearable data, but only if the value exchange was <strong style="font-weight: 500; color: var(--text-primary);">immediate</strong>, <strong style="font-weight: 500; color: var(--text-primary);">visible</strong>, and <strong style="font-weight: 500; color: var(--text-primary);">under their control</strong>. The immediacy of results and the quality of what came back became the design challenge.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Design explorations – full-bleed grey -->
+  <!-- ============ FRAMEWORK ============ -->
+  <section class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container">
+      <div id="section-framework" class="process-block reveal" style="border-top: none;">
+        <span class="process-block__num">05</span>
+        <div class="process-block__content">
+          <p class="process-block__label">Design Principles</p>
+          <h2 class="process-block__title">Key insights → Design Principles</h2>
+          <div class="process-block__body">
+            <p>Each moment of the flow turned a research learning into a clear design principle.</p>
+          </div>
+
+          <div class="p03-grid-4 p03-grid-tight p03-mt-block" data-stagger style="display: grid; grid-template-columns: repeat(4, 1fr);">
+            <div class="glass p03-glass reveal" style="display: flex; flex-direction: column;">
+              <p class="p03-finding-num">Activation</p>
+              <p class="p03-desc" style="flex: 1; margin-bottom: 12px;">The value had to be compelling enough that users wanted to connect in the first place.</p>
+              <p class="p03-card-title" style="margin: 0;">Show the value upfront</p>
+            </div>
+            <div class="glass p03-glass reveal" style="display: flex; flex-direction: column;">
+              <p class="p03-finding-num">Onboarding</p>
+              <p class="p03-desc" style="flex: 1; margin-bottom: 12px;">We couldn't remove the login requirement, but we controlled what came before and after it, clarity and trust were the only levers.</p>
+              <p class="p03-card-title" style="margin: 0;">Fast, clear and trustworthy</p>
+            </div>
+            <div class="glass p03-glass reveal" style="display: flex; flex-direction: column;">
+              <p class="p03-finding-num">Results</p>
+              <p class="p03-desc" style="flex: 1; margin-bottom: 12px;">Personalised recommendations had to feel worth the data the user had just shared.</p>
+              <p class="p03-card-title" style="margin: 0;">Value, immediate and meaningful</p>
+            </div>
+            <div class="glass p03-glass reveal" style="display: flex; flex-direction: column;">
+              <p class="p03-finding-num">Management</p>
+              <p class="p03-desc" style="flex: 1; margin-bottom: 12px;">Users needed to see what's connected, pause sharing, and feel the relationship was theirs.</p>
+              <p class="p03-card-title" style="margin: 0;">A clear place to manage health data</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Section Navigator -->
+  <nav class="section-nav" aria-label="Page sections">
+    <button class="section-nav__toggle" aria-label="Expand navigation">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 8L6 4L10 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="section-nav__items">
+      <a class="section-nav__item" data-target="section-problem"><span class="section-nav__num">01</span><span class="section-nav__label">Problem</span></a>
+      <a class="section-nav__item" data-target="section-solution"><span class="section-nav__num">02</span><span class="section-nav__label">Solution</span></a>
+      <a class="section-nav__item" data-target="section-why"><span class="section-nav__num">03</span><span class="section-nav__label">Why wearables</span></a>
+      <a class="section-nav__item" data-target="section-process"><span class="section-nav__num">04</span><span class="section-nav__label">Process</span></a>
+      <a class="section-nav__item" data-target="section-framework"><span class="section-nav__num">05</span><span class="section-nav__label">Design Principles</span></a>
+      <a class="section-nav__item" data-target="section-results"><span class="section-nav__num">06</span><span class="section-nav__label">Results</span></a>
+    </div>
+  </nav>
+
+  <!-- More Work -->
+  <section class="p03-explorations-section" style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px); margin-top: clamp(40px, 5vw, 64px);">
+    <!-- Activation banners -->
+    <div class="reveal" style="margin-top: clamp(40px, 5vw, 64px);">
+      <div class="glass p03-glass" style="margin-bottom: 16px;">
+        <p class="p03-label">Activation</p>
+        <p class="p03-desc">Entry points across the site need to <strong style="font-weight: 500; color: var(--text-primary);">communicate the value</strong>. The tricky task was making the banner not feel like an ad for the Whoop or Oura devices that Healf also sells, but a prompt to connect one you already have.</p>
+      </div>
+      <img src="images/Activation-banners.png" alt="Activation banner explorations" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+    </div>
+
+    <!-- Connection flow -->
+    <div class="p03-connect-grid p03-grid-md" style="display: grid; grid-template-columns: repeat(3, 1fr) minmax(200px, 1fr); align-items: center; margin-top: clamp(40px, 5vw, 64px); margin-bottom: clamp(60px, 8vw, 100px);">
+      <img src="images/Connect1.png" alt="Connect wearable flow, select a device" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="images/Connect2.png" alt="Connect wearable flow, authorise via Terra" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="images/Connect3.png" alt="Connect wearable flow, syncing" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px; display: flex; flex-direction: column; justify-content: center; height: 100%;">
+        <p class="p03-label">Connection flow</p>
+        <p class="p03-desc">UI experiments to ensure the <strong style="font-weight: 500; color: var(--text-primary);">fastest possible route</strong> through the onboarding flow.</p>
+      </div>
+    </div>
+
+    <!-- Onboarding -->
+    <div class="reveal" style="margin-top: clamp(40px, 5vw, 64px);">
+      <div class="glass p03-glass" style="margin-bottom: 16px;">
+        <p class="p03-label">Onboarding</p>
+        <p class="p03-desc">The connect flow itself, keeping the required login <strong style="font-weight: 500; color: var(--text-primary);">fast, clear and trustworthy</strong> before landing on personalised results.</p>
+      </div>
+      <div class="p03-onboard-grid p03-grid-md" style="display: grid; grid-template-columns: repeat(4, 1fr); align-items: stretch;">
+        <div class="glass p03-glass" style="display: flex; flex-direction: column; justify-content: center;">
+          <p class="p03-desc">The <strong style="font-weight: 500; color: var(--text-primary);">loading wheel</strong> keeps the user engaged by signalling that the connection is happening. The copy "Take a moment to pause" adds a brand moment while holding their attention.</p>
+        </div>
+        <img src="images/2Onboard.png" alt="Onboarding exploration 2" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+        <img src="images/3Onboard.png" alt="Onboarding exploration 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+        <img src="images/Onboard4.png" alt="Onboarding exploration 4" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      </div>
+    </div>
+
+    <!-- Results / match score -->
+    <div class="reveal" style="margin-top: clamp(40px, 5vw, 64px); margin-bottom: clamp(60px, 8vw, 100px);">
+      <div class="glass p03-glass" style="margin-bottom: 16px;">
+        <p class="p03-label">Results display</p>
+        <p class="p03-desc">Designing the results around a <strong style="font-weight: 500; color: var(--text-primary);">match score</strong>, giving every recommendation a visible, immediate value.</p>
+      </div>
+      <div class="p03-foryou-grid p03-grid-md" style="display: grid; grid-template-columns: repeat(2, 1fr);">
+        <img src="images/Match-2.jpg" alt="Match score exploration" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+        <img src="images/Match-3.jpg" alt="Match score exploration" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      </div>
+    </div>
+
+    <!-- For You page -->
+    <div class="p03-foryou-grid p03-grid-wide" style="display: grid; grid-template-columns: repeat(2, 1fr);">
+      <img src="images/Foryou1.png" alt="For You page exploration 1" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="images/Foryou2.png" alt="For You page exploration 2" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <img src="images/Foryou3.png" alt="For You page exploration 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <div class="glass p03-glass" style="display: flex; flex-direction: column; justify-content: center;">
+        <p class="p03-label">For You page</p>
+        <p class="p03-desc">Explorations on how to showcase the <strong style="font-weight: 500; color: var(--text-primary);">product recommendations</strong>, and the insights and rationale, to create meaning and hold attention.</p>
+      </div>
+    </div>
+
+    <!-- Account -->
+    <div class="reveal" style="margin-top: clamp(40px, 5vw, 64px);">
+      <div class="glass p03-glass" style="margin-bottom: 16px;">
+        <p class="p03-label">Account</p>
+        <p class="p03-desc">Where users <strong style="font-weight: 500; color: var(--text-primary);">manage the connection</strong>: see what's linked, pause sharing, disconnect, or delete their wearable data at any time.</p>
+      </div>
+      <div class="p03-onboard-grid p03-grid-md" style="display: grid; grid-template-columns: repeat(4, 1fr);">
+        <img src="images/Account.png" alt="Account, manage connected wearable" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      </div>
+    </div>
+  </section>
+
   <!-- ============ RESULTS ============ -->
   <section class="section" style="padding-top: 0; padding-bottom: 0;">
     <div class="container">
-      <div id="section-results" class="process-block reveal">
-        <span class="process-block__num">04</span>
+      <div id="section-results" class="process-block reveal" style="border-top: none;">
+        <span class="process-block__num">06</span>
         <div class="process-block__content">
           <p class="process-block__label">Results</p>
           <h2 class="process-block__title">The results</h2>
@@ -1084,18 +1162,18 @@
           <!-- Virtuous loop -->
           <div class="reveal p03-mt-block">
             <p class="p03-label p03-label--primary">The loop, now working</p>
-            <div class="flow-scroll" style="overflow-x: auto; padding-bottom: 12px; margin-top: 12px;">
-              <div style="display: flex; align-items: center; gap: 0; min-width: 760px;">
-                <div style="flex: 1; min-width: 120px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 6px; background: #fff; padding: 16px 12px; text-align: center;"><p style="font-size: 0.7rem; color: var(--text-primary); margin: 0;">Rich volume of data</p></div>
-                <div style="flex: 0 0 24px; height: 1.5px; background: rgba(0,0,0,0.15);"></div>
-                <div style="flex: 1; min-width: 120px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 6px; background: #fff; padding: 16px 12px; text-align: center;"><p style="font-size: 0.7rem; color: var(--text-primary); margin: 0;">Personalised recommendations</p></div>
-                <div style="flex: 0 0 24px; height: 1.5px; background: rgba(0,0,0,0.15);"></div>
-                <div style="flex: 1; min-width: 120px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 6px; background: #fff; padding: 16px 12px; text-align: center;"><p style="font-size: 0.7rem; color: var(--text-primary); margin: 0;">High confidence</p></div>
-                <div style="flex: 0 0 24px; height: 1.5px; background: rgba(0,0,0,0.15);"></div>
-                <div style="flex: 1; min-width: 120px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 6px; background: #fff; padding: 16px 12px; text-align: center;"><p style="font-size: 0.7rem; color: var(--text-primary); margin: 0;">Purchase</p></div>
-                <div style="flex: 0 0 24px; height: 1.5px; background: rgba(0,0,0,0.15);"></div>
-                <div style="flex: 1; min-width: 120px; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 6px; background: #fff; padding: 16px 12px; text-align: center;"><p style="font-size: 0.7rem; color: var(--text-primary); margin: 0;">Credible user data</p></div>
-                <div style="flex: 0 0 24px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.8rem;">↺</div>
+            <div class="loop-circle">
+              <div class="loop-circle__stage">
+                <svg class="loop-circle__ring" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+                  <circle cx="50" cy="50" r="34" stroke="rgba(0,0,0,0.15)" stroke-width="0.6" stroke-dasharray="1.5 2"/>
+                  <path d="M 58.5 17.2 L 63.2 16.0 L 60.8 20.3 Z" fill="rgba(0,0,0,0.38)"/>
+                </svg>
+                <p class="loop-circle__center">Engagement loop</p>
+                <div class="loop-node loop-node--n1 loop-node--active"><p>Rich volume of data</p></div>
+                <div class="loop-node loop-node--n2 loop-node--active"><p>Personalised recommendations</p></div>
+                <div class="loop-node loop-node--n3 loop-node--active"><p>High confidence</p></div>
+                <div class="loop-node loop-node--n4 loop-node--active"><p>Purchase</p></div>
+                <div class="loop-node loop-node--n5 loop-node--active"><p>Credible user data</p></div>
               </div>
             </div>
           </div>
@@ -1109,209 +1187,60 @@
     </div>
   </section>
 
-  <!-- ============ PROCESS ============ -->
-  <section class="section" style="padding-top: 0; padding-bottom: 0;">
-    <div class="container">
-      <div id="section-process" class="process-block reveal" style="border-top: none;">
-        <span class="process-block__num">05</span>
-        <div class="process-block__content">
-          <p class="process-block__label">Process</p>
-          <h2 class="process-block__title">Deep dive into explorations</h2>
-          <div class="process-block__body">
-            <p>Three phases took the idea from research to a live, iterating product.</p>
-          </div>
-
-          <div class="p03-grid-3 p03-grid-tight p03-mt-block" data-stagger style="display: grid; grid-template-columns: repeat(3, 1fr);">
-            <div class="phase-card reveal">
-              <p class="phase-card__num">01 · Discovery</p>
-              <p class="phase-card__title">Crystallising the direction</p>
-              <p class="phase-card__body">What users told us about sharing health data, and the insight that shaped every concept that followed.</p>
-            </div>
-            <div class="phase-card reveal">
-              <p class="phase-card__num">02 · Design</p>
-              <p class="phase-card__title">Four key moments</p>
-              <p class="phase-card__body">Activation, onboarding, results and account management — the explorations, trade-offs and decisions behind each.</p>
-            </div>
-            <div class="phase-card reveal">
-              <p class="phase-card__num">03 · Launch + iteration</p>
-              <p class="phase-card__title">Shipping and learning</p>
-              <p class="phase-card__body">Soft-launch feedback, the three interventions we shipped in response, and the ongoing iteration since going live.</p>
-            </div>
-          </div>
-
-          <!-- Discovery -->
-          <div class="reveal p03-mt-section">
-            <p class="p03-label p03-label--primary">Discovery</p>
-            <p class="p03-body" style="max-width: 60ch; margin-top: 8px;">Before designing anything, we needed to understand how people felt about sharing health data. We conducted <strong style="font-weight: 500; color: var(--text-primary);">12 interviews</strong> with Healf members and wearable users.</p>
-          </div>
-
-          <!-- North star + quotes -->
-          <div class="reveal" style="margin-top: 24px;">
-            <p class="p03-label p03-label--primary">The north star</p>
-            <h3 style="font-size: clamp(1.25rem, 2.6vw, 1.9rem); font-weight: 300; color: var(--text-primary); line-height: 1.2; margin: 8px 0 20px; max-width: 18ch;">Privacy wasn't the barrier. The value exchange was.</h3>
-
-            <div class="p03-quotes-insight p03-grid-tight" style="display: grid; grid-template-columns: 1fr 1fr; align-items: stretch;">
-              <!-- Quotes carousel -->
-              <div class="quotes-carousel" style="display: flex; gap: 8px; overflow: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; min-width: 0;">
-                <div class="glass p03-glass--lg" style="flex: 0 0 100%; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;">
-                  <p class="p03-label p03-label--primary">User insights</p>
-                  <p class="p03-body">"I'd share my data if it meant better recommendations. But I'd want to control exactly what I share."</p>
-                </div>
-                <div class="glass p03-glass--lg" style="flex: 0 0 100%; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;">
-                  <p class="p03-label p03-label--primary">User insights</p>
-                  <p class="p03-body">"If I'm sharing my health data, I want to see something useful back immediately, not just a generic product list."</p>
-                </div>
-                <div class="glass p03-glass--lg" style="flex: 0 0 100%; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;">
-                  <p class="p03-label p03-label--primary">User insights</p>
-                  <p class="p03-body">"I filled out the quiz but my needs change. My sleep's been terrible lately and the site doesn't know that."</p>
-                </div>
-                <div class="glass p03-glass--lg" style="flex: 0 0 100%; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;">
-                  <p class="p03-label p03-label--primary">User insights</p>
-                  <p class="p03-body">"I already track everything on my Apple Watch — it'd be amazing if Healf could actually use that."</p>
-                </div>
-              </div>
-
-              <!-- Key insight -->
-              <div class="glass p03-glass--lg" style="display: flex; flex-direction: column; justify-content: flex-start;">
-                <p class="p03-label p03-label--primary">Key insight</p>
-                <p class="p03-body">Users were willing to share wearable data, but only if the value exchange was <strong style="font-weight: 500; color: var(--text-primary);">immediate</strong>, <strong style="font-weight: 500; color: var(--text-primary);">visible</strong>, and <strong style="font-weight: 500; color: var(--text-primary);">under their control</strong>. The immediacy of results and the quality of what came back became the design challenge.</p>
-              </div>
-            </div>
-            <!-- Arrows -->
-            <div class="quotes-arrows" style="display: flex; gap: 8px; margin-top: 12px;">
-              <button class="quotes-arrow quotes-arrow--prev" style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.2s ease; font-family: inherit;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-              </button>
-              <button class="quotes-arrow quotes-arrow--next" style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.2s ease; font-family: inherit;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-              </button>
-            </div>
-          </div>
+  <!-- Journey screens row (repeat of hero) -->
+  <section class="p03-grey-section" style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) var(--gutter);">
+    <div style="max-width: 960px; margin: 0 auto;">
+      <!-- Screens grid -->
+      <div class="p03-grid-md" style="display: grid; grid-template-columns: repeat(6, 1fr);">
+        <div>
+          <img src="images/Activation2.png" alt="Activation screen" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+        </div>
+        <div>
+          <img src="images/Onboarding1.png" alt="Onboarding step 1" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+        </div>
+        <div>
+          <img src="images/Onboarding2.png" alt="Onboarding step 2" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+        </div>
+        <div>
+          <img src="images/Onboarding3.png" alt="Onboarding step 3" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+        </div>
+        <div>
+          <img src="images/Results.png" alt="Results screen" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+        </div>
+        <div>
+          <img src="images/Account.png" alt="Account screen" style="width: 100%; height: auto; border-radius: 12px; display: block;" />
+        </div>
+      </div>
+      <!-- Labels below images -->
+      <div class="p03-grid-md" style="display: grid; grid-template-columns: repeat(6, 1fr); margin-top: 20px;">
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
+          <span style="font-size: clamp(0.65rem, 1vw, 0.8rem); font-weight: 400; color: var(--text-muted); letter-spacing: 0.02em; white-space: nowrap;">Activation</span>
+          <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
+        </div>
+        <div style="grid-column: 2 / 5; display: flex; align-items: center; gap: 6px;">
+          <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
+          <span style="font-size: clamp(0.65rem, 1vw, 0.8rem); font-weight: 400; color: var(--text-muted); letter-spacing: 0.02em; white-space: nowrap;">Onboarding</span>
+          <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
+          <span style="font-size: clamp(0.65rem, 1vw, 0.8rem); font-weight: 400; color: var(--text-muted); letter-spacing: 0.02em; white-space: nowrap;">Results</span>
+          <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
+          <span style="font-size: clamp(0.65rem, 1vw, 0.8rem); font-weight: 400; color: var(--text-muted); letter-spacing: 0.02em; white-space: nowrap;">Account</span>
+          <div style="flex: 1; height: 1px; background: var(--text-muted); opacity: 0.4;"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Design explorations – full-bleed grey -->
-  <section class="p03-explorations-section" style="background: var(--bg-raised); padding: clamp(40px, 5vw, 64px) clamp(60px, 10vw, 140px); margin-top: clamp(40px, 5vw, 64px);">
-    <!-- Results / match score -->
-    <div class="p03-match-grid p03-grid-md" style="display: grid; grid-template-columns: minmax(200px, 1fr) repeat(2, 1fr); align-items: center; margin-bottom: clamp(60px, 8vw, 100px);">
-      <div class="glass" style="padding: clamp(16px, 2vw, 24px); border-radius: 12px; display: flex; flex-direction: column; justify-content: center; height: 100%;">
-        <p class="p03-label">Results display</p>
-        <p class="p03-desc">Designing the results around a <strong style="font-weight: 500; color: var(--text-primary);">match score</strong> — giving every recommendation a visible reason to exist.</p>
-      </div>
-      <img src="images/Match-2.jpg" alt="Match score exploration" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <img src="images/Match-3.jpg" alt="Match score exploration" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-    </div>
-
-    <!-- For You page -->
-    <div class="p03-foryou-grid p03-grid-wide" style="display: grid; grid-template-columns: repeat(2, 1fr);">
-      <img src="images/Foryou1.png" alt="For You page exploration 1" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <img src="images/Foryou2.png" alt="For You page exploration 2" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <img src="images/Foryou3.png" alt="For You page exploration 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <div class="glass p03-glass" style="display: flex; flex-direction: column; justify-content: center;">
-        <p class="p03-label">For You page</p>
-        <p class="p03-desc">The post-connection destination — a carousel of <strong style="font-weight: 500; color: var(--text-primary);">recommended products</strong> tuned to the user's signal.</p>
-      </div>
-    </div>
-
-    <!-- Onboarding -->
-    <div class="p03-onboard-grid p03-grid-md" style="display: grid; grid-template-columns: repeat(4, 1fr); margin-top: clamp(40px, 5vw, 64px);">
-      <img src="images/1Onboard.png" alt="Onboarding exploration 1" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <img src="images/2Onboard.png" alt="Onboarding exploration 2" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <img src="images/3Onboard.png" alt="Onboarding exploration 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      <img src="images/Onboard4.png" alt="Onboarding exploration 4" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-    </div>
-  </section>
-
-  <!-- ============ FRAMEWORK ============ -->
-  <section class="section" style="padding-top: 0; padding-bottom: 0;">
-    <div class="container">
-      <div id="section-framework" class="process-block reveal" style="border-top: none;">
-        <span class="process-block__num">06</span>
-        <div class="process-block__content">
-          <p class="process-block__label">Framework</p>
-          <h2 class="process-block__title">Learnings → Framework</h2>
-          <div class="process-block__body">
-            <p>Each moment of the flow turned a research learning into a clear design principle.</p>
-          </div>
-
-          <div class="p03-grid-4 p03-grid-tight p03-mt-block" data-stagger style="display: grid; grid-template-columns: repeat(4, 1fr);">
-            <div class="glass p03-glass reveal" style="display: flex; flex-direction: column;">
-              <p class="p03-finding-num">Activation</p>
-              <p class="p03-desc" style="flex: 1; margin-bottom: 12px;">The value had to be compelling enough that users wanted to connect in the first place.</p>
-              <p class="p03-card-title" style="margin: 0;">Show the value upfront</p>
-            </div>
-            <div class="glass p03-glass reveal" style="display: flex; flex-direction: column;">
-              <p class="p03-finding-num">Onboarding</p>
-              <p class="p03-desc" style="flex: 1; margin-bottom: 12px;">We couldn't remove the login requirement, but we controlled what came before and after it — clarity and trust were the only levers.</p>
-              <p class="p03-card-title" style="margin: 0;">Fast, clear and trustworthy</p>
-            </div>
-            <div class="glass p03-glass reveal" style="display: flex; flex-direction: column;">
-              <p class="p03-finding-num">Results</p>
-              <p class="p03-desc" style="flex: 1; margin-bottom: 12px;">Personalised recommendations had to feel worth the data the user had just shared.</p>
-              <p class="p03-card-title" style="margin: 0;">Value, immediate and meaningful</p>
-            </div>
-            <div class="glass p03-glass reveal" style="display: flex; flex-direction: column;">
-              <p class="p03-finding-num">Management</p>
-              <p class="p03-desc" style="flex: 1; margin-bottom: 12px;">Users needed to see what's connected, pause sharing, and feel the relationship was theirs.</p>
-              <p class="p03-card-title" style="margin: 0;">A clear place to manage health data</p>
-            </div>
-          </div>
-
-          <!-- Closing reflection -->
-          <div class="p03-grid-tight p03-mt-section" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
-            <div class="glass p03-glass">
-              <p class="p03-card-title" style="margin-bottom: 8px;">Data acquisition is the real feature</p>
-              <p class="p03-desc">Better recommendations were a by-product. The durable win was a continuous, credible signal that compounds every time a user returns.</p>
-            </div>
-            <div class="glass p03-glass">
-              <p class="p03-card-title" style="margin-bottom: 8px;">Trade a one-time quiz for a living loop</p>
-              <p class="p03-desc">Passive wearable data replaced a snapshot that went stale — turning a one-off purchase into an ongoing engagement loop.</p>
-            </div>
-            <div class="glass p03-glass">
-              <p class="p03-card-title" style="margin-bottom: 8px;">Trust is earned at the exchange</p>
-              <p class="p03-desc">People will share sensitive data when the value back is immediate, visible and under their control.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- Section Navigator -->
-  <nav class="section-nav" aria-label="Page sections">
-    <button class="section-nav__toggle" aria-label="Expand navigation">
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 8L6 4L10 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-    <div class="section-nav__items">
-      <a class="section-nav__item" data-target="section-problem"><span class="section-nav__num">01</span><span class="section-nav__label">Problem</span></a>
-      <a class="section-nav__item" data-target="section-solution"><span class="section-nav__num">02</span><span class="section-nav__label">Solution</span></a>
-      <a class="section-nav__item" data-target="section-why"><span class="section-nav__num">03</span><span class="section-nav__label">Why wearables</span></a>
-      <a class="section-nav__item" data-target="section-results"><span class="section-nav__num">04</span><span class="section-nav__label">Results</span></a>
-      <a class="section-nav__item" data-target="section-process"><span class="section-nav__num">05</span><span class="section-nav__label">Process</span></a>
-      <a class="section-nav__item" data-target="section-framework"><span class="section-nav__num">06</span><span class="section-nav__label">Framework</span></a>
-    </div>
-  </nav>
-
-  <!-- More Work -->
   <section class="work reveal" style="padding-top: 0;">
-    <a class="project-row" href="project-07.html">
-      <div class="project-row__inner">
-        <span class="project-row__num">01</span>
-        <span class="project-row__name">Connect Wearables <span class="project-row__brand">Healf</span></span>
-        <div class="project-row__tags">
-          <span class="tag">Wearable integration</span>
-          <span class="tag">Onboarding</span>
-          <span class="tag">Data</span>
-        </div>
-        <span class="project-row__year">2026</span>
-      </div>
-    </a>
     <a class="project-row" href="project-05.html">
       <div class="project-row__inner">
-        <span class="project-row__num">02</span>
+        <span class="project-row__num">01</span>
         <span class="project-row__name">Healf App <span class="project-row__brand">Healf</span></span>
         <div class="project-row__tags">
           <span class="tag">Ongoing</span>
@@ -1323,7 +1252,7 @@
     </a>
     <a class="project-row" href="project-06.html">
       <div class="project-row__inner">
-        <span class="project-row__num">03</span>
+        <span class="project-row__num">02</span>
         <span class="project-row__name">Spurr App <span class="project-row__brand">Personal Project</span></span>
         <div class="project-row__tags">
           <span class="tag">iOS App</span>
@@ -1335,7 +1264,7 @@
     </a>
     <a class="project-row" href="project-01.html">
       <div class="project-row__inner">
-        <span class="project-row__num">04</span>
+        <span class="project-row__num">03</span>
         <span class="project-row__name">PDP Optimisation <span class="project-row__brand">Jo Malone London</span></span>
         <div class="project-row__tags">
           <span class="tag">E-commerce</span>
@@ -1347,7 +1276,7 @@
     </a>
     <a class="project-row" href="project-02.html">
       <div class="project-row__inner">
-        <span class="project-row__num">05</span>
+        <span class="project-row__num">04</span>
         <span class="project-row__name">Customisation tool <span class="project-row__brand">Jo Malone London</span></span>
         <div class="project-row__tags">
           <span class="tag">Feature</span>
@@ -1359,7 +1288,7 @@
     </a>
     <a class="project-row" href="project-04.html">
       <div class="project-row__inner">
-        <span class="project-row__num">06</span>
+        <span class="project-row__num">05</span>
         <span class="project-row__name">Vibe Coding <span class="project-row__brand">Personal Project</span></span>
         <div class="project-row__tags">
           <span class="tag">Vibe Coding</span>
