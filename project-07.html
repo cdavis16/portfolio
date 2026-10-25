@@ -554,6 +554,12 @@
       .p03-grey-section > div::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 4px; }
       .p03-grey-section > div > .p03-grid-md { min-width: 760px; }
     }
+    /* Onboarding flow diagrams */
+    .oflow { display: flex; align-items: stretch; min-width: 900px; }
+    .oflow__step { flex: 1; min-width: 100px; border-radius: 8px; padding: 15px 10px; text-align: center; display: flex; align-items: center; justify-content: center; }
+    .oflow__step p { font-size: 0.72rem; color: var(--text-primary); margin: 0; line-height: 1.3; }
+    .oflow__arrow { flex: 0 0 22px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.8rem; }
+    .oflow .s1, .oflow .s2, .oflow .s3, .oflow .s4, .oflow .s5, .oflow .s6, .oflow .s7 { background: #e7e6e2; }
 
     /* ── Circular loop diagram ── */
     .loop-circle { width: 100%; display: flex; justify-content: center; margin-top: 16px; }
@@ -1062,6 +1068,84 @@
         <p class="p03-desc">Entry points across the site need to <strong style="font-weight: 500; color: var(--text-primary);">communicate the value</strong>. The tricky task was making the banner not feel like an ad for the Whoop or Oura devices that Healf also sells, but a prompt to connect one you already have.</p>
       </div>
       <img src="images/Activation-banners.png" alt="Activation banner explorations" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <div style="overflow: hidden; border-radius: 8px; margin-top: 16px;">
+        <img src="images/Activation-banners-2.webp" alt="Activation banner explorations, further treatments" style="width: 109.6%; margin-left: -4.8%; height: auto; display: block;" />
+      </div>
+    </div>
+
+    <!-- Onboarding -->
+    <div class="reveal" style="margin-top: clamp(40px, 5vw, 64px);">
+      <div class="glass p03-glass" style="margin-bottom: 16px;">
+        <p class="p03-label">Onboarding</p>
+        <p class="p03-desc">The connect flow itself, keeping the required login <strong style="font-weight: 500; color: var(--text-primary);">fast, clear and trustworthy</strong> before landing on personalised results.</p>
+      </div>
+
+      <!-- Flow experiments -->
+      <div class="reveal" style="margin-bottom: 28px;">
+        <p class="p03-label p03-label--primary" style="margin-bottom: 10px;">Flow experiments</p>
+        <p class="p03-desc p03-mb-desc" style="max-width: 72ch;">Different orderings of the same required steps, testing where login, privacy and the questionnaire should sit to keep the flow fast and trustworthy.</p>
+        <div class="flow-scroll" style="overflow-x: auto; padding-bottom: 12px;">
+          <div class="oflow">
+            <div class="oflow__step s1"><p>Intro</p></div><div class="oflow__arrow">→</div>
+            <div class="oflow__step s2"><p>Healf login</p></div><div class="oflow__arrow">→</div>
+            <div class="oflow__step s3"><p>Privacy</p></div><div class="oflow__arrow">→</div>
+            <div class="oflow__step s4"><p>Select device</p></div><div class="oflow__arrow">→</div>
+            <div class="oflow__step s5"><p>Wearable login</p></div><div class="oflow__arrow">→</div>
+            <div class="oflow__step s6"><p>Questions</p></div><div class="oflow__arrow">→</div>
+            <div class="oflow__step s7"><p>Completion</p></div>
+          </div>
+        </div>
+        <div class="flow-scroll" style="overflow-x: auto; padding-bottom: 12px; margin-top: 10px;">
+          <div class="oflow">
+            <div class="oflow__step s1"><p>Select device</p></div><div class="oflow__arrow">→</div>
+            <div class="oflow__step s2"><p>Privacy</p></div><div class="oflow__arrow">→</div>
+            <div class="oflow__step s3"><p>Login to Healf</p></div><div class="oflow__arrow">→</div>
+            <div class="oflow__step s4"><p>Wearable login</p></div><div class="oflow__arrow">→</div>
+            <div class="oflow__step s5"><p>Skippable questionnaire</p></div><div class="oflow__arrow">→</div>
+            <div class="oflow__step s6"><p>Syncing</p></div><div class="oflow__arrow">→</div>
+            <div class="oflow__step s7"><p>Completion</p></div>
+          </div>
+        </div>
+        <div class="flow-scroll" style="overflow-x: auto; padding-bottom: 12px; margin-top: 10px;">
+          <div class="oflow">
+            <div class="oflow__step s1"><p>Intro</p></div><div class="oflow__arrow">→</div>
+            <div class="oflow__step s2"><p>Select device</p></div><div class="oflow__arrow">→</div>
+            <div class="oflow__step s3"><p>Privacy pop ups</p></div><div class="oflow__arrow">→</div>
+            <div class="oflow__step s4"><p>Healf login</p></div><div class="oflow__arrow">→</div>
+            <div class="oflow__step s5"><p>Wearable login</p></div><div class="oflow__arrow">→</div>
+            <div class="oflow__step s6"><p>Syncing</p></div><div class="oflow__arrow">→</div>
+            <div class="oflow__step s7"><p>Completion</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- The outcome -->
+      <p class="p03-label p03-label--primary" style="margin-bottom: 12px;">The outcome</p>
+      <div class="flow-scroll reveal" style="overflow-x: auto; padding-bottom: 12px; margin-bottom: 16px;">
+        <div class="oflow">
+          <div class="oflow__step s1"><p>Select device</p></div><div class="oflow__arrow">→</div>
+          <div class="oflow__step s2"><p>Privacy pop ups</p></div><div class="oflow__arrow">→</div>
+          <div class="oflow__step s3"><p>Healf login</p></div><div class="oflow__arrow">→</div>
+          <div class="oflow__step s5"><p>Wearable login</p></div><div class="oflow__arrow">→</div>
+          <div class="oflow__step s6"><p>Syncing</p></div><div class="oflow__arrow">→</div>
+          <div class="oflow__step s7"><p>Completion</p></div>
+        </div>
+      </div>
+
+      <div class="flow-scroll reveal" style="overflow-x: auto; padding-bottom: 12px; margin-top: 16px;">
+        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; min-width: 900px; align-items: start;">
+          <img src="images/outcome-1-select-device.png" alt="Select a device to connect" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+          <img src="images/outcome-2-privacy.png" alt="Everything you need to know, privacy" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+          <img src="images/outcome-3-login.png" alt="Recommendations ready, log in" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+          <img src="images/outcome-4-oura-signin.png" alt="Sign in with your Oura account" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+          <img src="images/outcome-5-connecting.png" alt="Take a moment to pause, connecting" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+          <img src="images/outcome-6-ready.png" alt="Connection successful, recommendations ready" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+          <img src="images/outcome-7-connected.png" alt="Device connected, personalised results" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+        </div>
+      </div>
+      <div class="glass p03-glass reveal" style="margin-top: 16px;">
+        <p class="p03-desc">The <strong style="font-weight: 500; color: var(--text-primary);">loading wheel</strong> keeps the user engaged by signalling that the connection is happening. The copy "Take a moment to pause" adds a brand moment while holding their attention.</p>
+      </div>
     </div>
 
     <!-- Connection flow -->
@@ -1075,32 +1159,13 @@
       </div>
     </div>
 
-    <!-- Onboarding -->
-    <div class="reveal" style="margin-top: clamp(40px, 5vw, 64px);">
-      <div class="glass p03-glass" style="margin-bottom: 16px;">
-        <p class="p03-label">Onboarding</p>
-        <p class="p03-desc">The connect flow itself, keeping the required login <strong style="font-weight: 500; color: var(--text-primary);">fast, clear and trustworthy</strong> before landing on personalised results.</p>
-      </div>
-      <div class="p03-onboard-grid p03-grid-md" style="display: grid; grid-template-columns: repeat(4, 1fr); align-items: stretch;">
-        <div class="glass p03-glass" style="display: flex; flex-direction: column; justify-content: center;">
-          <p class="p03-desc">The <strong style="font-weight: 500; color: var(--text-primary);">loading wheel</strong> keeps the user engaged by signalling that the connection is happening. The copy "Take a moment to pause" adds a brand moment while holding their attention.</p>
-        </div>
-        <img src="images/2Onboard.png" alt="Onboarding exploration 2" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-        <img src="images/3Onboard.png" alt="Onboarding exploration 3" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-        <img src="images/Onboard4.png" alt="Onboarding exploration 4" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      </div>
-    </div>
-
     <!-- Results / match score -->
     <div class="reveal" style="margin-top: clamp(40px, 5vw, 64px); margin-bottom: clamp(60px, 8vw, 100px);">
       <div class="glass p03-glass" style="margin-bottom: 16px;">
         <p class="p03-label">Results display</p>
         <p class="p03-desc">Designing the results around a <strong style="font-weight: 500; color: var(--text-primary);">match score</strong>, giving every recommendation a visible, immediate value.</p>
       </div>
-      <div class="p03-foryou-grid p03-grid-md" style="display: grid; grid-template-columns: repeat(2, 1fr);">
-        <img src="images/Match-2.jpg" alt="Match score exploration" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-        <img src="images/Match-3.jpg" alt="Match score exploration" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
-      </div>
+      <img src="images/match-score-explorations.png" alt="Match score explorations" style="width: 100%; height: auto; display: block; border-radius: 8px;" />
     </div>
 
     <!-- For You page -->
@@ -1120,8 +1185,19 @@
         <p class="p03-label">Account</p>
         <p class="p03-desc">Where users <strong style="font-weight: 500; color: var(--text-primary);">manage the connection</strong>: see what's linked, pause sharing, disconnect, or delete their wearable data at any time.</p>
       </div>
-      <div class="p03-onboard-grid p03-grid-md" style="display: grid; grid-template-columns: repeat(4, 1fr);">
-        <img src="images/Account.png" alt="Account, manage connected wearable" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+      <div class="p03-match-grid p03-grid-md" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: start; max-width: 520px;">
+        <div>
+          <img src="images/account-connected.png" alt="Account, wearable connected" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+          <p class="p03-label" style="text-align: center; margin-top: 10px;">Connected</p>
+        </div>
+        <div>
+          <img src="images/account-dropped.png" alt="Account, connection dropped" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+          <p class="p03-label" style="text-align: center; margin-top: 10px;">Connection dropped</p>
+        </div>
+        <div>
+          <img src="images/account-notconnected.png" alt="Account, no wearable connected" style="width: 100%; height: auto; object-fit: contain; display: block; border-radius: 8px;" />
+          <p class="p03-label" style="text-align: center; margin-top: 10px;">Not connected</p>
+        </div>
       </div>
     </div>
   </section>
