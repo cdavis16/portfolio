@@ -622,8 +622,15 @@
         <div class="reveal">
           <p class="eyebrow" style="margin-bottom: 20px;">Overview</p>
           <p class="project-overview__challenge">
-            As part of Healf's <strong>Personalisation Pod</strong>, our remit was to improve recommendation relevance, AOV and LTV. Users had <strong>high interest but low confidence</strong> in what to buy. By letting them <strong>connect a wearable</strong> (Oura, Apple Watch and more) via the Terra API, we fed continuous, passive health data into a smarter recommendation engine — breaking a broken engagement loop and lifting <strong>AOV by 23%</strong>.
+            As part of Healf's <strong>Personalisation Pod</strong>, the goal was growth: lift <strong>AOV and LTV</strong>, with recommendation CTR and repeat-purchase rate as the leading indicators. The funnel leaked at every stage — high interest, but low confidence turning views into purchases, and few people coming back. Our bet: <strong>if users connect a wearable</strong> (Oura, Apple Watch and more) via the Terra API, continuous passive health data makes recommendations relevant enough to move the whole funnel — <strong>CTR → conversion → AOV → return rate</strong> — turning a one-time transaction into a compounding engagement loop. It lifted <strong>AOV by 23%</strong>.
           </p>
+          <div class="reveal" style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
+            <span class="p03-label" style="margin: 0 4px 0 0;">North-star</span>
+            <span class="insight-pill">Repeat-purchase rate · connected users</span>
+            <span class="p03-label" style="margin: 0 4px 0 12px;">Guardrails</span>
+            <span class="insight-pill">Connect drop-off</span>
+            <span class="insight-pill">Data-permission opt-out</span>
+          </div>
         </div>
 
         <div class="project-overview__details reveal reveal-delay-2">
@@ -775,6 +782,75 @@
     </div>
   </section>
 
+  <!-- ============ PROBLEM — GROWTH MOCK-UP (below existing for comparison) ============ -->
+  <section class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="container">
+      <div class="process-block" style="border-top: 1.5px dashed var(--border); position: relative;">
+        <span class="process-block__num">01</span>
+        <div class="process-block__content">
+          <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 14px;">
+            <span style="font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bg); background: var(--text-primary); padding: 4px 10px; border-radius: 100px;">Mock-up</span>
+            <span class="p03-label" style="margin: 0;">Growth-framed alternative — same section, as a funnel</span>
+          </div>
+          <p class="process-block__label">Problem</p>
+          <h2 class="process-block__title">A funnel that leaked at every stage</h2>
+          <div class="process-block__body">
+            <p>
+              Same insight, told as a funnel: interest was high at the top, but each step down to a repeat purchase lost most of the people above it. The biggest leak was recommendation relevance — the step a wearable signal was meant to fix.
+            </p>
+          </div>
+
+          <!-- Drop-off funnel -->
+          <div class="reveal p03-mt-block">
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <!-- stage 1 -->
+              <div style="display: flex; align-items: stretch; gap: 12px;">
+                <div style="width: 100%; max-width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px;">
+                  <span style="font-size: 0.8125rem; color: var(--text-primary);">Session started</span>
+                  <span style="font-size: 1rem; font-weight: 300; color: var(--text-primary);">100%</span>
+                </div>
+                <span class="insight-pill" style="flex: 0 0 auto; align-self: center;">Acquisition</span>
+              </div>
+              <!-- stage 2 -->
+              <div style="display: flex; align-items: stretch; gap: 12px;">
+                <div style="width: 62%; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px;">
+                  <span style="font-size: 0.8125rem; color: var(--text-primary);">Viewed a product</span>
+                  <span style="font-size: 1rem; font-weight: 300; color: var(--text-primary);">~62%<span style="color: var(--text-muted);">*</span></span>
+                </div>
+                <span class="insight-pill" style="flex: 0 0 auto; align-self: center;">Activation</span>
+              </div>
+              <!-- stage 3 -->
+              <div style="display: flex; align-items: stretch; gap: 12px;">
+                <div style="width: 30%; background: #fff5f5; border: 1.5px solid #e4b4b4; border-radius: 8px; padding: 14px 18px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px;">
+                  <span style="font-size: 0.8125rem; color: var(--text-primary);">Clicked a recommendation</span>
+                  <span style="font-size: 1rem; font-weight: 300; color: var(--text-primary);">1.2%</span>
+                </div>
+                <span class="insight-pill" style="flex: 0 0 auto; align-self: center; border-color: #e4b4b4; color: #b4524f;">Biggest leak</span>
+              </div>
+              <!-- stage 4 -->
+              <div style="display: flex; align-items: stretch; gap: 12px;">
+                <div style="width: 22%; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px;">
+                  <span style="font-size: 0.8125rem; color: var(--text-primary);">Purchased</span>
+                  <span style="font-size: 1rem; font-weight: 300; color: var(--text-primary);">~0.8%<span style="color: var(--text-muted);">*</span></span>
+                </div>
+                <span class="insight-pill" style="flex: 0 0 auto; align-self: center;">Monetisation</span>
+              </div>
+              <!-- stage 5 -->
+              <div style="display: flex; align-items: stretch; gap: 12px;">
+                <div style="width: 16%; min-width: 180px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px;">
+                  <span style="font-size: 0.8125rem; color: var(--text-primary);">Returned in 30 days</span>
+                  <span style="font-size: 1rem; font-weight: 300; color: var(--text-primary);">35%</span>
+                </div>
+                <span class="insight-pill" style="flex: 0 0 auto; align-self: center;">Retention</span>
+              </div>
+            </div>
+            <p class="stat-callout__context" style="margin-top: 12px;">Bar widths are illustrative. <span style="color: var(--text-muted);">*</span> placeholder — pending the real funnel figures; 1.2% CTR and 35% 30-day return are the measured values.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ SOLUTION ============ -->
   <section class="section" style="padding-top: 0; padding-bottom: 0;">
     <div class="container">
@@ -841,6 +917,69 @@
             <span class="insight-pill">Longevity</span>
             <span class="insight-pill">Trust threshold</span>
             <span class="insight-pill">Business context</span>
+          </div>
+
+          <!-- Lever prioritisation — GROWTH MOCK-UP (below existing for comparison) -->
+          <div class="reveal" style="margin-top: 20px; border: 1.5px dashed var(--border); border-radius: 12px; padding: clamp(16px, 2.5vw, 24px);">
+            <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+              <span style="font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bg); background: var(--text-primary); padding: 4px 10px; border-radius: 100px;">Mock-up</span>
+              <span class="p03-label" style="margin: 0;">Same decision, scored — why the wearable won</span>
+            </div>
+            <p class="p03-desc p03-mb-desc" style="max-width: 68ch;">Each route scored 1–5 against the criteria above. The wearable loses on trust threshold (asking for health data is a big step) but wins decisively on data quality, effort and longevity — the levers that compound.</p>
+            <div style="overflow-x: auto;">
+              <table style="width: 100%; min-width: 600px; border-collapse: collapse; font-weight: 300;">
+                <thead>
+                  <tr style="text-align: left;">
+                    <th style="padding: 10px 12px; font-size: 0.6875rem; font-weight: 400; color: var(--text-muted); border-bottom: 1px solid var(--border);">Route</th>
+                    <th style="padding: 10px 12px; font-size: 0.6875rem; font-weight: 400; color: var(--text-muted); border-bottom: 1px solid var(--border); text-align: center;">Data quality</th>
+                    <th style="padding: 10px 12px; font-size: 0.6875rem; font-weight: 400; color: var(--text-muted); border-bottom: 1px solid var(--border); text-align: center;">Low effort</th>
+                    <th style="padding: 10px 12px; font-size: 0.6875rem; font-weight: 400; color: var(--text-muted); border-bottom: 1px solid var(--border); text-align: center;">Longevity</th>
+                    <th style="padding: 10px 12px; font-size: 0.6875rem; font-weight: 400; color: var(--text-muted); border-bottom: 1px solid var(--border); text-align: center;">Trust</th>
+                    <th style="padding: 10px 12px; font-size: 0.6875rem; font-weight: 400; color: var(--text-muted); border-bottom: 1px solid var(--border); text-align: center;">Business</th>
+                    <th style="padding: 10px 12px; font-size: 0.6875rem; font-weight: 400; color: var(--text-primary); border-bottom: 1px solid var(--border); text-align: center;">Score*</th>
+                  </tr>
+                </thead>
+                <tbody style="font-size: 0.8125rem; color: var(--text-secondary);">
+                  <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid var(--border); color: var(--text-primary);">Welcome quiz + incentive</td>
+                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">3</td>
+                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">4</td>
+                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">2</td>
+                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">4</td>
+                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">3</td>
+                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; color: var(--text-primary);">16</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid var(--border); color: var(--text-primary);">Progressive profiling</td>
+                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">3</td>
+                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">3</td>
+                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">3</td>
+                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">4</td>
+                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">3</td>
+                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; color: var(--text-primary);">16</td>
+                  </tr>
+                  <tr style="background: var(--surface);">
+                    <td style="padding: 12px; border-bottom: 1px solid var(--border); color: var(--text-primary); font-weight: 400;">Wearable integration <span style="font-size: 0.625rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--bg); background: var(--text-primary); padding: 2px 7px; border-radius: 100px; margin-left: 6px;">Chosen</span></td>
+                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; color: var(--text-primary);">5</td>
+                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; color: var(--text-primary);">5</td>
+                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; color: var(--text-primary);">5</td>
+                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">2</td>
+                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; color: var(--text-primary);">5</td>
+                    <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; color: var(--text-primary); font-weight: 400;">22</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px; color: var(--text-primary);">Stack builder &amp; goals</td>
+                    <td style="padding: 12px; text-align: center;">4</td>
+                    <td style="padding: 12px; text-align: center;">2</td>
+                    <td style="padding: 12px; text-align: center;">3</td>
+                    <td style="padding: 12px; text-align: center;">4</td>
+                    <td style="padding: 12px; text-align: center;">3</td>
+                    <td style="padding: 12px; text-align: center; color: var(--text-primary);">16</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="stat-callout__context" style="margin-top: 12px;"><span style="color: var(--text-muted);">*</span> placeholder scores for illustration — I'd set these with the team against real evidence before this went live.</p>
           </div>
 
           <!-- Back-end work -->
