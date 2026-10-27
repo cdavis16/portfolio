@@ -673,11 +673,9 @@ body.cursor-hover .cursor__dot  { width: 6px; height: 6px; }
 }
 
 .about-hero {
-  min-height: 100svh;
-  padding: 0 var(--gutter) clamp(60px, 8vw, 100px);
+  padding: 100px var(--gutter) clamp(20px, 2.5vw, 32px);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
 }
 
 .about-hero__left {
